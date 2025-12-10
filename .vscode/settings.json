@@ -2,20 +2,17 @@
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true,
     "**/.tanstack/**/*": true,
-    "pnpm-lock.yaml": true,
-    "bun.lock": true
+    "pnpm-lock.yaml": true
   },
   "files.watcherExclude": {
     "**/routeTree.gen.ts": true,
     "**/.tanstack/**/*": true,
-    "pnpm-lock.yaml": true,
-    "bun.lock": true
+    "pnpm-lock.yaml": true
   },
   "search.exclude": {
     "**/routeTree.gen.ts": true,
     "**/.tanstack/**/*": true,
-    "pnpm-lock.yaml": true,
-    "bun.lock": true
+    "pnpm-lock.yaml": true
   },
 
   "explorer.fileNesting.enabled": true,
@@ -31,11 +28,11 @@
   // use LF line endings
   "files.eol": "\n",
 
-  // set prettier as default formatter for json, ts, tsx, js, jsx, html, css
-  "[json][jsonc][typescript][typescriptreact][javascript][javascriptreact][html][css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnType": false, // required
+  "editor.formatOnPaste": true, // optional
+  "editor.formatOnSave": true, // optional
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange", // optional but recommended
+  "vs-code-prettier-eslint.prettierLast": false // set as "true" to run 'prettier' last not first
 }

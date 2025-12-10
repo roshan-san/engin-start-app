@@ -11,19 +11,20 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
-import { authQueryOptions, type AuthQueryResult } from "~/lib/auth/queries";
 import appCss from "~/styles.css?url";
 
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
-  user: AuthQueryResult;
 }>()({
-  beforeLoad: ({ context }) => {
-    context.queryClient.prefetchQuery(authQueryOptions());
+  beforeLoad: async ({ context }) => {
+    await context.queryClient.prefetchQuery(profileQueryOptions());
+    await context.queryClient.prefetchQuery(authQueryOptions());
   },
+
   head: () => ({
     meta: [
       {

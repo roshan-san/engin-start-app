@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
-import { $getUser } from "./functions";
 import { $getProfile } from "~/functions/profiles.fn";
+import { $getUser } from "./functions";
 
 export const authQueryOptions = () =>
   queryOptions({

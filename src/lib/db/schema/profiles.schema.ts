@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { user } from "./auth.schema";
 
 export const profileTable = pgTable("profiles", {
@@ -24,8 +24,9 @@ export const profileTable = pgTable("profiles", {
   experience_level: text("experience_level"),
 
   bio: text("bio"),
+  onboarding_complete: boolean("onboarding_complete").default(false).notNull(),
 
-  kyc_status: text("kyc_status").default("pending"),
+  kyc_status: boolean("kyc_status").default(false).notNull(),
   created_at: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updated_at: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
