@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useAppForm } from "~/components/form/AppForm";
@@ -21,6 +21,7 @@ export const Route = createFileRoute("/(authenticated)/onboard/location")({
 });
 
 function RouteComponent() {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const form = useAppForm({
@@ -37,11 +38,14 @@ function RouteComponent() {
           city: form.getFieldValue("city"),
           state: form.getFieldValue("state"),
           country: form.getFieldValue("country"),
+          onboarding_complete: true,
         },
       });
     },
-    onSuccess: async () => {
+    onSuccess: async (updated) => {
       toast.success("Location Updated successfully!");
+      // Refresh cache to keep guards satisfied immediately
+      queryClient.setQueryData(["profile"], updated);
       navigate({ to: "/a/dashboard" });
     },
     onError: (error) => {
@@ -85,7 +89,7 @@ function RouteComponent() {
         </CardContent>
         <CardFooter>
           <Field orientation="horizontal">
-            <Button type="submit" form="name-form" disabled={mutation.isPending}>
+            <Button type="submit" form="location-form" disabled={mutation.isPending}>
               {mutation.isPending ? <Spinner /> : null}
               Submit
             </Button>

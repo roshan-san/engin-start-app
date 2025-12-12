@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useAppForm } from "~/components/form/AppForm";
 import { userTypeFormOps } from "~/components/onboard/usertype-form";
@@ -21,8 +21,11 @@ export const Route = createFileRoute("/(authenticated)/onboard/user-type")({
 });
 
 function RouteComponent() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const form = useAppForm({
     ...userTypeFormOps,
+    onSubmit: async () => mutation.mutate(),
   });
 
   const mutation = useMutation({
@@ -33,8 +36,11 @@ function RouteComponent() {
         },
       });
     },
-    onSuccess: () => {
+    onSuccess: (updated) => {
       toast.success("User type chosen successfully!");
+      // Keep profile cache in sync to avoid redirect loops
+      queryClient.setQueryData(["profile"], updated);
+      navigate({ to: "/onboard/location" });
     },
     onError: (error) => {
       toast.error("Failed to choose user type. Please try again.");
