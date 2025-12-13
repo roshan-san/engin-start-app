@@ -8,428 +8,428 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
-import { Route as authenticatedOnboardRouteRouteImport } from './routes/(authenticated)/onboard/route'
-import { Route as authenticatedARouteRouteImport } from './routes/(authenticated)/a/route'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as authenticatedOnboardUserTypeRouteImport } from './routes/(authenticated)/onboard/user-type'
-import { Route as authenticatedOnboardNameRouteImport } from './routes/(authenticated)/onboard/name'
-import { Route as authenticatedOnboardLocationRouteImport } from './routes/(authenticated)/onboard/location'
-import { Route as authenticatedASettingsRouteRouteImport } from './routes/(authenticated)/a/settings/route'
-import { Route as authenticatedANotificationsIndexRouteImport } from './routes/(authenticated)/a/notifications/index'
-import { Route as authenticatedAFeedIndexRouteImport } from './routes/(authenticated)/a/feed/index'
-import { Route as authenticatedAExploreIndexRouteImport } from './routes/(authenticated)/a/explore/index'
-import { Route as authenticatedADashboardIndexRouteImport } from './routes/(authenticated)/a/dashboard/index'
-import { Route as authenticatedASettingsProfileRouteImport } from './routes/(authenticated)/a/settings/profile'
-import { Route as authenticatedASettingsBillingRouteImport } from './routes/(authenticated)/a/settings/billing'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as authenticatedRouteRouteImport } from "./routes/(authenticated)/route";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as authPagesLoginRouteImport } from "./routes/(auth-pages)/login";
+import { Route as authenticatedOnboardRouteRouteImport } from "./routes/(authenticated)/onboard/route";
+import { Route as authenticatedARouteRouteImport } from "./routes/(authenticated)/a/route";
+import { Route as ApiAuthSplatRouteImport } from "./routes/api/auth/$";
+import { Route as authenticatedOnboardUserTypeRouteImport } from "./routes/(authenticated)/onboard/user-type";
+import { Route as authenticatedOnboardNameRouteImport } from "./routes/(authenticated)/onboard/name";
+import { Route as authenticatedOnboardLocationRouteImport } from "./routes/(authenticated)/onboard/location";
+import { Route as authenticatedASettingsRouteRouteImport } from "./routes/(authenticated)/a/settings/route";
+import { Route as authenticatedANotificationsIndexRouteImport } from "./routes/(authenticated)/a/notifications/index";
+import { Route as authenticatedAFeedIndexRouteImport } from "./routes/(authenticated)/a/feed/index";
+import { Route as authenticatedAExploreIndexRouteImport } from "./routes/(authenticated)/a/explore/index";
+import { Route as authenticatedADashboardIndexRouteImport } from "./routes/(authenticated)/a/dashboard/index";
+import { Route as authenticatedASettingsProfileRouteImport } from "./routes/(authenticated)/a/settings/profile";
+import { Route as authenticatedASettingsBillingRouteImport } from "./routes/(authenticated)/a/settings/billing";
 
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
-  id: '/(authenticated)',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/(authenticated)",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/",
+	path: "/",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const authPagesLoginRoute = authPagesLoginRouteImport.update({
-  id: '/(auth-pages)/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/(auth-pages)/login",
+	path: "/login",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const authenticatedOnboardRouteRoute =
-  authenticatedOnboardRouteRouteImport.update({
-    id: '/onboard',
-    path: '/onboard',
-    getParentRoute: () => authenticatedRouteRoute,
-  } as any)
+	authenticatedOnboardRouteRouteImport.update({
+		id: "/onboard",
+		path: "/onboard",
+		getParentRoute: () => authenticatedRouteRoute,
+	} as any);
 const authenticatedARouteRoute = authenticatedARouteRouteImport.update({
-  id: '/a',
-  path: '/a',
-  getParentRoute: () => authenticatedRouteRoute,
-} as any)
+	id: "/a",
+	path: "/a",
+	getParentRoute: () => authenticatedRouteRoute,
+} as any);
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/api/auth/$",
+	path: "/api/auth/$",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const authenticatedOnboardUserTypeRoute =
-  authenticatedOnboardUserTypeRouteImport.update({
-    id: '/user-type',
-    path: '/user-type',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
+	authenticatedOnboardUserTypeRouteImport.update({
+		id: "/user-type",
+		path: "/user-type",
+		getParentRoute: () => authenticatedOnboardRouteRoute,
+	} as any);
 const authenticatedOnboardNameRoute =
-  authenticatedOnboardNameRouteImport.update({
-    id: '/name',
-    path: '/name',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
+	authenticatedOnboardNameRouteImport.update({
+		id: "/name",
+		path: "/name",
+		getParentRoute: () => authenticatedOnboardRouteRoute,
+	} as any);
 const authenticatedOnboardLocationRoute =
-  authenticatedOnboardLocationRouteImport.update({
-    id: '/location',
-    path: '/location',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
+	authenticatedOnboardLocationRouteImport.update({
+		id: "/location",
+		path: "/location",
+		getParentRoute: () => authenticatedOnboardRouteRoute,
+	} as any);
 const authenticatedASettingsRouteRoute =
-  authenticatedASettingsRouteRouteImport.update({
-    id: '/settings',
-    path: '/settings',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
+	authenticatedASettingsRouteRouteImport.update({
+		id: "/settings",
+		path: "/settings",
+		getParentRoute: () => authenticatedARouteRoute,
+	} as any);
 const authenticatedANotificationsIndexRoute =
-  authenticatedANotificationsIndexRouteImport.update({
-    id: '/notifications/',
-    path: '/notifications/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
+	authenticatedANotificationsIndexRouteImport.update({
+		id: "/notifications/",
+		path: "/notifications/",
+		getParentRoute: () => authenticatedARouteRoute,
+	} as any);
 const authenticatedAFeedIndexRoute = authenticatedAFeedIndexRouteImport.update({
-  id: '/feed/',
-  path: '/feed/',
-  getParentRoute: () => authenticatedARouteRoute,
-} as any)
+	id: "/feed/",
+	path: "/feed/",
+	getParentRoute: () => authenticatedARouteRoute,
+} as any);
 const authenticatedAExploreIndexRoute =
-  authenticatedAExploreIndexRouteImport.update({
-    id: '/explore/',
-    path: '/explore/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
+	authenticatedAExploreIndexRouteImport.update({
+		id: "/explore/",
+		path: "/explore/",
+		getParentRoute: () => authenticatedARouteRoute,
+	} as any);
 const authenticatedADashboardIndexRoute =
-  authenticatedADashboardIndexRouteImport.update({
-    id: '/dashboard/',
-    path: '/dashboard/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
+	authenticatedADashboardIndexRouteImport.update({
+		id: "/dashboard/",
+		path: "/dashboard/",
+		getParentRoute: () => authenticatedARouteRoute,
+	} as any);
 const authenticatedASettingsProfileRoute =
-  authenticatedASettingsProfileRouteImport.update({
-    id: '/profile',
-    path: '/profile',
-    getParentRoute: () => authenticatedASettingsRouteRoute,
-  } as any)
+	authenticatedASettingsProfileRouteImport.update({
+		id: "/profile",
+		path: "/profile",
+		getParentRoute: () => authenticatedASettingsRouteRoute,
+	} as any);
 const authenticatedASettingsBillingRoute =
-  authenticatedASettingsBillingRouteImport.update({
-    id: '/billing',
-    path: '/billing',
-    getParentRoute: () => authenticatedASettingsRouteRoute,
-  } as any)
+	authenticatedASettingsBillingRouteImport.update({
+		id: "/billing",
+		path: "/billing",
+		getParentRoute: () => authenticatedASettingsRouteRoute,
+	} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/a': typeof authenticatedARouteRouteWithChildren
-  '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/login': typeof authPagesLoginRoute
-  '/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/onboard/name': typeof authenticatedOnboardNameRoute
-  '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/a/dashboard': typeof authenticatedADashboardIndexRoute
-  '/a/explore': typeof authenticatedAExploreIndexRoute
-  '/a/feed': typeof authenticatedAFeedIndexRoute
-  '/a/notifications': typeof authenticatedANotificationsIndexRoute
+	"/": typeof IndexRoute;
+	"/a": typeof authenticatedARouteRouteWithChildren;
+	"/onboard": typeof authenticatedOnboardRouteRouteWithChildren;
+	"/login": typeof authPagesLoginRoute;
+	"/a/settings": typeof authenticatedASettingsRouteRouteWithChildren;
+	"/onboard/location": typeof authenticatedOnboardLocationRoute;
+	"/onboard/name": typeof authenticatedOnboardNameRoute;
+	"/onboard/user-type": typeof authenticatedOnboardUserTypeRoute;
+	"/api/auth/$": typeof ApiAuthSplatRoute;
+	"/a/settings/billing": typeof authenticatedASettingsBillingRoute;
+	"/a/settings/profile": typeof authenticatedASettingsProfileRoute;
+	"/a/dashboard": typeof authenticatedADashboardIndexRoute;
+	"/a/explore": typeof authenticatedAExploreIndexRoute;
+	"/a/feed": typeof authenticatedAFeedIndexRoute;
+	"/a/notifications": typeof authenticatedANotificationsIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/a': typeof authenticatedARouteRouteWithChildren
-  '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/login': typeof authPagesLoginRoute
-  '/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/onboard/name': typeof authenticatedOnboardNameRoute
-  '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/a/dashboard': typeof authenticatedADashboardIndexRoute
-  '/a/explore': typeof authenticatedAExploreIndexRoute
-  '/a/feed': typeof authenticatedAFeedIndexRoute
-  '/a/notifications': typeof authenticatedANotificationsIndexRoute
+	"/": typeof IndexRoute;
+	"/a": typeof authenticatedARouteRouteWithChildren;
+	"/onboard": typeof authenticatedOnboardRouteRouteWithChildren;
+	"/login": typeof authPagesLoginRoute;
+	"/a/settings": typeof authenticatedASettingsRouteRouteWithChildren;
+	"/onboard/location": typeof authenticatedOnboardLocationRoute;
+	"/onboard/name": typeof authenticatedOnboardNameRoute;
+	"/onboard/user-type": typeof authenticatedOnboardUserTypeRoute;
+	"/api/auth/$": typeof ApiAuthSplatRoute;
+	"/a/settings/billing": typeof authenticatedASettingsBillingRoute;
+	"/a/settings/profile": typeof authenticatedASettingsProfileRoute;
+	"/a/dashboard": typeof authenticatedADashboardIndexRoute;
+	"/a/explore": typeof authenticatedAExploreIndexRoute;
+	"/a/feed": typeof authenticatedAFeedIndexRoute;
+	"/a/notifications": typeof authenticatedANotificationsIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/(authenticated)': typeof authenticatedRouteRouteWithChildren
-  '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
-  '/(authenticated)/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/(auth-pages)/login': typeof authPagesLoginRoute
-  '/(authenticated)/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/(authenticated)/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/(authenticated)/onboard/name': typeof authenticatedOnboardNameRoute
-  '/(authenticated)/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/(authenticated)/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/(authenticated)/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/(authenticated)/a/dashboard/': typeof authenticatedADashboardIndexRoute
-  '/(authenticated)/a/explore/': typeof authenticatedAExploreIndexRoute
-  '/(authenticated)/a/feed/': typeof authenticatedAFeedIndexRoute
-  '/(authenticated)/a/notifications/': typeof authenticatedANotificationsIndexRoute
+	__root__: typeof rootRouteImport;
+	"/": typeof IndexRoute;
+	"/(authenticated)": typeof authenticatedRouteRouteWithChildren;
+	"/(authenticated)/a": typeof authenticatedARouteRouteWithChildren;
+	"/(authenticated)/onboard": typeof authenticatedOnboardRouteRouteWithChildren;
+	"/(auth-pages)/login": typeof authPagesLoginRoute;
+	"/(authenticated)/a/settings": typeof authenticatedASettingsRouteRouteWithChildren;
+	"/(authenticated)/onboard/location": typeof authenticatedOnboardLocationRoute;
+	"/(authenticated)/onboard/name": typeof authenticatedOnboardNameRoute;
+	"/(authenticated)/onboard/user-type": typeof authenticatedOnboardUserTypeRoute;
+	"/api/auth/$": typeof ApiAuthSplatRoute;
+	"/(authenticated)/a/settings/billing": typeof authenticatedASettingsBillingRoute;
+	"/(authenticated)/a/settings/profile": typeof authenticatedASettingsProfileRoute;
+	"/(authenticated)/a/dashboard/": typeof authenticatedADashboardIndexRoute;
+	"/(authenticated)/a/explore/": typeof authenticatedAExploreIndexRoute;
+	"/(authenticated)/a/feed/": typeof authenticatedAFeedIndexRoute;
+	"/(authenticated)/a/notifications/": typeof authenticatedANotificationsIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/a'
-    | '/onboard'
-    | '/login'
-    | '/a/settings'
-    | '/onboard/location'
-    | '/onboard/name'
-    | '/onboard/user-type'
-    | '/api/auth/$'
-    | '/a/settings/billing'
-    | '/a/settings/profile'
-    | '/a/dashboard'
-    | '/a/explore'
-    | '/a/feed'
-    | '/a/notifications'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/a'
-    | '/onboard'
-    | '/login'
-    | '/a/settings'
-    | '/onboard/location'
-    | '/onboard/name'
-    | '/onboard/user-type'
-    | '/api/auth/$'
-    | '/a/settings/billing'
-    | '/a/settings/profile'
-    | '/a/dashboard'
-    | '/a/explore'
-    | '/a/feed'
-    | '/a/notifications'
-  id:
-    | '__root__'
-    | '/'
-    | '/(authenticated)'
-    | '/(authenticated)/a'
-    | '/(authenticated)/onboard'
-    | '/(auth-pages)/login'
-    | '/(authenticated)/a/settings'
-    | '/(authenticated)/onboard/location'
-    | '/(authenticated)/onboard/name'
-    | '/(authenticated)/onboard/user-type'
-    | '/api/auth/$'
-    | '/(authenticated)/a/settings/billing'
-    | '/(authenticated)/a/settings/profile'
-    | '/(authenticated)/a/dashboard/'
-    | '/(authenticated)/a/explore/'
-    | '/(authenticated)/a/feed/'
-    | '/(authenticated)/a/notifications/'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath;
+	fullPaths:
+		| "/"
+		| "/a"
+		| "/onboard"
+		| "/login"
+		| "/a/settings"
+		| "/onboard/location"
+		| "/onboard/name"
+		| "/onboard/user-type"
+		| "/api/auth/$"
+		| "/a/settings/billing"
+		| "/a/settings/profile"
+		| "/a/dashboard"
+		| "/a/explore"
+		| "/a/feed"
+		| "/a/notifications";
+	fileRoutesByTo: FileRoutesByTo;
+	to:
+		| "/"
+		| "/a"
+		| "/onboard"
+		| "/login"
+		| "/a/settings"
+		| "/onboard/location"
+		| "/onboard/name"
+		| "/onboard/user-type"
+		| "/api/auth/$"
+		| "/a/settings/billing"
+		| "/a/settings/profile"
+		| "/a/dashboard"
+		| "/a/explore"
+		| "/a/feed"
+		| "/a/notifications";
+	id:
+		| "__root__"
+		| "/"
+		| "/(authenticated)"
+		| "/(authenticated)/a"
+		| "/(authenticated)/onboard"
+		| "/(auth-pages)/login"
+		| "/(authenticated)/a/settings"
+		| "/(authenticated)/onboard/location"
+		| "/(authenticated)/onboard/name"
+		| "/(authenticated)/onboard/user-type"
+		| "/api/auth/$"
+		| "/(authenticated)/a/settings/billing"
+		| "/(authenticated)/a/settings/profile"
+		| "/(authenticated)/a/dashboard/"
+		| "/(authenticated)/a/explore/"
+		| "/(authenticated)/a/feed/"
+		| "/(authenticated)/a/notifications/";
+	fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
-  authPagesLoginRoute: typeof authPagesLoginRoute
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+	IndexRoute: typeof IndexRoute;
+	authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren;
+	authPagesLoginRoute: typeof authPagesLoginRoute;
+	ApiAuthSplatRoute: typeof ApiAuthSplatRoute;
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/(authenticated)': {
-      id: '/(authenticated)'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof authenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth-pages)/login': {
-      id: '/(auth-pages)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authPagesLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(authenticated)/onboard': {
-      id: '/(authenticated)/onboard'
-      path: '/onboard'
-      fullPath: '/onboard'
-      preLoaderRoute: typeof authenticatedOnboardRouteRouteImport
-      parentRoute: typeof authenticatedRouteRoute
-    }
-    '/(authenticated)/a': {
-      id: '/(authenticated)/a'
-      path: '/a'
-      fullPath: '/a'
-      preLoaderRoute: typeof authenticatedARouteRouteImport
-      parentRoute: typeof authenticatedRouteRoute
-    }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(authenticated)/onboard/user-type': {
-      id: '/(authenticated)/onboard/user-type'
-      path: '/user-type'
-      fullPath: '/onboard/user-type'
-      preLoaderRoute: typeof authenticatedOnboardUserTypeRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/onboard/name': {
-      id: '/(authenticated)/onboard/name'
-      path: '/name'
-      fullPath: '/onboard/name'
-      preLoaderRoute: typeof authenticatedOnboardNameRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/onboard/location': {
-      id: '/(authenticated)/onboard/location'
-      path: '/location'
-      fullPath: '/onboard/location'
-      preLoaderRoute: typeof authenticatedOnboardLocationRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/a/settings': {
-      id: '/(authenticated)/a/settings'
-      path: '/settings'
-      fullPath: '/a/settings'
-      preLoaderRoute: typeof authenticatedASettingsRouteRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/notifications/': {
-      id: '/(authenticated)/a/notifications/'
-      path: '/notifications'
-      fullPath: '/a/notifications'
-      preLoaderRoute: typeof authenticatedANotificationsIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/feed/': {
-      id: '/(authenticated)/a/feed/'
-      path: '/feed'
-      fullPath: '/a/feed'
-      preLoaderRoute: typeof authenticatedAFeedIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/explore/': {
-      id: '/(authenticated)/a/explore/'
-      path: '/explore'
-      fullPath: '/a/explore'
-      preLoaderRoute: typeof authenticatedAExploreIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/dashboard/': {
-      id: '/(authenticated)/a/dashboard/'
-      path: '/dashboard'
-      fullPath: '/a/dashboard'
-      preLoaderRoute: typeof authenticatedADashboardIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/settings/profile': {
-      id: '/(authenticated)/a/settings/profile'
-      path: '/profile'
-      fullPath: '/a/settings/profile'
-      preLoaderRoute: typeof authenticatedASettingsProfileRouteImport
-      parentRoute: typeof authenticatedASettingsRouteRoute
-    }
-    '/(authenticated)/a/settings/billing': {
-      id: '/(authenticated)/a/settings/billing'
-      path: '/billing'
-      fullPath: '/a/settings/billing'
-      preLoaderRoute: typeof authenticatedASettingsBillingRouteImport
-      parentRoute: typeof authenticatedASettingsRouteRoute
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/(authenticated)": {
+			id: "/(authenticated)";
+			path: "";
+			fullPath: "";
+			preLoaderRoute: typeof authenticatedRouteRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/": {
+			id: "/";
+			path: "/";
+			fullPath: "/";
+			preLoaderRoute: typeof IndexRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/(auth-pages)/login": {
+			id: "/(auth-pages)/login";
+			path: "/login";
+			fullPath: "/login";
+			preLoaderRoute: typeof authPagesLoginRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/(authenticated)/onboard": {
+			id: "/(authenticated)/onboard";
+			path: "/onboard";
+			fullPath: "/onboard";
+			preLoaderRoute: typeof authenticatedOnboardRouteRouteImport;
+			parentRoute: typeof authenticatedRouteRoute;
+		};
+		"/(authenticated)/a": {
+			id: "/(authenticated)/a";
+			path: "/a";
+			fullPath: "/a";
+			preLoaderRoute: typeof authenticatedARouteRouteImport;
+			parentRoute: typeof authenticatedRouteRoute;
+		};
+		"/api/auth/$": {
+			id: "/api/auth/$";
+			path: "/api/auth/$";
+			fullPath: "/api/auth/$";
+			preLoaderRoute: typeof ApiAuthSplatRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/(authenticated)/onboard/user-type": {
+			id: "/(authenticated)/onboard/user-type";
+			path: "/user-type";
+			fullPath: "/onboard/user-type";
+			preLoaderRoute: typeof authenticatedOnboardUserTypeRouteImport;
+			parentRoute: typeof authenticatedOnboardRouteRoute;
+		};
+		"/(authenticated)/onboard/name": {
+			id: "/(authenticated)/onboard/name";
+			path: "/name";
+			fullPath: "/onboard/name";
+			preLoaderRoute: typeof authenticatedOnboardNameRouteImport;
+			parentRoute: typeof authenticatedOnboardRouteRoute;
+		};
+		"/(authenticated)/onboard/location": {
+			id: "/(authenticated)/onboard/location";
+			path: "/location";
+			fullPath: "/onboard/location";
+			preLoaderRoute: typeof authenticatedOnboardLocationRouteImport;
+			parentRoute: typeof authenticatedOnboardRouteRoute;
+		};
+		"/(authenticated)/a/settings": {
+			id: "/(authenticated)/a/settings";
+			path: "/settings";
+			fullPath: "/a/settings";
+			preLoaderRoute: typeof authenticatedASettingsRouteRouteImport;
+			parentRoute: typeof authenticatedARouteRoute;
+		};
+		"/(authenticated)/a/notifications/": {
+			id: "/(authenticated)/a/notifications/";
+			path: "/notifications";
+			fullPath: "/a/notifications";
+			preLoaderRoute: typeof authenticatedANotificationsIndexRouteImport;
+			parentRoute: typeof authenticatedARouteRoute;
+		};
+		"/(authenticated)/a/feed/": {
+			id: "/(authenticated)/a/feed/";
+			path: "/feed";
+			fullPath: "/a/feed";
+			preLoaderRoute: typeof authenticatedAFeedIndexRouteImport;
+			parentRoute: typeof authenticatedARouteRoute;
+		};
+		"/(authenticated)/a/explore/": {
+			id: "/(authenticated)/a/explore/";
+			path: "/explore";
+			fullPath: "/a/explore";
+			preLoaderRoute: typeof authenticatedAExploreIndexRouteImport;
+			parentRoute: typeof authenticatedARouteRoute;
+		};
+		"/(authenticated)/a/dashboard/": {
+			id: "/(authenticated)/a/dashboard/";
+			path: "/dashboard";
+			fullPath: "/a/dashboard";
+			preLoaderRoute: typeof authenticatedADashboardIndexRouteImport;
+			parentRoute: typeof authenticatedARouteRoute;
+		};
+		"/(authenticated)/a/settings/profile": {
+			id: "/(authenticated)/a/settings/profile";
+			path: "/profile";
+			fullPath: "/a/settings/profile";
+			preLoaderRoute: typeof authenticatedASettingsProfileRouteImport;
+			parentRoute: typeof authenticatedASettingsRouteRoute;
+		};
+		"/(authenticated)/a/settings/billing": {
+			id: "/(authenticated)/a/settings/billing";
+			path: "/billing";
+			fullPath: "/a/settings/billing";
+			preLoaderRoute: typeof authenticatedASettingsBillingRouteImport;
+			parentRoute: typeof authenticatedASettingsRouteRoute;
+		};
+	}
 }
 
 interface authenticatedASettingsRouteRouteChildren {
-  authenticatedASettingsBillingRoute: typeof authenticatedASettingsBillingRoute
-  authenticatedASettingsProfileRoute: typeof authenticatedASettingsProfileRoute
+	authenticatedASettingsBillingRoute: typeof authenticatedASettingsBillingRoute;
+	authenticatedASettingsProfileRoute: typeof authenticatedASettingsProfileRoute;
 }
 
 const authenticatedASettingsRouteRouteChildren: authenticatedASettingsRouteRouteChildren =
-  {
-    authenticatedASettingsBillingRoute: authenticatedASettingsBillingRoute,
-    authenticatedASettingsProfileRoute: authenticatedASettingsProfileRoute,
-  }
+	{
+		authenticatedASettingsBillingRoute: authenticatedASettingsBillingRoute,
+		authenticatedASettingsProfileRoute: authenticatedASettingsProfileRoute,
+	};
 
 const authenticatedASettingsRouteRouteWithChildren =
-  authenticatedASettingsRouteRoute._addFileChildren(
-    authenticatedASettingsRouteRouteChildren,
-  )
+	authenticatedASettingsRouteRoute._addFileChildren(
+		authenticatedASettingsRouteRouteChildren,
+	);
 
 interface authenticatedARouteRouteChildren {
-  authenticatedASettingsRouteRoute: typeof authenticatedASettingsRouteRouteWithChildren
-  authenticatedADashboardIndexRoute: typeof authenticatedADashboardIndexRoute
-  authenticatedAExploreIndexRoute: typeof authenticatedAExploreIndexRoute
-  authenticatedAFeedIndexRoute: typeof authenticatedAFeedIndexRoute
-  authenticatedANotificationsIndexRoute: typeof authenticatedANotificationsIndexRoute
+	authenticatedASettingsRouteRoute: typeof authenticatedASettingsRouteRouteWithChildren;
+	authenticatedADashboardIndexRoute: typeof authenticatedADashboardIndexRoute;
+	authenticatedAExploreIndexRoute: typeof authenticatedAExploreIndexRoute;
+	authenticatedAFeedIndexRoute: typeof authenticatedAFeedIndexRoute;
+	authenticatedANotificationsIndexRoute: typeof authenticatedANotificationsIndexRoute;
 }
 
 const authenticatedARouteRouteChildren: authenticatedARouteRouteChildren = {
-  authenticatedASettingsRouteRoute:
-    authenticatedASettingsRouteRouteWithChildren,
-  authenticatedADashboardIndexRoute: authenticatedADashboardIndexRoute,
-  authenticatedAExploreIndexRoute: authenticatedAExploreIndexRoute,
-  authenticatedAFeedIndexRoute: authenticatedAFeedIndexRoute,
-  authenticatedANotificationsIndexRoute: authenticatedANotificationsIndexRoute,
-}
+	authenticatedASettingsRouteRoute:
+		authenticatedASettingsRouteRouteWithChildren,
+	authenticatedADashboardIndexRoute: authenticatedADashboardIndexRoute,
+	authenticatedAExploreIndexRoute: authenticatedAExploreIndexRoute,
+	authenticatedAFeedIndexRoute: authenticatedAFeedIndexRoute,
+	authenticatedANotificationsIndexRoute: authenticatedANotificationsIndexRoute,
+};
 
 const authenticatedARouteRouteWithChildren =
-  authenticatedARouteRoute._addFileChildren(authenticatedARouteRouteChildren)
+	authenticatedARouteRoute._addFileChildren(authenticatedARouteRouteChildren);
 
 interface authenticatedOnboardRouteRouteChildren {
-  authenticatedOnboardLocationRoute: typeof authenticatedOnboardLocationRoute
-  authenticatedOnboardNameRoute: typeof authenticatedOnboardNameRoute
-  authenticatedOnboardUserTypeRoute: typeof authenticatedOnboardUserTypeRoute
+	authenticatedOnboardLocationRoute: typeof authenticatedOnboardLocationRoute;
+	authenticatedOnboardNameRoute: typeof authenticatedOnboardNameRoute;
+	authenticatedOnboardUserTypeRoute: typeof authenticatedOnboardUserTypeRoute;
 }
 
 const authenticatedOnboardRouteRouteChildren: authenticatedOnboardRouteRouteChildren =
-  {
-    authenticatedOnboardLocationRoute: authenticatedOnboardLocationRoute,
-    authenticatedOnboardNameRoute: authenticatedOnboardNameRoute,
-    authenticatedOnboardUserTypeRoute: authenticatedOnboardUserTypeRoute,
-  }
+	{
+		authenticatedOnboardLocationRoute: authenticatedOnboardLocationRoute,
+		authenticatedOnboardNameRoute: authenticatedOnboardNameRoute,
+		authenticatedOnboardUserTypeRoute: authenticatedOnboardUserTypeRoute,
+	};
 
 const authenticatedOnboardRouteRouteWithChildren =
-  authenticatedOnboardRouteRoute._addFileChildren(
-    authenticatedOnboardRouteRouteChildren,
-  )
+	authenticatedOnboardRouteRoute._addFileChildren(
+		authenticatedOnboardRouteRouteChildren,
+	);
 
 interface authenticatedRouteRouteChildren {
-  authenticatedARouteRoute: typeof authenticatedARouteRouteWithChildren
-  authenticatedOnboardRouteRoute: typeof authenticatedOnboardRouteRouteWithChildren
+	authenticatedARouteRoute: typeof authenticatedARouteRouteWithChildren;
+	authenticatedOnboardRouteRoute: typeof authenticatedOnboardRouteRouteWithChildren;
 }
 
 const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
-  authenticatedARouteRoute: authenticatedARouteRouteWithChildren,
-  authenticatedOnboardRouteRoute: authenticatedOnboardRouteRouteWithChildren,
-}
+	authenticatedARouteRoute: authenticatedARouteRouteWithChildren,
+	authenticatedOnboardRouteRoute: authenticatedOnboardRouteRouteWithChildren,
+};
 
 const authenticatedRouteRouteWithChildren =
-  authenticatedRouteRoute._addFileChildren(authenticatedRouteRouteChildren)
+	authenticatedRouteRoute._addFileChildren(authenticatedRouteRouteChildren);
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
-  authPagesLoginRoute: authPagesLoginRoute,
-  ApiAuthSplatRoute: ApiAuthSplatRoute,
-}
+	IndexRoute: IndexRoute,
+	authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
+	authPagesLoginRoute: authPagesLoginRoute,
+	ApiAuthSplatRoute: ApiAuthSplatRoute,
+};
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+	._addFileChildren(rootRouteChildren)
+	._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
+import type { getRouter } from "./router.tsx";
+import type { createStart } from "@tanstack/react-start";
+declare module "@tanstack/react-start" {
+	interface Register {
+		ssr: true;
+		router: Awaited<ReturnType<typeof getRouter>>;
+	}
 }

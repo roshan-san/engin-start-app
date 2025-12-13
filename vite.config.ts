@@ -7,27 +7,27 @@ import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [
-    devtools(),
-    tsConfigPaths({
-      projects: ["./tsconfig.json"],
-    }),
-    tanstackStart(),
-    // https://tanstack.com/start/latest/docs/framework/react/guide/hosting
-    nitro(),
-    viteReact({
-      // https://react.dev/learn/react-compiler
-      babel: {
-        plugins: [
-          [
-            "babel-plugin-react-compiler",
-            {
-              target: "19",
-            },
-          ],
-        ],
-      },
-    }),
-    tailwindcss(),
-  ],
+	plugins: [
+		devtools(),
+		tsConfigPaths({
+			projects: ["./tsconfig.json"],
+		}),
+		tanstackStart(),
+		// https://tanstack.com/start/latest/docs/framework/react/guide/hosting
+		nitro(),
+		viteReact({
+			// https://react.dev/learn/react-compiler
+			babel: {
+				plugins: [
+					[
+						"babel-plugin-react-compiler",
+						{
+							target: "19",
+						},
+					],
+				],
+			},
+		}),
+		tailwindcss(),
+	],
 });

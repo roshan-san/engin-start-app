@@ -7,30 +7,30 @@ import { env } from "~/env/server";
 import { db } from "~/lib/db";
 
 const getAuthConfig = createServerOnlyFn(() =>
-  betterAuth({
-    baseURL: env.VITE_BASE_URL,
-    telemetry: {
-      enabled: false,
-    },
-    database: drizzleAdapter(db, {
-      provider: "pg",
-    }),
+	betterAuth({
+		baseURL: env.VITE_BASE_URL,
+		telemetry: {
+			enabled: false,
+		},
+		database: drizzleAdapter(db, {
+			provider: "pg",
+		}),
 
-    plugins: [tanstackStartCookies()],
+		plugins: [tanstackStartCookies()],
 
-    session: {
-      cookieCache: {
-        enabled: true,
-        maxAge: 5 * 60, // 5 minutes
-      },
-    },
-    socialProviders: {
-      google: {
-        clientId: env.GOOGLE_CLIENT_ID!,
-        clientSecret: env.GOOGLE_CLIENT_SECRET!,
-      },
-    },
-  }),
+		session: {
+			cookieCache: {
+				enabled: true,
+				maxAge: 5 * 60, // 5 minutes
+			},
+		},
+		socialProviders: {
+			google: {
+				clientId: env.GOOGLE_CLIENT_ID!,
+				clientSecret: env.GOOGLE_CLIENT_SECRET!,
+			},
+		},
+	}),
 );
 
 export const auth = getAuthConfig();

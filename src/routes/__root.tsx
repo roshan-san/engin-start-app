@@ -1,10 +1,10 @@
 /// <reference types="vite/client" />
 import type { QueryClient } from "@tanstack/react-query";
 import {
-  createRootRouteWithContext,
-  HeadContent,
-  Outlet,
-  Scripts,
+	createRootRouteWithContext,
+	HeadContent,
+	Outlet,
+	Scripts,
 } from "@tanstack/react-router";
 
 import { TanStackDevtools } from "@tanstack/react-devtools";
@@ -18,69 +18,69 @@ import { Toaster } from "~/components/ui/sonner";
 import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 
 export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient;
+	queryClient: QueryClient;
 }>()({
-  beforeLoad: async ({ context }) => {
-    await context.queryClient.prefetchQuery(profileQueryOptions());
-    await context.queryClient.prefetchQuery(authQueryOptions());
-  },
+	beforeLoad: async ({ context }) => {
+		await context.queryClient.prefetchQuery(profileQueryOptions());
+		await context.queryClient.prefetchQuery(authQueryOptions());
+	},
 
-  head: () => ({
-    meta: [
-      {
-        charSet: "utf-8",
-      },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
-      },
-      {
-        title: "Engin - The Fast Lane For Founders",
-      },
-      {
-        name: "description",
-        content: "",
-      },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
-  component: RootComponent,
+	head: () => ({
+		meta: [
+			{
+				charSet: "utf-8",
+			},
+			{
+				name: "viewport",
+				content: "width=device-width, initial-scale=1",
+			},
+			{
+				title: "Engin - The Fast Lane For Founders",
+			},
+			{
+				name: "description",
+				content: "",
+			},
+		],
+		links: [{ rel: "stylesheet", href: appCss }],
+	}),
+	component: RootComponent,
 });
 
 function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  );
+	return (
+		<RootDocument>
+			<Outlet />
+		</RootDocument>
+	);
 }
 
 function RootDocument({ children }: { readonly children: React.ReactNode }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <ThemeProvider>
-          {children}
-          <Toaster richColors />
-        </ThemeProvider>
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<HeadContent />
+			</head>
+			<body>
+				<ThemeProvider>
+					{children}
+					<Toaster richColors />
+				</ThemeProvider>
 
-        <TanStackDevtools
-          plugins={[
-            {
-              name: "TanStack Query",
-              render: <ReactQueryDevtoolsPanel />,
-            },
-            {
-              name: "TanStack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
-        <Scripts />
-      </body>
-    </html>
-  );
+				<TanStackDevtools
+					plugins={[
+						{
+							name: "TanStack Query",
+							render: <ReactQueryDevtoolsPanel />,
+						},
+						{
+							name: "TanStack Router",
+							render: <TanStackRouterDevtoolsPanel />,
+						},
+					]}
+				/>
+				<Scripts />
+			</body>
+		</html>
+	);
 }
