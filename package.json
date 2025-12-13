@@ -8,10 +8,10 @@
 		"preview": "vite preview",
 		"start": "node .output/server/index.mjs",
 
-		"format": "biome format --write .",
-		"lint": "biome lint .",
+		"format": "biome format --max-diagnostics=5 --write .",
+		"lint": "biome lint --max-diagnostics=5 --write .",
 		"check-types": "tsc --noEmit",
-		"check": "pnpm format && pnpm lint && pnpm check-types",
+		"check": "pnpm lint && pnpm format && pnpm check-types",
 
 		"db": "drizzle-kit",
 		"ui": "pnpm dlx shadcn@latest add ",

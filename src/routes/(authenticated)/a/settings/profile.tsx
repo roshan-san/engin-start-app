@@ -9,7 +9,7 @@ export const Route = createFileRoute("/(authenticated)/a/settings/profile")({
 });
 
 function RouteComponent() {
-	const { user } = Route.useRouteContext();
+	const { profile } = Route.useRouteContext();
 	return (
 		<Card className="col-span-9">
 			<CardHeader>
@@ -18,7 +18,7 @@ function RouteComponent() {
 			<CardContent className="flex flex-col gap-2">
 				<div className="space-y-2">
 					<Label htmlFor="full-name">Full Name</Label>
-					<Input placeholder={user.name} id="full-name" />
+					<Input placeholder={profile.full_name} id="full-name" />
 				</div>
 				<div className="space-y-2">
 					<Label htmlFor="username">Username</Label>

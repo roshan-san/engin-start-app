@@ -24,7 +24,10 @@ export function AppAvatar() {
 			<DropdownMenuTrigger asChild>
 				<Button className="relative h-10 w-10 rounded-full" variant="ghost">
 					<Avatar>
-						<AvatarImage alt={profile.full_name} src={profile.avatar_url!} />
+						<AvatarImage
+							alt={profile.full_name}
+							src={profile.avatar_url || undefined}
+						/>
 						<AvatarFallback>{profile.full_name.charAt(0)}</AvatarFallback>
 					</Avatar>
 				</Button>
