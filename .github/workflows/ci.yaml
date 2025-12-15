@@ -1,0 +1,10 @@
+name: ci check
+on:
+  push:
+    branches:
+      - main
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "github actions triggered"
