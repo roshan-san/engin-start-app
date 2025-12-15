@@ -13,21 +13,8 @@ export default defineConfig({
 			projects: ["./tsconfig.json"],
 		}),
 		tanstackStart(),
-		// https://tanstack.com/start/latest/docs/framework/react/guide/hosting
 		nitro(),
-		viteReact({
-			// https://react.dev/learn/react-compiler
-			babel: {
-				plugins: [
-					[
-						"babel-plugin-react-compiler",
-						{
-							target: "19",
-						},
-					],
-				],
-			},
-		}),
+		viteReact({}),
 		tailwindcss(),
 	],
 });
