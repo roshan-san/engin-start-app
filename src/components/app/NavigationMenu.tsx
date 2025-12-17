@@ -24,9 +24,9 @@ export default function NavigationMenu() {
 						key={item.path}
 						to={item.path}
 						className={cn(
-							"text-muted-foreground flex items-center gap-2 px-3 py-1.5 text-sm transition-colors",
-							"hover:-translate-y-1",
-							active && "border-accent text-primary border-b-2 font-semibold",
+							"text-muted-foreground flex items-center gap-2 px-4 py-2 text-sm transition-all",
+							"hover:-translate-y-1 duration-300",
+							active && "border-primary text-primary border-b-2",
 						)}
 					>
 						<Icon className={cn("h-4 w-4 transition-colors")} />
