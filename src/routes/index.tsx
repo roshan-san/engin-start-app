@@ -8,6 +8,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
+			<div>landing page goes in here</div>
 			<Button className="w-fit" size="lg">
 				<Link to="/a/dashboard">Go to App</Link>
 			</Button>

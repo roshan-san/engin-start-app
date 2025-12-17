@@ -14,7 +14,7 @@ export default function NavigationMenu() {
 	];
 
 	return (
-		<div className="flex items-center justify-center gap-2">
+		<div className="items-center hidden md:flex justify-center gap-2">
 			{nav.map((item) => {
 				const Icon = item.icon;
 				const active = isActive(item.path);

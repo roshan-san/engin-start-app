@@ -87,7 +87,7 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 					<Toaster richColors />
 				</ThemeProvider>
 
-				<TanStackDevtools
+				{/* <TanStackDevtools
 					plugins={[
 						{
 							name: "TanStack Query",
@@ -98,7 +98,7 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 							render: <TanStackRouterDevtoolsPanel />,
 						},
 					]}
-				/>
+				/> */}
 				<Scripts />
 			</body>
 		</html>

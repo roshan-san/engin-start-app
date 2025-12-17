@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
@@ -26,6 +27,11 @@ import { Route as authenticatedADashboardIndexRouteImport } from './routes/(auth
 import { Route as authenticatedASettingsProfileRouteImport } from './routes/(authenticated)/a/settings/profile'
 import { Route as authenticatedASettingsBillingRouteImport } from './routes/(authenticated)/a/settings/billing'
 
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: '/(authenticated)',
   getParentRoute: () => rootRouteImport,
@@ -118,6 +124,7 @@ const authenticatedASettingsBillingRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
+  '/demo': typeof DemoRoute
   '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
   '/(authenticated)/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/(auth-pages)/login': typeof authPagesLoginRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/demo'
     | '/a'
     | '/onboard'
     | '/login'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/demo'
     | '/a'
     | '/onboard'
     | '/login'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/(authenticated)'
+    | '/demo'
     | '/(authenticated)/a'
     | '/(authenticated)/onboard'
     | '/(auth-pages)/login'
@@ -227,12 +239,20 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
+  DemoRoute: typeof DemoRoute
   authPagesLoginRoute: typeof authPagesLoginRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/(authenticated)': {
       id: '/(authenticated)'
       path: ''
@@ -418,6 +438,7 @@ const authenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
+  DemoRoute: DemoRoute,
   authPagesLoginRoute: authPagesLoginRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

@@ -1,9 +1,10 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { BottomBar } from "~/components/app/BottomBar";
 import Header from "~/components/app/Header";
 import { profileQueryOptions } from "~/lib/auth/queries";
 
 export const Route = createFileRoute("/(authenticated)/a")({
-	component: DashboardIndex,
+	component: AppLayout,
 	beforeLoad: async ({ context }) => {
 		const profile = await context.queryClient.ensureQueryData(
 			profileQueryOptions(),
@@ -15,11 +16,12 @@ export const Route = createFileRoute("/(authenticated)/a")({
 	},
 });
 
-function DashboardIndex() {
+function AppLayout() {
 	return (
-		<div className="flex h-screen w-screen flex-col gap-2 p-2">
+		<div className=" min-h-screen flex flex-col p-2 gap-2">
 			<Header />
 			<Outlet />
+			<BottomBar />
 		</div>
 	);
 }

@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "~/components/ui/card";
 
 export const Route = createFileRoute("/(authenticated)/a/dashboard/")({
 	component: RouteComponent,
@@ -8,9 +7,8 @@ export const Route = createFileRoute("/(authenticated)/a/dashboard/")({
 function RouteComponent() {
 	const { profile } = Route.useRouteContext();
 	return (
-		<Card className="flex flex-1 items-center justify-center gap-2">
-			<h1 className="text-2xl font-bold">Dashboard</h1>
-			<pre>{JSON.stringify(profile, null, 2)}</pre>
-		</Card>
+		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
+			<div className="text-center">Dashboard</div>
+		</div>
 	);
 }

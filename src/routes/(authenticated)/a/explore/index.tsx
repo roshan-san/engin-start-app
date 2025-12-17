@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "~/components/ui/card";
 
 export const Route = createFileRoute("/(authenticated)/a/explore/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
+	const { profile } = Route.useRouteContext();
 	return (
-		<Card className="flex flex-1 items-center justify-center">
-			to explore teh pitches of other startups , limited view for basic users
-		</Card>
+		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
+			<div className="text-center">Explore</div>
+		</div>
 	);
 }

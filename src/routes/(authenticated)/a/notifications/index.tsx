@@ -6,9 +6,10 @@ export const Route = createFileRoute("/(authenticated)/a/notifications/")({
 });
 
 function RouteComponent() {
+	const { profile } = Route.useRouteContext();
 	return (
-		<Card className="flex flex-1 items-center justify-center">
-			here all teh notifications will be shown
-		</Card>
+		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
+			<div className="text-center">notifs</div>
+		</div>
 	);
 }
