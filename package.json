@@ -8,8 +8,8 @@
 		"preview": "vite preview",
 		"start": "node .output/server/index.mjs",
 
-		"format": "biome format --max-diagnostics=5 --write .",
-		"lint": "biome lint --max-diagnostics=5 --write .",
+		"format": "biome format --max-diagnostics=2 --write .",
+		"lint": "biome lint --max-diagnostics=2 --write .",
 		"check-types": "tsc --noEmit",
 		"check": "pnpm lint && pnpm format && pnpm check-types",
 

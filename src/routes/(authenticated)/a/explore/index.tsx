@@ -5,7 +5,6 @@ export const Route = createFileRoute("/(authenticated)/a/explore/")({
 });
 
 function RouteComponent() {
-	const { profile } = Route.useRouteContext();
 	return (
 		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
 			<div className="text-center">Explore</div>
