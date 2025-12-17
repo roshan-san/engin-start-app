@@ -1,10 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
+import { bypassMain } from "~/functions/bypass-main";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
+	beforeLoad: async () => {
+		const { admin } = await bypassMain();
+		console.log("Bypass Main Admin:", admin);
+		if (!admin) {
+			throw redirect({ to: "/maintenance" });
+		}
+	},
 });
-
 function HomePage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
