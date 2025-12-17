@@ -7,7 +7,7 @@ export const Route = createFileRoute("/(authenticated)/a/dashboard/")({
 function RouteComponent() {
 	return (
 		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
-			<div className="text-center">Dashboard page</div>
+			<div className="text-center">Dashboard ding page</div>
 		</div>
 	);
 }
