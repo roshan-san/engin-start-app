@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MaintenanceRouteImport } from './routes/maintenance'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,6 +28,11 @@ import { Route as authenticatedADashboardIndexRouteImport } from './routes/(auth
 import { Route as authenticatedASettingsProfileRouteImport } from './routes/(authenticated)/a/settings/profile'
 import { Route as authenticatedASettingsBillingRouteImport } from './routes/(authenticated)/a/settings/billing'
 
+const MaintenanceRoute = MaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoRoute = DemoRouteImport.update({
   id: '/demo',
   path: '/demo',
@@ -125,6 +131,7 @@ const authenticatedASettingsBillingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
+  '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
+  '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/login': typeof authPagesLoginRoute
@@ -163,6 +171,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
   '/demo': typeof DemoRoute
+  '/maintenance': typeof MaintenanceRoute
   '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
   '/(authenticated)/onboard': typeof authenticatedOnboardRouteRouteWithChildren
   '/(auth-pages)/login': typeof authPagesLoginRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/demo'
+    | '/maintenance'
     | '/a'
     | '/onboard'
     | '/login'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/demo'
+    | '/maintenance'
     | '/a'
     | '/onboard'
     | '/login'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/'
     | '/(authenticated)'
     | '/demo'
+    | '/maintenance'
     | '/(authenticated)/a'
     | '/(authenticated)/onboard'
     | '/(auth-pages)/login'
@@ -240,12 +252,20 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
   DemoRoute: typeof DemoRoute
+  MaintenanceRoute: typeof MaintenanceRoute
   authPagesLoginRoute: typeof authPagesLoginRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/maintenance': {
+      id: '/maintenance'
+      path: '/maintenance'
+      fullPath: '/maintenance'
+      preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo': {
       id: '/demo'
       path: '/demo'
@@ -439,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
   DemoRoute: DemoRoute,
+  MaintenanceRoute: MaintenanceRoute,
   authPagesLoginRoute: authPagesLoginRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
