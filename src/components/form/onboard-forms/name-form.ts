@@ -1,7 +1,7 @@
 import { formOptions } from "@tanstack/react-form";
 import z from "zod";
 
-const NameFormSchema = z.object({
+export const NameFormSchema = z.object({
 	full_name: z
 		.string()
 		.trim()

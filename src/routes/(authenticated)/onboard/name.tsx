@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useAppForm } from "~/components/form/AppForm";
-import { nameFormOpts } from "~/components/onboard/name-form";
+import { nameFormOpts } from "~/components/form/onboard-forms/name-form";
 import { Button } from "~/components/ui/button";
 import {
 	Card,

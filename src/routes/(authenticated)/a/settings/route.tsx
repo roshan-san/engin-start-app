@@ -5,7 +5,7 @@ import {
 	useLocation,
 } from "@tanstack/react-router";
 import { CreditCard, User } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { CardTitle } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 
 export const Route = createFileRoute("/(authenticated)/a/settings")({
@@ -23,11 +23,11 @@ function RouteComponent() {
 
 	return (
 		<div className="grid flex-1 grid-cols-12 gap-2">
-			<Card className="col-span-3">
-				<CardHeader>
+			<div className="col-span-3">
+				<div>
 					<CardTitle>Settings</CardTitle>
-				</CardHeader>
-				<CardContent className="flex flex-col">
+				</div>
+				<div className="flex flex-col">
 					{nav.map((item) => {
 						const Icon = item.icon;
 						const active = isActive(item.path);
@@ -48,8 +48,8 @@ function RouteComponent() {
 							</Link>
 						);
 					})}
-				</CardContent>
-			</Card>
+				</div>
+			</div>
 			<Outlet />
 		</div>
 	);

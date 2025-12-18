@@ -26,6 +26,7 @@ import { Route as authenticatedAFeedIndexRouteImport } from './routes/(authentic
 import { Route as authenticatedAExploreIndexRouteImport } from './routes/(authenticated)/a/explore/index'
 import { Route as authenticatedADashboardIndexRouteImport } from './routes/(authenticated)/a/dashboard/index'
 import { Route as authenticatedASettingsProfileRouteImport } from './routes/(authenticated)/a/settings/profile'
+import { Route as authenticatedASettingsHelpRouteImport } from './routes/(authenticated)/a/settings/help'
 import { Route as authenticatedASettingsBillingRouteImport } from './routes/(authenticated)/a/settings/billing'
 
 const MaintenanceRoute = MaintenanceRouteImport.update({
@@ -121,6 +122,12 @@ const authenticatedASettingsProfileRoute =
     path: '/profile',
     getParentRoute: () => authenticatedASettingsRouteRoute,
   } as any)
+const authenticatedASettingsHelpRoute =
+  authenticatedASettingsHelpRouteImport.update({
+    id: '/help',
+    path: '/help',
+    getParentRoute: () => authenticatedASettingsRouteRoute,
+  } as any)
 const authenticatedASettingsBillingRoute =
   authenticatedASettingsBillingRouteImport.update({
     id: '/billing',
@@ -141,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/a/settings/billing': typeof authenticatedASettingsBillingRoute
+  '/a/settings/help': typeof authenticatedASettingsHelpRoute
   '/a/settings/profile': typeof authenticatedASettingsProfileRoute
   '/a/dashboard': typeof authenticatedADashboardIndexRoute
   '/a/explore': typeof authenticatedAExploreIndexRoute
@@ -160,6 +168,7 @@ export interface FileRoutesByTo {
   '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/a/settings/billing': typeof authenticatedASettingsBillingRoute
+  '/a/settings/help': typeof authenticatedASettingsHelpRoute
   '/a/settings/profile': typeof authenticatedASettingsProfileRoute
   '/a/dashboard': typeof authenticatedADashboardIndexRoute
   '/a/explore': typeof authenticatedAExploreIndexRoute
@@ -181,6 +190,7 @@ export interface FileRoutesById {
   '/(authenticated)/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/a/settings/billing': typeof authenticatedASettingsBillingRoute
+  '/(authenticated)/a/settings/help': typeof authenticatedASettingsHelpRoute
   '/(authenticated)/a/settings/profile': typeof authenticatedASettingsProfileRoute
   '/(authenticated)/a/dashboard/': typeof authenticatedADashboardIndexRoute
   '/(authenticated)/a/explore/': typeof authenticatedAExploreIndexRoute
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/onboard/user-type'
     | '/api/auth/$'
     | '/a/settings/billing'
+    | '/a/settings/help'
     | '/a/settings/profile'
     | '/a/dashboard'
     | '/a/explore'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/onboard/user-type'
     | '/api/auth/$'
     | '/a/settings/billing'
+    | '/a/settings/help'
     | '/a/settings/profile'
     | '/a/dashboard'
     | '/a/explore'
@@ -241,6 +253,7 @@ export interface FileRouteTypes {
     | '/(authenticated)/onboard/user-type'
     | '/api/auth/$'
     | '/(authenticated)/a/settings/billing'
+    | '/(authenticated)/a/settings/help'
     | '/(authenticated)/a/settings/profile'
     | '/(authenticated)/a/dashboard/'
     | '/(authenticated)/a/explore/'
@@ -378,6 +391,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authenticatedASettingsProfileRouteImport
       parentRoute: typeof authenticatedASettingsRouteRoute
     }
+    '/(authenticated)/a/settings/help': {
+      id: '/(authenticated)/a/settings/help'
+      path: '/help'
+      fullPath: '/a/settings/help'
+      preLoaderRoute: typeof authenticatedASettingsHelpRouteImport
+      parentRoute: typeof authenticatedASettingsRouteRoute
+    }
     '/(authenticated)/a/settings/billing': {
       id: '/(authenticated)/a/settings/billing'
       path: '/billing'
@@ -390,12 +410,14 @@ declare module '@tanstack/react-router' {
 
 interface authenticatedASettingsRouteRouteChildren {
   authenticatedASettingsBillingRoute: typeof authenticatedASettingsBillingRoute
+  authenticatedASettingsHelpRoute: typeof authenticatedASettingsHelpRoute
   authenticatedASettingsProfileRoute: typeof authenticatedASettingsProfileRoute
 }
 
 const authenticatedASettingsRouteRouteChildren: authenticatedASettingsRouteRouteChildren =
   {
     authenticatedASettingsBillingRoute: authenticatedASettingsBillingRoute,
+    authenticatedASettingsHelpRoute: authenticatedASettingsHelpRoute,
     authenticatedASettingsProfileRoute: authenticatedASettingsProfileRoute,
   }
 
