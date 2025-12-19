@@ -23,7 +23,9 @@ export default function TextInput({
 	const field = useFieldContext<string>();
 	return (
 		<Field>
-			<FieldLabel htmlFor={id}>{label}</FieldLabel>
+			<FieldLabel className="text-base font-bold" htmlFor={id}>
+				{label}
+			</FieldLabel>
 			<Input
 				id={id}
 				type={type}

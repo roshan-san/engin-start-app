@@ -26,7 +26,7 @@ function NavItem({ name, path, icon: Icon }: NavItemConfig) {
 			to={path}
 			className={cn(
 				"flex items-center gap-2 px-4 py-2",
-				"text-base text-muted-foreground md:border-b-2 border-t-2 border-transparent",
+				"text-base text-muted-foreground md:border-b-2 md:border-t-0 border-t-2 border-transparent",
 				"transition-colors ease-in-out duration-300",
 				"hover:text-foreground hover:-translate-y-1",
 				active && "text-foreground border-primary",
