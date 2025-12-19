@@ -1,10 +1,13 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
 import { bypassMain } from "~/functions/bypass-main";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
-	beforeLoad: async () => {
+	beforeLoad: async ({ context }) => {
+		await context.queryClient.prefetchQuery(profileQueryOptions());
+		await context.queryClient.prefetchQuery(authQueryOptions());
 		const { admin } = await bypassMain();
 		console.log("Bypass Main Admin:", admin);
 		if (!admin) {

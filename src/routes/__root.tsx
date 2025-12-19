@@ -8,17 +8,11 @@ import {
 } from "@tanstack/react-router";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 import appCss from "~/styles.css?url";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
 }>()({
-	beforeLoad: async ({ context }) => {
-		await context.queryClient.prefetchQuery(profileQueryOptions());
-		await context.queryClient.prefetchQuery(authQueryOptions());
-	},
-
 	head: () => ({
 		meta: [
 			{
