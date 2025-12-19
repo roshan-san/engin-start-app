@@ -25,7 +25,7 @@ function RouteComponent() {
 		...EditProfileOps,
 		onSubmit: async () => mutate(),
 	});
-	const { mutate } = useMutation({
+	const { mutate, isPending } = useMutation({
 		mutationFn: async () => {
 			return await updateProfileFn({
 				data: {
@@ -35,7 +35,7 @@ function RouteComponent() {
 		},
 	});
 	return (
-		<div className="col-span-9 ">
+		<div className="flex-1 bg-card rounded-xl">
 			<form
 				className="flex flex-col gap-2 p-2"
 				id="edit-profile-form"
@@ -49,8 +49,10 @@ function RouteComponent() {
 						{(field) => <field.TextInput id="name" label="Name" />}
 					</form.AppField>
 				</FieldGroup>
-				<div className="flex justify-end gap-2 pt-2">
-					<Button onClick={() => mutate}>Update Profile</Button>
+				<div className="flex justify-end gap-2 p-2">
+					<Button type="submit" disabled={isPending}>
+						{isPending ? "Updating..." : "Update Profile"}
+					</Button>
 				</div>
 			</form>
 		</div>

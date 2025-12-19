@@ -1,13 +1,27 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { ArrowLeftIcon } from "lucide-react";
+import { Button } from "~/components/ui/button";
 
 export const Route = createFileRoute("/(authenticated)/a/settings/help")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
+	const router = useRouter();
 	return (
-		<div className="col-span-9 flex items-center justify-center p-2 gap-2 bg-pink-400">
-			<p className="text-4xl">help page</p>
+		<div className="flex-1 flex flex-col bg-card rounded-xl">
+			<div className="flex justify-start gap-2 p-2">
+				<Button
+					variant={"ghost"}
+					onClick={() => router.navigate({ to: "/a/settings" })}
+				>
+					<ArrowLeftIcon />
+				</Button>
+				<p className="text-2xl font-bold">Help</p>
+			</div>
+			<div className="flex flex-1 flex-col items-center justify-center p-2 gap-2">
+				<p className="text-muted-foreground">empty help page</p>
+			</div>
 		</div>
 	);
 }

@@ -8,21 +8,23 @@ export const Route = createFileRoute("/(authenticated)/a/settings/billing")({
 
 function RouteComponent() {
 	return (
-		<Card className="col-span-9">
-			<CardHeader>
-				<CardTitle>Subscription</CardTitle>
-			</CardHeader>
-			<CardContent className="flex flex-col gap-2">
-				<div className="flex items-center justify-between border-b pb-3">
-					<div>
-						<p className="text-sm font-medium">Plan</p>
-						<p className="text-muted-foreground text-sm">Basic</p>
+		<div className="flex-1 bg-card rounded-xl">
+			<Card className="h-full border-0 shadow-none">
+				<CardHeader>
+					<CardTitle>Subscription</CardTitle>
+				</CardHeader>
+				<CardContent className="flex flex-col gap-2">
+					<div className="flex items-center justify-between border-b pb-3">
+						<div>
+							<p className="text-base font-medium">Plan</p>
+							<p className="text-muted-foreground text-base">Basic</p>
+						</div>
+						<Button variant="outline" size="sm">
+							Upgrade
+						</Button>
 					</div>
-					<Button variant="outline" size="sm">
-						Upgrade
-					</Button>
-				</div>
-			</CardContent>
-		</Card>
+				</CardContent>
+			</Card>
+		</div>
 	);
 }
