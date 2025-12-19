@@ -24,7 +24,7 @@ export default function NavigationMenu() {
 						key={item.path}
 						to={item.path}
 						className={cn(
-							"text-muted-foreground flex items-center gap-2 px-4 py-2 text-sm transition-all",
+							"text-muted-foreground flex items-center gap-2 px-4 py-2 text-base transition-all",
 							"hover:-translate-y-1 duration-300",
 							active && "border-primary text-primary border-b-2",
 						)}

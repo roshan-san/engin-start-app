@@ -29,7 +29,7 @@ export function BottomBar() {
 							)}
 						>
 							<Icon className="h-5 w-5 " />
-							<p className="text-sm">{name}</p>
+							<p className="text-base">{name}</p>
 						</div>
 					</Link>
 				);

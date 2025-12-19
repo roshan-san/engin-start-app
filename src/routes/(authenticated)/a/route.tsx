@@ -18,10 +18,12 @@ export const Route = createFileRoute("/(authenticated)/a")({
 
 function AppLayout() {
 	return (
-		<div className=" min-h-screen flex flex-col p-2 gap-2">
+		<div className="min-h-screen flex flex-col p-2 gap-2">
 			<Header />
-			<Outlet />
-			<BottomBar />
+			<div className="flex-1 flex flex-col gap-2">
+				<Outlet />
+				<BottomBar />
+			</div>
 		</div>
 	);
 }

@@ -36,19 +36,19 @@ export function AppAvatar() {
 			<DropdownMenuContent align="end" className="p-2 w-auto border-0">
 				<DropdownMenuLabel>
 					<div className="flex flex-col gap-2">
-						<p className="text-sm">{`Hey ${fullName} !`}</p>
-						<p className="text-muted-foreground text-xs">{profile.email}</p>
+						<p className="text-base">{`Hey ${fullName} !`}</p>
+						<p className="text-muted-foreground text-base">{profile.email}</p>
 					</div>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem asChild>
-					<Link className="flex items-center gap-2" to="/a/settings/profile">
+					<Link className="flex items-center gap-2" to="/a/settings">
 						<Settings />
 						<p>Settings</p>
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
-					<Link to="/a/dashboard" className="flex items-center gap-2">
+					<Link to="/a/settings/help" className="flex items-center gap-2">
 						<HelpCircle />
 						<p>Help</p>
 					</Link>
