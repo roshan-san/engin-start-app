@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Bell, GitPullRequestArrowIcon } from "lucide-react";
-import { ThemeToggle } from "../theme-toggle";
 import { AppAvatar } from "./AppAvatar";
 import NavigationMenu from "./Navigation";
 import { cn } from "~/lib/utils";
@@ -24,7 +23,6 @@ export function Header() {
 				>
 					<Bell className="h-5 w-5" />
 				</Link>
-				<ThemeToggle />
 				<AppAvatar />
 			</div>
 		</div>
