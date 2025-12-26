@@ -3,11 +3,7 @@ import {
 	type EditProfileSchema,
 } from "~/components/form/settings-forms/edit-profile";
 import { Button } from "~/components/ui/button";
-import {
-	createFileRoute,
-	useRouteContext,
-	useRouter,
-} from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfileFn } from "~/server/fn/profiles.fn";
@@ -16,9 +12,9 @@ import { Field, FieldGroup } from "~/components/ui/field";
 import { ArrowLeftIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
-import { profileQueryOptions } from "~/lib/auth/queries";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { profileQueryOptions } from "~/lib/auth/auth-client";
 
 export const Route = createFileRoute("/(authenticated)/a/settings/profile")({
 	component: RouteComponent,

@@ -11,7 +11,7 @@ import {
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions } from "~/lib/auth/queries";
+import { authQueryOptions } from "~/lib/auth/auth-client";
 
 export function AppAvatar() {
 	const { profile, queryClient } = useRouteContext({

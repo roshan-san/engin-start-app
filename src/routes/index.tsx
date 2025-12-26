@@ -1,7 +1,7 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth/auth-client";
 import { bypassMainFn } from "~/server/fn/bypass-main";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
