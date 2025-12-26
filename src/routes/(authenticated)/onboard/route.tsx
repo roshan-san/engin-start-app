@@ -36,7 +36,6 @@ export const Route = createFileRoute("/(authenticated)/onboard")({
 		if (nextStep && path !== nextStep) {
 			throw redirect({ to: nextStep });
 		}
-		console.log(profile, path);
 	},
 });
 

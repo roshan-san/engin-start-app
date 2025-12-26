@@ -9,7 +9,6 @@ export const Route = createFileRoute("/")({
 		await context.queryClient.prefetchQuery(profileQueryOptions());
 		await context.queryClient.prefetchQuery(authQueryOptions());
 		const { admin } = await bypassMainFn();
-		console.log("Bypass Main Admin:", admin);
 		if (!admin) {
 			throw redirect({ to: "/maintenance" });
 		}

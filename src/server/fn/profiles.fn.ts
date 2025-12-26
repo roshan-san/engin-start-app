@@ -50,6 +50,5 @@ export const updateProfileFn = createServerFn({ method: "POST" })
 			})
 			.where(eq(profileTable.id, user.id))
 			.returning();
-		console.log("updated data", returned);
 		return returned;
 	});
