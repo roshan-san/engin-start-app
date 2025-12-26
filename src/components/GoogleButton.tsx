@@ -5,7 +5,7 @@ import authClient from "~/lib/auth/auth-client";
 import { Button } from "./ui/button";
 
 export function GoogleButton(props: { redirectUrl: string }) {
-	const mutation = useMutation({
+	const { isPending, mutate } = useMutation({
 		mutationFn: async () =>
 			await authClient.signIn.social(
 				{
@@ -24,8 +24,8 @@ export function GoogleButton(props: { redirectUrl: string }) {
 			variant="outline"
 			className="w-fit"
 			type="button"
-			disabled={mutation.isSuccess || mutation.isPending}
-			onClick={() => mutation.mutate()}
+			disabled={isPending}
+			onClick={() => mutate()}
 		>
 			<FaGoogle />
 			Login with Google
