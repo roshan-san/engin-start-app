@@ -3,7 +3,7 @@
 
 // createinsertSchema
 
-// export const createStartupFN = createServerFn({method:"POST"})
+// export const createStartupFn = createServerFn({method:"POST"})
 //     .middleware([authMiddleware])
 //     .inputValidator()
 //     .handler(

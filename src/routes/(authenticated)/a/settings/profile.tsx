@@ -10,13 +10,15 @@ import {
 } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/functions/profiles.fn";
+import { updateProfileFn } from "~/fn/profiles.fn";
 import type z from "zod";
 import { Field, FieldGroup } from "~/components/ui/field";
 import { ArrowLeftIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { profileQueryOptions } from "~/lib/auth/queries";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 
 export const Route = createFileRoute("/(authenticated)/a/settings/profile")({
 	component: RouteComponent,
@@ -44,6 +46,7 @@ function RouteComponent() {
 		onSuccess: async () => {
 			toast.success("Profile Updated Succesfully");
 			await queryClient.refetchQueries(profileQueryOptions());
+			await router.invalidate();
 		},
 		onError: async () => {
 			toast.success("Error Occured While Updating");
@@ -57,11 +60,11 @@ function RouteComponent() {
 					onClick={() => router.navigate({ to: "/a/settings" })}
 				>
 					<ArrowLeftIcon />
-					<p className="text-xl text-muted-foreground ">Help</p>
+					<p className="text-xl text-muted-foreground ">Profile Settings</p>
 				</Button>
 			</div>
 			<form
-				className="flex flex-col bg-card rounded-xl gap-2 p-6"
+				className="flex flex-col bg-card rounded-xl gap-2 p-4"
 				id="edit-profile-form"
 				onSubmit={(e) => {
 					e.preventDefault();
@@ -73,6 +76,12 @@ function RouteComponent() {
 						{(field) => <field.TextInput id="Edit Name" label="Edit Name" />}
 					</form.AppField>
 				</FieldGroup>
+				<div className="flex flex-col gap-2 ">
+					<Label className="text-base font-bold" htmlFor="username">
+						Username Cannot be Modified
+					</Label>
+					<Input id="username" placeholder={profile.username} disabled={true} />
+				</div>
 				<Field orientation="horizontal" className="justify-end">
 					<Button type="submit" form="edit-profile-form">
 						{isPending ? <Spinner /> : null}

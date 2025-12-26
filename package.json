@@ -7,12 +7,10 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"start": "node .output/server/index.mjs",
-
 		"format": "biome format --max-diagnostics=2 --write .",
 		"lint": "biome lint --max-diagnostics=2 --write .",
 		"check-types": "tsc --noEmit",
 		"check": "pnpm lint && pnpm format && pnpm check-types",
-
 		"db": "drizzle-kit",
 		"ui": "pnpm dlx shadcn@latest add ",
 		"auth:secret": "pnpm dlx @better-auth/cli@latest secret",
@@ -25,6 +23,9 @@
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^1.0.2",
+		"@orpc/client": "^1.13.1",
+		"@orpc/openapi": "^1.13.1",
+		"@orpc/server": "^1.13.1",
 		"@polar-sh/better-auth": "^1.5.0",
 		"@polar-sh/sdk": "^0.41.5",
 		"@radix-ui/react-avatar": "^1.1.11",
