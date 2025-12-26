@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
-import { authMiddleware } from "~/lib/auth/middleware";
+import { authMiddleware } from "~/server/middleware";
 import { db } from "~/lib/db";
 import { profileTable } from "~/lib/db/schema";
 

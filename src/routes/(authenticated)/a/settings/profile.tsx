@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/fn/profiles.fn";
+import { updateProfileFn } from "~/server/fn/profiles.fn";
 import type z from "zod";
 import { Field, FieldGroup } from "~/components/ui/field";
 import { ArrowLeftIcon } from "lucide-react";

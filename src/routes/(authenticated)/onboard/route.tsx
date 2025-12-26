@@ -14,7 +14,7 @@ import {
 } from "~/components/ui/card";
 import { FieldGroup, Field } from "~/components/ui/field";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/fn/profiles.fn";
+import { createProfileFn } from "~/server/fn/profiles.fn";
 import authClient from "~/lib/auth/auth-client";
 import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 
