@@ -9,15 +9,15 @@ export const Route = createFileRoute("/(authenticated)/a/settings/help")({
 function RouteComponent() {
 	const router = useRouter();
 	return (
-		<div className="flex-1 flex flex-col bg-card rounded-xl">
+		<div className="flex-1 flex flex-col rounded-xl">
 			<div className="flex justify-start gap-2 p-2">
 				<Button
 					variant={"ghost"}
 					onClick={() => router.navigate({ to: "/a/settings" })}
 				>
 					<ArrowLeftIcon />
+					<p className="text-xl text-muted-foreground ">Help</p>
 				</Button>
-				<p className="text-2xl font-bold">Help</p>
 			</div>
 			<div className="flex flex-1 flex-col items-center justify-center p-2 gap-2">
 				<p className="text-muted-foreground">empty help page</p>
