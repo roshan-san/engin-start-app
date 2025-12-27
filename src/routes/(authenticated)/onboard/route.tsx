@@ -15,8 +15,8 @@ import {
 import { FieldGroup, Field } from "~/components/ui/field";
 import { Spinner } from "~/components/ui/spinner";
 import { createProfileFn } from "~/server/fn/profiles.fn";
-import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/auth-client";
+import { authClient } from "~/lib/auth-client";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/(authenticated)/onboard")({
 	component: RouteComponent,
@@ -77,7 +77,10 @@ function RouteComponent() {
 		await authClient.signOut({
 			fetchOptions: {
 				onResponse: async () => {
-					queryClient.setQueryData(authQueryOptions().queryKey, null);
+					queryClient.setQueryData(authQueryOptions().queryKey, {
+						session: null,
+						user: null,
+					});
 					await router.invalidate();
 				},
 				onSuccess: async () => {

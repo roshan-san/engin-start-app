@@ -10,8 +10,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions } from "~/lib/auth/auth-client";
+import { authClient } from "~/lib/auth-client";
+import { authQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
 	const { profile, queryClient } = useRouteContext({
@@ -61,7 +61,10 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									queryClient.setQueryData(authQueryOptions().queryKey, null);
+									queryClient.setQueryData(authQueryOptions().queryKey, {
+										session: null,
+										user: null,
+									});
 									await router.invalidate();
 								},
 								onSuccess: async () => {
