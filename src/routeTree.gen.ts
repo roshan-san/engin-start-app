@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
-import { Route as DemoRouteImport } from './routes/demo'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
@@ -29,11 +28,6 @@ import { Route as authenticatedASettingsBillingRouteImport } from './routes/(aut
 const MaintenanceRoute = MaintenanceRouteImport.update({
   id: '/maintenance',
   path: '/maintenance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
@@ -116,7 +110,6 @@ const authenticatedASettingsBillingRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
   '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRoute
@@ -133,7 +126,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
   '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRoute
@@ -152,7 +144,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
-  '/demo': typeof DemoRoute
   '/maintenance': typeof MaintenanceRoute
   '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
   '/(authenticated)/onboard': typeof authenticatedOnboardRouteRoute
@@ -171,7 +162,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/demo'
     | '/maintenance'
     | '/a'
     | '/onboard'
@@ -188,7 +178,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/demo'
     | '/maintenance'
     | '/a'
     | '/onboard'
@@ -206,7 +195,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/(authenticated)'
-    | '/demo'
     | '/maintenance'
     | '/(authenticated)/a'
     | '/(authenticated)/onboard'
@@ -225,7 +213,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
-  DemoRoute: typeof DemoRoute
   MaintenanceRoute: typeof MaintenanceRoute
   authPagesLoginRoute: typeof authPagesLoginRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -238,13 +225,6 @@ declare module '@tanstack/react-router' {
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof MaintenanceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(authenticated)': {
@@ -389,7 +369,6 @@ const authenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
-  DemoRoute: DemoRoute,
   MaintenanceRoute: MaintenanceRoute,
   authPagesLoginRoute: authPagesLoginRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

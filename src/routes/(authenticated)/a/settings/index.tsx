@@ -29,7 +29,8 @@ function RouteComponent() {
 							key={item.path}
 							to={item.path}
 							className={cn(
-								"flex w-full max-w-md items-center justify-between rounded-xl p-6 tracking-wider bg-card",
+								"flex items-center justify-between p-4 rounded-xl",
+								"w-full max-w-md tracking-wider bg-card",
 								"hover:bg-accent hover:text-accent-foreground",
 							)}
 						>

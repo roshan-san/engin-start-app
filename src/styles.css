@@ -1,8 +1,5 @@
 @import "tailwindcss";
-
 @import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -43,44 +40,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
-
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(0 0% 0%);
-
-  --card: hsl(0 0% 95%);
-  --card-foreground: hsl(0 0% 0%);
-
-  --popover: hsl(0 0% 95%);
-  --popover-foreground: hsl(0 0% 0%);
-
-  --primary: hsl(240 50% 50%);
-  --primary-foreground: hsl(0 0% 0%);
-
-  --secondary: hsl(0 0% 90%);
-  --secondary-foreground: hsl(0 0% 0%);
-
-  --accent: hsl(240 50% 55%);
-  --accent-foreground: hsl(0 0% 0%);
-
-  --muted: hsl(0 0% 92%);
-  --muted-foreground: hsl(0 0% 60%);
-
-  --destructive: hsl(0 50% 50%);
-  --destructive-foreground: hsl(0 0% 0%);
-
-  --border: hsl(0 0% 82%);
-  --input: hsl(0 0% 82%);
-  --ring: hsl(240 60% 50%);
-
-  --chart-1: hsl(220 70% 50%);
-  --chart-2: hsl(160 60% 45%);
-  --chart-3: hsl(30 80% 55%);
-  --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%);
-}
-
-.dark {
+   --radius: 0.5rem;
   --foreground: hsl(0 0% 90%);
   --primary-foreground: hsl(0 0% 90%);
   --secondary-foreground: hsl(0 0% 90%);

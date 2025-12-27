@@ -6,7 +6,6 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/styles.css?url";
 
@@ -70,23 +69,8 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
-				<ThemeProvider>
-					{children}
-					<Toaster richColors />
-				</ThemeProvider>
-
-				{/* <TanStackDevtools
-					plugins={[
-						{
-							name: "TanStack Query",
-							render: <ReactQueryDevtoolsPanel />,
-						},
-						{
-							name: "TanStack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-					]}
-				/> */}
+				{children}
+				<Toaster richColors />
 				<Scripts />
 			</body>
 		</html>

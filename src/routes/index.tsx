@@ -1,7 +1,7 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
-import { bypassMainFn } from "~/fn/bypass-main";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth/auth-client";
+import { bypassMainFn } from "~/server/fn/bypass-main";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
@@ -9,7 +9,6 @@ export const Route = createFileRoute("/")({
 		await context.queryClient.prefetchQuery(profileQueryOptions());
 		await context.queryClient.prefetchQuery(authQueryOptions());
 		const { admin } = await bypassMainFn();
-		console.log("Bypass Main Admin:", admin);
 		if (!admin) {
 			throw redirect({ to: "/maintenance" });
 		}
@@ -18,8 +17,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
-			<div>landing page goes in here</div>
-			<Button className="w-fit" size="lg">
+			<Button variant={"outline"}>
 				<Link to="/a/dashboard">Go to App</Link>
 			</Button>
 		</div>

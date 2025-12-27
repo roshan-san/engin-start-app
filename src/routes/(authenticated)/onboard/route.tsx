@@ -14,9 +14,9 @@ import {
 } from "~/components/ui/card";
 import { FieldGroup, Field } from "~/components/ui/field";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/fn/profiles.fn";
+import { createProfileFn } from "~/server/fn/profiles.fn";
 import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
+import { authQueryOptions, profileQueryOptions } from "~/lib/auth/auth-client";
 
 export const Route = createFileRoute("/(authenticated)/onboard")({
 	component: RouteComponent,
@@ -36,7 +36,6 @@ export const Route = createFileRoute("/(authenticated)/onboard")({
 		if (nextStep && path !== nextStep) {
 			throw redirect({ to: nextStep });
 		}
-		console.log(profile, path);
 	},
 });
 

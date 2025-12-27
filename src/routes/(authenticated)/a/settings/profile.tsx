@@ -1,24 +1,18 @@
-import {
-	EditProfileOps,
-	type EditProfileSchema,
-} from "~/components/form/settings-forms/edit-profile";
+import type { EditProfileSchema } from "~/components/form/settings-forms/edit-profile";
+import { EditProfileOps } from "~/components/form/settings-forms/edit-profile";
 import { Button } from "~/components/ui/button";
-import {
-	createFileRoute,
-	useRouteContext,
-	useRouter,
-} from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/fn/profiles.fn";
+import { updateProfileFn } from "~/server/fn/profiles.fn";
 import type z from "zod";
 import { Field, FieldGroup } from "~/components/ui/field";
 import { ArrowLeftIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
-import { profileQueryOptions } from "~/lib/auth/queries";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { profileQueryOptions } from "~/lib/auth/auth-client";
 
 export const Route = createFileRoute("/(authenticated)/a/settings/profile")({
 	component: RouteComponent,
@@ -53,8 +47,8 @@ function RouteComponent() {
 		},
 	});
 	return (
-		<div className="flex-1">
-			<div className="flex justify-start gap-2 p-2">
+		<div className="flex-1 flex-col flex">
+			<div className="flex justify-start gap-2 py-2">
 				<Button
 					variant={"ghost"}
 					onClick={() => router.navigate({ to: "/a/settings" })}
@@ -64,7 +58,7 @@ function RouteComponent() {
 				</Button>
 			</div>
 			<form
-				className="flex flex-col bg-card rounded-xl gap-2 p-4"
+				className="flex flex-1 flex-col bg-card rounded-xl gap-2 p-4"
 				id="edit-profile-form"
 				onSubmit={(e) => {
 					e.preventDefault();
