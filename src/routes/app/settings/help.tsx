@@ -19,7 +19,9 @@ function RouteComponent() {
 					<p className="text-xl text-muted-foreground ">Help</p>
 				</Button>
 			</div>
-			<div className="flex-1 flex"></div>
+			<div className="flex flex-1 flex-col items-center justify-center p-2 gap-2">
+				<p className="text-muted-foreground"> Help</p>
+			</div>
 		</div>
 	);
 }

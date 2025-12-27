@@ -6,8 +6,8 @@ import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfileFn } from "~/server/fn/profiles.fn";
 import type z from "zod";
-import { Field, FieldGroup } from "~/components/ui/field";
-import { ArrowLeftIcon } from "lucide-react";
+import { FieldGroup } from "~/components/ui/field";
+import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
@@ -27,25 +27,25 @@ function RouteComponent() {
 	const form = useAppForm({
 		defaultValues,
 		...EditProfileOps,
-		onSubmit: async () => mutate(),
+		onSubmit: () => mutate(),
 	});
 	const { mutate, isPending } = useMutation({
-		mutationFn: async () => {
-			return await updateProfileFn({
+		mutationFn: () =>
+			updateProfileFn({
 				data: {
 					full_name: form.getFieldValue("full_name"),
 				},
-			});
-		},
+			}),
 		onSuccess: async () => {
-			toast.success("Profile Updated Succesfully");
-			await qc.refetchQueries(profileQueryOptions());
+			qc.invalidateQueries(profileQueryOptions());
 			await router.invalidate();
+			toast.success("Profile updated successfully");
 		},
-		onError: async () => {
-			toast.success("Error Occured While Updating");
+		onError: () => {
+			toast.error("Error occurred while updating");
 		},
 	});
+
 	return (
 		<div className="flex-1 flex-col flex">
 			<div className="flex justify-start gap-2 py-2">
@@ -53,36 +53,51 @@ function RouteComponent() {
 					variant={"ghost"}
 					onClick={() => router.navigate({ to: "/app/settings" })}
 				>
-					<ArrowLeftIcon />
+					<ArrowLeft />
 					<p className="text-xl text-muted-foreground ">Profile Settings</p>
 				</Button>
 			</div>
-			<form
-				className="flex flex-1 flex-col bg-card rounded-xl gap-2 p-4"
-				id="edit-profile-form"
-				onSubmit={(e) => {
-					e.preventDefault();
-					form.handleSubmit();
-				}}
-			>
-				<FieldGroup>
-					<form.AppField name="full_name">
-						{(field) => <field.TextInput id="Edit Name" label="Edit Name" />}
-					</form.AppField>
-				</FieldGroup>
-				<div className="flex flex-col gap-2 ">
-					<Label className="text-base font-bold" htmlFor="username">
-						Username Cannot be Modified
-					</Label>
-					<Input id="username" placeholder={profile.username} disabled={true} />
+			<div className="flex-1 flex gap-2 ">
+				<div className="flex items-center justify-center w-1/2">
+					some illustration
 				</div>
-				<Field orientation="horizontal" className="justify-end">
-					<Button type="submit" form="edit-profile-form">
-						{isPending ? <Spinner /> : null}
-						{isPending ? "Updating" : "Update Profile"}
-					</Button>
-				</Field>
-			</form>
+				<form
+					className="flex w-1/2 flex-col justify-between rounded-xl gap-4 p-4"
+					id="edit-profile-form"
+					onSubmit={(e) => {
+						e.preventDefault();
+						form.handleSubmit();
+					}}
+				>
+					<FieldGroup>
+						<form.AppField name="full_name">
+							{(field) => <field.TextInput id="Name" label="Name" />}
+						</form.AppField>
+						<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
+							<Label className="text-base" htmlFor="username">
+								Username
+							</Label>
+							<Input
+								className="w-full max-w-md"
+								id="username"
+								value={profile.username}
+								disabled={true}
+							/>
+						</div>
+					</FieldGroup>
+
+					<div className="flex justify-end">
+						<Button
+							className="text-base font-bold p-4"
+							type="submit"
+							form="edit-profile-form"
+						>
+							{isPending ? <Spinner /> : null}
+							{isPending ? "Updating" : "Update Profile"}
+						</Button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 }

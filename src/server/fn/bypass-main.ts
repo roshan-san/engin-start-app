@@ -7,5 +7,5 @@ export const bypassMainFn = createServerFn({ method: "POST" }).handler(() => {
 	if (cookie.includes("admin")) {
 		return;
 	}
-	throw redirect({ to: "/maintenance" });
+	throw redirect({ to: "/wait" });
 });

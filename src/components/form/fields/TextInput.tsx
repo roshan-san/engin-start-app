@@ -22,11 +22,12 @@ export default function TextInput({
 }) {
 	const field = useFieldContext<string>();
 	return (
-		<Field>
-			<FieldLabel className="text-base font-bold" htmlFor={id}>
+		<Field className="flex">
+			<FieldLabel className="text-base" htmlFor={id}>
 				{label}
 			</FieldLabel>
 			<Input
+				className="w-full max-w-md"
 				id={id}
 				type={type}
 				placeholder={placeholder}

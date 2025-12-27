@@ -13,5 +13,5 @@ function RouteComponent() {
 				any inconvenience and appreciate your patience. Please check back later.
 			</p>
 		</div>
-	)
+	);
 }
