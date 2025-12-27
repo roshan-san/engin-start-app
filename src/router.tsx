@@ -6,7 +6,7 @@ import { routeTree } from "./routeTree.gen";
 import { GlobalError } from "./components/GlobalError";
 
 export function getRouter() {
-	const queryClient = new QueryClient({
+	const qc = new QueryClient({
 		defaultOptions: {
 			queries: {
 				refetchOnWindowFocus: false,
@@ -17,7 +17,7 @@ export function getRouter() {
 
 	const router = createRouter({
 		routeTree,
-		context: { queryClient },
+		context: { qc },
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
 		defaultErrorComponent: GlobalError,
@@ -27,7 +27,7 @@ export function getRouter() {
 
 	setupRouterSsrQueryIntegration({
 		router,
-		queryClient,
+		queryClient: qc,
 		handleRedirects: true,
 		wrapQueryClient: true,
 	});

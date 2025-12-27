@@ -18,12 +18,12 @@ import { createProfileFn } from "~/server/fn/profiles.fn";
 import { authClient } from "~/lib/auth-client";
 import { authQueryOptions, profileQueryOptions } from "~/lib/auth-client";
 
-export const Route = createFileRoute("/(authenticated)/onboard")({
+export const Route = createFileRoute("/onboard")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { queryClient } = Route.useRouteContext();
+	const { qc } = Route.useRouteContext();
 
 	const form = useAppForm({
 		...nameFormOpts,
@@ -44,9 +44,9 @@ function RouteComponent() {
 		},
 		onSuccess: async () => {
 			toast.success("Profile created successfully!");
-			await queryClient.invalidateQueries(profileQueryOptions());
-			await queryClient.ensureQueryData(profileQueryOptions());
-			router.navigate({ to: "/a/dashboard" });
+			await qc.invalidateQueries(profileQueryOptions());
+			await qc.ensureQueryData(profileQueryOptions());
+			router.navigate({ to: "/app/dashboard" });
 		},
 		onError: (error) => {
 			toast.error("Failed to create profile. Please try again.");
@@ -60,7 +60,7 @@ function RouteComponent() {
 		await authClient.signOut({
 			fetchOptions: {
 				onResponse: async () => {
-					queryClient.setQueryData(authQueryOptions().queryKey, {
+					qc.setQueryData(authQueryOptions().queryKey, {
 						session: null,
 						user: null,
 					});

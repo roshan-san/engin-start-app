@@ -14,12 +14,12 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { profileQueryOptions } from "~/lib/auth-client";
 
-export const Route = createFileRoute("/(authenticated)/a/settings/profile")({
+export const Route = createFileRoute("/app/settings/profile")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const { profile, queryClient } = Route.useRouteContext();
+	const { profile, qc } = Route.useRouteContext();
 	const defaultValues: z.infer<typeof EditProfileSchema> = {
 		full_name: profile.full_name,
 	};
@@ -39,7 +39,7 @@ function RouteComponent() {
 		},
 		onSuccess: async () => {
 			toast.success("Profile Updated Succesfully");
-			await queryClient.refetchQueries(profileQueryOptions());
+			await qc.refetchQueries(profileQueryOptions());
 			await router.invalidate();
 		},
 		onError: async () => {
@@ -51,7 +51,7 @@ function RouteComponent() {
 			<div className="flex justify-start gap-2 py-2">
 				<Button
 					variant={"ghost"}
-					onClick={() => router.navigate({ to: "/a/settings" })}
+					onClick={() => router.navigate({ to: "/app/settings" })}
 				>
 					<ArrowLeftIcon />
 					<p className="text-xl text-muted-foreground ">Profile Settings</p>

@@ -10,7 +10,7 @@ export function GoogleButton() {
 			await authClient.signIn.social(
 				{
 					provider: "google",
-					callbackURL: "/a/dashboard",
+					callbackURL: "/app/dashboard",
 				},
 				{
 					onError: ({ error }) => {

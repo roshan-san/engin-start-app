@@ -2,7 +2,7 @@ import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "~/components/ui/button";
 
-export const Route = createFileRoute("/(authenticated)/a/settings/help")({
+export const Route = createFileRoute("/app/settings/help")({
 	component: RouteComponent,
 });
 
@@ -13,7 +13,7 @@ function RouteComponent() {
 			<div className="flex justify-start gap-2 py-2">
 				<Button
 					variant={"ghost"}
-					onClick={() => router.navigate({ to: "/a/settings" })}
+					onClick={() => router.navigate({ to: "/app/settings" })}
 				>
 					<ArrowLeft />
 					<p className="text-xl text-muted-foreground ">Help</p>

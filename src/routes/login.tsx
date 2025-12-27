@@ -10,5 +10,5 @@ function LoginForm() {
 		<div className="flex min-h-screen items-center justify-center gap-6 p-6">
 			<GoogleButton />
 		</div>
-	)
+	);
 }

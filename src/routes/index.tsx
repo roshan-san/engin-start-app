@@ -10,7 +10,7 @@ function HomePage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
 			<Button variant={"outline"}>
-				<Link to="/a/dashboard">Go to App</Link>
+				<Link to="/app/dashboard">Go to App</Link>
 			</Button>
 		</div>
 	);
