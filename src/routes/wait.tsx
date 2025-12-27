@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/maintenance/")({
+export const Route = createFileRoute("/wait")({
 	component: RouteComponent,
 });
 
@@ -13,5 +13,5 @@ function RouteComponent() {
 				any inconvenience and appreciate your patience. Please check back later.
 			</p>
 		</div>
-	);
+	)
 }

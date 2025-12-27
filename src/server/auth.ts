@@ -11,6 +11,7 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 import { env } from "~/env/server";
 import { getDatabase } from "~/lib/db";
+import { redirect } from "@tanstack/react-router";
 
 const db = getDatabase();
 
@@ -65,7 +66,7 @@ export const authMiddleware = createMiddleware().server(
 			returnHeaders: true,
 		});
 		if (!response) {
-			throw Error("Unauthorized");
+			throw redirect({ to: "/login" });
 		}
 		return next({
 			context: { user: response.user, session: response.session },

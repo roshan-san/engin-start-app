@@ -4,6 +4,7 @@ import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query
 
 import { routeTree } from "./routeTree.gen";
 import { GlobalError } from "./components/GlobalError";
+import { GlobalNotFound } from "./components/GlobalNotFound";
 
 export function getRouter() {
 	const qc = new QueryClient({
@@ -21,6 +22,7 @@ export function getRouter() {
 		defaultPreload: "intent",
 		defaultPreloadStaleTime: 0,
 		defaultErrorComponent: GlobalError,
+		defaultNotFoundComponent: GlobalNotFound,
 		scrollRestoration: true,
 		defaultStructuralSharing: true,
 	});
