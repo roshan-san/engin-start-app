@@ -1,34 +1,48 @@
 import { getRequest } from "@tanstack/react-start/server";
-import { createMiddleware, createServerFn } from "@tanstack/react-start";
+import {
+	createMiddleware,
+	createServerFn,
+	createServerOnlyFn,
+} from "@tanstack/react-start";
 
 import { betterAuth } from "better-auth/minimal";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 import { env } from "~/env/server";
-import { db } from "~/lib/db";
+import { getDatabase } from "~/lib/db";
 
-export const auth = betterAuth({
-	baseURL: env.BASE_URL,
-	telemetry: { enabled: false },
+const db = await getDatabase();
 
-	database: drizzleAdapter(db, {
-		provider: "pg",
-	}),
+let authServer: ReturnType<typeof betterAuth> | null = null;
 
-	plugins: [tanstackStartCookies()],
+export const getAuthServer = createServerOnlyFn(() => {
+	if (!authServer) {
+		authServer = betterAuth({
+			baseURL: env.BASE_URL,
+			telemetry: { enabled: false },
 
-	session: {
-		cookieCache: { enabled: false },
-	},
+			database: drizzleAdapter(db, {
+				provider: "pg",
+			}),
 
-	socialProviders: {
-		google: {
-			clientId: env.GOOGLE_CLIENT_ID,
-			clientSecret: env.GOOGLE_CLIENT_SECRET,
-		},
-	},
+			plugins: [tanstackStartCookies()],
+
+			session: {
+				cookieCache: { enabled: false },
+			},
+
+			socialProviders: {
+				google: {
+					clientId: env.GOOGLE_CLIENT_ID,
+					clientSecret: env.GOOGLE_CLIENT_SECRET,
+				},
+			},
+		});
+	}
+	return authServer;
 });
+const auth = getAuthServer();
 
 export const getAuth = createServerFn({ method: "GET" }).handler(async () => {
 	const { response } = await auth.api.getSession({

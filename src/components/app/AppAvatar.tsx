@@ -33,7 +33,10 @@ export function AppAvatar() {
 					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end" className="p-2 w-auto border-0">
+			<DropdownMenuContent
+				align="end"
+				className="p-2 rounded-xl w-auto border-0"
+			>
 				<DropdownMenuLabel>
 					<div className="flex flex-col gap-2">
 						<p className="text-base">{`Hey ${fullName} !`}</p>
@@ -45,12 +48,6 @@ export function AppAvatar() {
 					<Link className="flex items-center gap-2" to="/a/settings">
 						<Settings />
 						<p>Settings</p>
-					</Link>
-				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link to="/a/settings/help" className="flex items-center gap-2">
-						<HelpCircle />
-						<p>Help</p>
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
