@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GoogleButton } from "~/components/GoogleButton";
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/login/")({
 	component: LoginForm,
 });
 

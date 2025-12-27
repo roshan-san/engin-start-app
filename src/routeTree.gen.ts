@@ -9,11 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MaintenanceRouteImport } from './routes/maintenance'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardRouteRouteImport } from './routes/onboard/route'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MaintenanceIndexRouteImport } from './routes/maintenance/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
 import { Route as AppNotificationsIndexRouteImport } from './routes/app/notifications/index'
 import { Route as AppFeedIndexRouteImport } from './routes/app/feed/index'
@@ -24,16 +24,6 @@ import { Route as AppSettingsHelpRouteImport } from './routes/app/settings/help'
 import { Route as AppSettingsBillingRouteImport } from './routes/app/settings/billing'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const MaintenanceRoute = MaintenanceRouteImport.update({
-  id: '/maintenance',
-  path: '/maintenance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const OnboardRouteRoute = OnboardRouteRouteImport.update({
   id: '/onboard',
   path: '/onboard',
@@ -48,6 +38,16 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const MaintenanceIndexRoute = MaintenanceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MaintenanceRoute,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LoginRoute,
 } as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   id: '/settings/',
@@ -99,8 +99,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/onboard': typeof OnboardRouteRoute
-  '/login': typeof LoginRoute
-  '/maintenance': typeof MaintenanceRoute
+  '/login/': typeof LoginIndexRoute
+  '/maintenance/': typeof MaintenanceIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
@@ -115,8 +115,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/onboard': typeof OnboardRouteRoute
-  '/login': typeof LoginRoute
-  '/maintenance': typeof MaintenanceRoute
+  '/login': typeof LoginIndexRoute
+  '/maintenance': typeof MaintenanceIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
@@ -132,8 +132,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/onboard': typeof OnboardRouteRoute
-  '/login': typeof LoginRoute
-  '/maintenance': typeof MaintenanceRoute
+  '/login/': typeof LoginIndexRoute
+  '/maintenance/': typeof MaintenanceIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
@@ -150,8 +150,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/onboard'
-    | '/login'
-    | '/maintenance'
+    | '/login/'
+    | '/maintenance/'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/help'
@@ -182,8 +182,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/onboard'
-    | '/login'
-    | '/maintenance'
+    | '/login/'
+    | '/maintenance/'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/help'
@@ -199,27 +199,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRouteRoute: typeof AppRouteRouteWithChildren
   OnboardRouteRoute: typeof OnboardRouteRoute
-  LoginRoute: typeof LoginRoute
-  MaintenanceRoute: typeof MaintenanceRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/maintenance': {
-      id: '/maintenance'
-      path: '/maintenance'
-      fullPath: '/maintenance'
-      preLoaderRoute: typeof MaintenanceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/onboard': {
       id: '/onboard'
       path: '/onboard'
@@ -240,6 +224,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/maintenance/': {
+      id: '/maintenance/'
+      path: '/'
+      fullPath: '/maintenance/'
+      preLoaderRoute: typeof MaintenanceIndexRouteImport
+      parentRoute: typeof MaintenanceRoute
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof LoginRoute
     }
     '/app/settings/': {
       id: '/app/settings/'
@@ -337,8 +335,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRouteRoute: AppRouteRouteWithChildren,
   OnboardRouteRoute: OnboardRouteRoute,
-  LoginRoute: LoginRoute,
-  MaintenanceRoute: MaintenanceRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
