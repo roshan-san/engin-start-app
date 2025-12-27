@@ -4,13 +4,13 @@ import { toast } from "sonner";
 import { authClient } from "~/lib/auth-client";
 import { Button } from "./ui/button";
 
-export function GoogleButton(props: { redirectUrl: string }) {
+export function GoogleButton() {
 	const { isPending, mutate } = useMutation({
 		mutationFn: async () =>
 			await authClient.signIn.social(
 				{
 					provider: "google",
-					callbackURL: props.redirectUrl,
+					callbackURL: "/a/dashboard",
 				},
 				{
 					onError: ({ error }) => {

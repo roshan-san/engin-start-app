@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { ArrowDownUp } from "lucide-react";
 import { toast } from "sonner";
 import { useAppForm } from "~/components/form/AppForm";
@@ -20,23 +20,6 @@ import { authQueryOptions, profileQueryOptions } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/(authenticated)/onboard")({
 	component: RouteComponent,
-	beforeLoad: async ({ context, location }) => {
-		const profile = await context.queryClient.ensureQueryData(
-			profileQueryOptions(),
-		);
-		const path = location.pathname;
-
-		let nextStep: string | null = null;
-
-		if (!profile) {
-			nextStep = "/onboard/name";
-		} else if (profile.onboarding_complete) {
-			nextStep = "/a/dashboard";
-		}
-		if (nextStep && path !== nextStep) {
-			throw redirect({ to: nextStep });
-		}
-	},
 });
 
 function RouteComponent() {

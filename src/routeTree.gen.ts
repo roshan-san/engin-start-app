@@ -10,9 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
 import { Route as authenticatedOnboardRouteRouteImport } from './routes/(authenticated)/onboard/route'
 import { Route as authenticatedARouteRouteImport } from './routes/(authenticated)/a/route'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -30,6 +30,11 @@ const MaintenanceRoute = MaintenanceRouteImport.update({
   path: '/maintenance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: '/(authenticated)',
   getParentRoute: () => rootRouteImport,
@@ -37,11 +42,6 @@ const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authPagesLoginRoute = authPagesLoginRouteImport.update({
-  id: '/(auth-pages)/login',
-  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const authenticatedOnboardRouteRoute =
@@ -110,10 +110,10 @@ const authenticatedASettingsBillingRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRoute
-  '/login': typeof authPagesLoginRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/a/settings/billing': typeof authenticatedASettingsBillingRoute
   '/a/settings/help': typeof authenticatedASettingsHelpRoute
@@ -126,10 +126,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/maintenance': typeof MaintenanceRoute
   '/a': typeof authenticatedARouteRouteWithChildren
   '/onboard': typeof authenticatedOnboardRouteRoute
-  '/login': typeof authPagesLoginRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/a/settings/billing': typeof authenticatedASettingsBillingRoute
   '/a/settings/help': typeof authenticatedASettingsHelpRoute
@@ -144,10 +144,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
   '/maintenance': typeof MaintenanceRoute
   '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
   '/(authenticated)/onboard': typeof authenticatedOnboardRouteRoute
-  '/(auth-pages)/login': typeof authPagesLoginRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/a/settings/billing': typeof authenticatedASettingsBillingRoute
   '/(authenticated)/a/settings/help': typeof authenticatedASettingsHelpRoute
@@ -162,10 +162,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
     | '/maintenance'
     | '/a'
     | '/onboard'
-    | '/login'
     | '/api/auth/$'
     | '/a/settings/billing'
     | '/a/settings/help'
@@ -178,10 +178,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
     | '/maintenance'
     | '/a'
     | '/onboard'
-    | '/login'
     | '/api/auth/$'
     | '/a/settings/billing'
     | '/a/settings/help'
@@ -195,10 +195,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/(authenticated)'
+    | '/login'
     | '/maintenance'
     | '/(authenticated)/a'
     | '/(authenticated)/onboard'
-    | '/(auth-pages)/login'
     | '/api/auth/$'
     | '/(authenticated)/a/settings/billing'
     | '/(authenticated)/a/settings/help'
@@ -213,8 +213,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
   MaintenanceRoute: typeof MaintenanceRoute
-  authPagesLoginRoute: typeof authPagesLoginRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -225,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(authenticated)': {
@@ -239,13 +246,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth-pages)/login': {
-      id: '/(auth-pages)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authPagesLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(authenticated)/onboard': {
@@ -369,8 +369,8 @@ const authenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
   MaintenanceRoute: MaintenanceRoute,
-  authPagesLoginRoute: authPagesLoginRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
