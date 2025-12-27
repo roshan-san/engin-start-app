@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { GoogleButton } from "~/components/GoogleButton";
-import { authQueryOptions } from "~/lib/auth/auth-client";
+import { authQueryOptions } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/(auth-pages)/login")({
 	component: LoginForm,

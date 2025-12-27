@@ -10,8 +10,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions } from "~/lib/auth/auth-client";
+import { authClient } from "~/lib/auth-client";
+import { authQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
 	const { profile, queryClient } = useRouteContext({
@@ -33,7 +33,10 @@ export function AppAvatar() {
 					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end" className="p-2 w-auto border-0">
+			<DropdownMenuContent
+				align="end"
+				className="p-2 rounded-xl w-auto border-0"
+			>
 				<DropdownMenuLabel>
 					<div className="flex flex-col gap-2">
 						<p className="text-base">{`Hey ${fullName} !`}</p>
@@ -47,12 +50,6 @@ export function AppAvatar() {
 						<p>Settings</p>
 					</Link>
 				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link to="/a/settings/help" className="flex items-center gap-2">
-						<HelpCircle />
-						<p>Help</p>
-					</Link>
-				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem
 					variant="destructive"
@@ -61,7 +58,10 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									queryClient.setQueryData(authQueryOptions().queryKey, null);
+									queryClient.setQueryData(authQueryOptions().queryKey, {
+										session: null,
+										user: null,
+									});
 									await router.invalidate();
 								},
 								onSuccess: async () => {
