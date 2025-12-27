@@ -6,13 +6,12 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
+import { LoadingPage } from "~/components/LoadingPage";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/styles.css?url";
 
-export const Route = createRootRouteWithContext<{
-	queryClient: QueryClient;
-}>()({
-	head: () => ({
+function headTags() {
+	return {
 		meta: [
 			{
 				charSet: "utf-8",
@@ -50,10 +49,8 @@ export const Route = createRootRouteWithContext<{
 			},
 			{ rel: "manifest", href: "/site.webmanifest" },
 		],
-	}),
-	component: RootComponent,
-});
-
+	};
+}
 function RootComponent() {
 	return (
 		<RootDocument>
@@ -76,3 +73,8 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 		</html>
 	);
 }
+export const Route = createRootRouteWithContext<{ qc: QueryClient }>()({
+	head: headTags,
+	component: RootComponent,
+	pendingComponent: LoadingPage,
+});

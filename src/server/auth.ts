@@ -11,8 +11,9 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 import { env } from "~/env/server";
 import { getDatabase } from "~/lib/db";
+import { redirect } from "@tanstack/react-router";
 
-const db = await getDatabase();
+const db = getDatabase();
 
 let authServer: ReturnType<typeof betterAuth> | null = null;
 
@@ -58,15 +59,17 @@ export const getAuth = createServerFn({ method: "GET" }).handler(async () => {
 	};
 });
 
-export const authMiddleware = createMiddleware().server(async ({ next }) => {
-	const { response } = await auth.api.getSession({
-		headers: getRequest().headers,
-		returnHeaders: true,
-	});
-	if (!response) {
-		throw Error("UNAUTHORISED");
-	}
-	return next({
-		context: { user: response?.user, session: response?.session },
-	});
-});
+export const authMiddleware = createMiddleware().server(
+	async ({ next, request }) => {
+		const { response } = await auth.api.getSession({
+			headers: request.headers,
+			returnHeaders: true,
+		});
+		if (!response) {
+			throw redirect({ to: "/login" });
+		}
+		return next({
+			context: { user: response.user, session: response.session },
+		});
+	},
+);

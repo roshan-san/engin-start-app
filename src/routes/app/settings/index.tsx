@@ -7,15 +7,15 @@ import {
 } from "lucide-react";
 import { cn } from "~/lib/utils";
 
-export const Route = createFileRoute("/(authenticated)/a/settings/")({
+export const Route = createFileRoute("/app/settings/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
 	const nav = [
-		{ name: "Profile", path: "/a/settings/profile", icon: User },
-		{ name: "Billing", path: "/a/settings/billing", icon: CreditCard },
-		{ name: "Help", path: "/a/settings/help", icon: BadgeQuestionMark },
+		{ name: "Profile", path: "/app/settings/profile", icon: User },
+		{ name: "Billing", path: "/app/settings/billing", icon: CreditCard },
+		{ name: "Help", path: "/app/settings/help", icon: BadgeQuestionMark },
 	];
 
 	return (

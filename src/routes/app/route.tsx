@@ -3,12 +3,10 @@ import { Header } from "~/components/app/Header";
 import { BottomBar } from "~/components/app/Navigation";
 import { profileQueryOptions } from "~/lib/auth-client";
 
-export const Route = createFileRoute("/(authenticated)/a")({
+export const Route = createFileRoute("/app")({
 	component: AppLayout,
 	beforeLoad: async ({ context }) => {
-		const profile = await context.queryClient.ensureQueryData(
-			profileQueryOptions(),
-		);
+		const profile = await context.qc.fetchQuery(profileQueryOptions());
 		if (!profile || !profile.onboarding_complete) {
 			throw redirect({ to: "/onboard" });
 		}

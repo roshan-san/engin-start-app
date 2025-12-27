@@ -6,7 +6,7 @@ import { cn } from "~/lib/utils";
 
 export function Header() {
 	const { pathname } = useLocation();
-	const isNotifs = pathname === "/a/notifications";
+	const isNotifs = pathname === "/app/notifications";
 	return (
 		<div className="flex items-center justify-between px-4">
 			<div className="flex items-center gap-2">
@@ -16,7 +16,7 @@ export function Header() {
 			<NavigationMenu />
 			<div className="flex items-center gap-2">
 				<Link
-					to="/a/notifications"
+					to="/app/notifications"
 					className={cn(
 						isNotifs && "border-b-2 border-primary",
 						"text-muted-foreground p-2",

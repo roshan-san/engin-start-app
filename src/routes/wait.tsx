@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/maintenance")({
+export const Route = createFileRoute("/wait")({
 	component: RouteComponent,
 });
 

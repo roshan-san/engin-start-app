@@ -9,8 +9,8 @@ type NavItemConfig = {
 };
 
 const NAV: NavItemConfig[] = [
-	{ name: "Dashboard", path: "/a/dashboard", icon: LayoutDashboardIcon },
-	{ name: "Explore Startups", path: "/a/explore", icon: SearchIcon },
+	{ name: "Dashboard", path: "/app/dashboard", icon: LayoutDashboardIcon },
+	{ name: "Explore Startups", path: "/app/explore", icon: SearchIcon },
 ];
 
 function isActive(pathname: string, path: string): boolean {

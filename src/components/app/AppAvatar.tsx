@@ -1,5 +1,5 @@
 import { Link, useRouteContext, useRouter } from "@tanstack/react-router";
-import { HelpCircle, LogOut, Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -14,8 +14,8 @@ import { authClient } from "~/lib/auth-client";
 import { authQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
-	const { profile, queryClient } = useRouteContext({
-		from: "/(authenticated)/a",
+	const { profile, qc } = useRouteContext({
+		from: "/app",
 	});
 	const router = useRouter();
 	const fullName =
@@ -45,7 +45,7 @@ export function AppAvatar() {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem asChild>
-					<Link className="flex items-center gap-2" to="/a/settings">
+					<Link className="flex items-center gap-2" to="/app/settings">
 						<Settings />
 						<p>Settings</p>
 					</Link>
@@ -58,7 +58,7 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									queryClient.setQueryData(authQueryOptions().queryKey, {
+									qc.setQueryData(authQueryOptions().queryKey, {
 										session: null,
 										user: null,
 									});

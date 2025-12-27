@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { ArrowDownUp } from "lucide-react";
 import { toast } from "sonner";
 import { useAppForm } from "~/components/form/AppForm";
@@ -18,29 +18,12 @@ import { createProfileFn } from "~/server/fn/profiles.fn";
 import { authClient } from "~/lib/auth-client";
 import { authQueryOptions, profileQueryOptions } from "~/lib/auth-client";
 
-export const Route = createFileRoute("/(authenticated)/onboard")({
+export const Route = createFileRoute("/onboard")({
 	component: RouteComponent,
-	beforeLoad: async ({ context, location }) => {
-		const profile = await context.queryClient.ensureQueryData(
-			profileQueryOptions(),
-		);
-		const path = location.pathname;
-
-		let nextStep: string | null = null;
-
-		if (!profile) {
-			nextStep = "/onboard/name";
-		} else if (profile.onboarding_complete) {
-			nextStep = "/a/dashboard";
-		}
-		if (nextStep && path !== nextStep) {
-			throw redirect({ to: nextStep });
-		}
-	},
 });
 
 function RouteComponent() {
-	const { queryClient } = Route.useRouteContext();
+	const { qc } = Route.useRouteContext();
 
 	const form = useAppForm({
 		...nameFormOpts,
@@ -61,9 +44,9 @@ function RouteComponent() {
 		},
 		onSuccess: async () => {
 			toast.success("Profile created successfully!");
-			await queryClient.invalidateQueries(profileQueryOptions());
-			await queryClient.ensureQueryData(profileQueryOptions());
-			router.navigate({ to: "/a/dashboard" });
+			await qc.invalidateQueries(profileQueryOptions());
+			await qc.ensureQueryData(profileQueryOptions());
+			router.navigate({ to: "/app/dashboard" });
 		},
 		onError: (error) => {
 			toast.error("Failed to create profile. Please try again.");
@@ -77,7 +60,7 @@ function RouteComponent() {
 		await authClient.signOut({
 			fetchOptions: {
 				onResponse: async () => {
-					queryClient.setQueryData(authQueryOptions().queryKey, {
+					qc.setQueryData(authQueryOptions().queryKey, {
 						session: null,
 						user: null,
 					});
