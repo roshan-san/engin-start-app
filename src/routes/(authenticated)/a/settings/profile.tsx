@@ -1,7 +1,5 @@
-import {
-	EditProfileOps,
-	type EditProfileSchema,
-} from "~/components/form/settings-forms/edit-profile";
+import type { EditProfileSchema } from "~/components/form/settings-forms/edit-profile";
+import { EditProfileOps } from "~/components/form/settings-forms/edit-profile";
 import { Button } from "~/components/ui/button";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
@@ -49,8 +47,8 @@ function RouteComponent() {
 		},
 	});
 	return (
-		<div className="flex-1">
-			<div className="flex justify-start gap-2 p-2">
+		<div className="flex-1 flex-col flex">
+			<div className="flex justify-start gap-2 py-2">
 				<Button
 					variant={"ghost"}
 					onClick={() => router.navigate({ to: "/a/settings" })}
@@ -60,7 +58,7 @@ function RouteComponent() {
 				</Button>
 			</div>
 			<form
-				className="flex flex-col bg-card rounded-xl gap-2 p-4"
+				className="flex flex-1 flex-col bg-card rounded-xl gap-2 p-4"
 				id="edit-profile-form"
 				onSubmit={(e) => {
 					e.preventDefault();

@@ -23,7 +23,7 @@ export function AppAvatar() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Avatar className="rounded-2xl">
+				<Avatar className="rounded-xl">
 					<AvatarImage
 						alt={profile.full_name}
 						src={profile.avatar_url || undefined}

@@ -1,10 +1,12 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Bell, GitPullRequestArrowIcon } from "lucide-react";
 import { AppAvatar } from "./AppAvatar";
 import NavigationMenu from "./Navigation";
 import { cn } from "~/lib/utils";
 
 export function Header() {
+	const { pathname } = useLocation();
+	const isNotifs = pathname === "/a/notifications";
 	return (
 		<div className="flex items-center justify-between px-4">
 			<div className="flex items-center gap-2">
@@ -16,6 +18,7 @@ export function Header() {
 				<Link
 					to="/a/notifications"
 					className={cn(
+						isNotifs && "border-b-2 border-primary",
 						"text-muted-foreground p-2",
 						"transition-all duration-300 ease-in-out",
 						"hover:text-foreground hover:-translate-y-1",
