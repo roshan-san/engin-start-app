@@ -13,6 +13,11 @@ import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { profileQueryOptions } from "~/lib/auth-client";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "~/components/ui/tooltip";
 
 export const Route = createFileRoute("/app/settings/profile")({
 	component: RouteComponent,
@@ -58,11 +63,11 @@ function RouteComponent() {
 				</Button>
 			</div>
 			<div className="flex-1 flex gap-2 ">
-				<div className="flex items-center justify-center w-1/2">
+				<div className="md:flex items-center hidden justify-center w-1/2">
 					some illustration
 				</div>
 				<form
-					className="flex w-1/2 flex-col justify-between rounded-xl gap-4 p-4"
+					className="flex md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
 					id="edit-profile-form"
 					onSubmit={(e) => {
 						e.preventDefault();
@@ -73,17 +78,24 @@ function RouteComponent() {
 						<form.AppField name="full_name">
 							{(field) => <field.TextInput id="Name" label="Name" />}
 						</form.AppField>
-						<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
-							<Label className="text-base" htmlFor="username">
-								Username
-							</Label>
-							<Input
-								className="w-full max-w-md"
-								id="username"
-								value={profile.username}
-								disabled={true}
-							/>
-						</div>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
+									<Label className="text-base" htmlFor="username">
+										Username
+									</Label>
+									<Input
+										className="w-full max-w-md"
+										id="username"
+										value={profile.username}
+										disabled={true}
+									/>
+								</div>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p className="text-base">Username Cannot be Changed</p>
+							</TooltipContent>
+						</Tooltip>
 					</FieldGroup>
 
 					<div className="flex justify-end">
