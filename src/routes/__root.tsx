@@ -6,20 +6,12 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { ThemeProvider } from "~/components/theme-provider";
+import { LoadingPage } from "~/components/LoadingPage";
 import { Toaster } from "~/components/ui/sonner";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth/queries";
 import appCss from "~/styles.css?url";
 
-export const Route = createRootRouteWithContext<{
-	queryClient: QueryClient;
-}>()({
-	beforeLoad: async ({ context }) => {
-		await context.queryClient.prefetchQuery(profileQueryOptions());
-		await context.queryClient.prefetchQuery(authQueryOptions());
-	},
-
-	head: () => ({
+function headTags() {
+	return {
 		meta: [
 			{
 				charSet: "utf-8",
@@ -57,10 +49,8 @@ export const Route = createRootRouteWithContext<{
 			},
 			{ rel: "manifest", href: "/site.webmanifest" },
 		],
-	}),
-	component: RootComponent,
-});
-
+	};
+}
 function RootComponent() {
 	return (
 		<RootDocument>
@@ -76,25 +66,15 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
-				<ThemeProvider>
-					{children}
-					<Toaster richColors />
-				</ThemeProvider>
-
-				{/* <TanStackDevtools
-					plugins={[
-						{
-							name: "TanStack Query",
-							render: <ReactQueryDevtoolsPanel />,
-						},
-						{
-							name: "TanStack Router",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-					]}
-				/> */}
+				{children}
+				<Toaster richColors />
 				<Scripts />
 			</body>
 		</html>
 	);
 }
+export const Route = createRootRouteWithContext<{ qc: QueryClient }>()({
+	head: headTags,
+	component: RootComponent,
+	pendingComponent: LoadingPage,
+});

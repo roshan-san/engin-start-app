@@ -29,12 +29,7 @@
 		}
 	},
 	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
+		"enabled": true
 	},
 	"overrides": [
 		{

@@ -9,37 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MaintenanceRouteImport } from './routes/maintenance'
-import { Route as DemoRouteImport } from './routes/demo'
-import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
+import { Route as WaitRouteImport } from './routes/wait'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as OnboardRouteRouteImport } from './routes/onboard/route'
+import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as authPagesLoginRouteImport } from './routes/(auth-pages)/login'
-import { Route as authenticatedOnboardRouteRouteImport } from './routes/(authenticated)/onboard/route'
-import { Route as authenticatedARouteRouteImport } from './routes/(authenticated)/a/route'
+import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
+import { Route as AppNotificationsIndexRouteImport } from './routes/app/notifications/index'
+import { Route as AppFeedIndexRouteImport } from './routes/app/feed/index'
+import { Route as AppExploreIndexRouteImport } from './routes/app/explore/index'
+import { Route as AppDashboardIndexRouteImport } from './routes/app/dashboard/index'
+import { Route as AppSettingsProfileRouteImport } from './routes/app/settings/profile'
+import { Route as AppSettingsHelpRouteImport } from './routes/app/settings/help'
+import { Route as AppSettingsBillingRouteImport } from './routes/app/settings/billing'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as authenticatedOnboardUserTypeRouteImport } from './routes/(authenticated)/onboard/user-type'
-import { Route as authenticatedOnboardNameRouteImport } from './routes/(authenticated)/onboard/name'
-import { Route as authenticatedOnboardLocationRouteImport } from './routes/(authenticated)/onboard/location'
-import { Route as authenticatedASettingsRouteRouteImport } from './routes/(authenticated)/a/settings/route'
-import { Route as authenticatedANotificationsIndexRouteImport } from './routes/(authenticated)/a/notifications/index'
-import { Route as authenticatedAFeedIndexRouteImport } from './routes/(authenticated)/a/feed/index'
-import { Route as authenticatedAExploreIndexRouteImport } from './routes/(authenticated)/a/explore/index'
-import { Route as authenticatedADashboardIndexRouteImport } from './routes/(authenticated)/a/dashboard/index'
-import { Route as authenticatedASettingsProfileRouteImport } from './routes/(authenticated)/a/settings/profile'
-import { Route as authenticatedASettingsBillingRouteImport } from './routes/(authenticated)/a/settings/billing'
 
-const MaintenanceRoute = MaintenanceRouteImport.update({
-  id: '/maintenance',
-  path: '/maintenance',
+const WaitRoute = WaitRouteImport.update({
+  id: '/wait',
+  path: '/wait',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
-  id: '/(authenticated)',
+const OnboardRouteRoute = OnboardRouteRouteImport.update({
+  id: '/onboard',
+  path: '/onboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -47,237 +49,189 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authPagesLoginRoute = authPagesLoginRouteImport.update({
-  id: '/(auth-pages)/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => AppRouteRoute,
 } as any)
-const authenticatedOnboardRouteRoute =
-  authenticatedOnboardRouteRouteImport.update({
-    id: '/onboard',
-    path: '/onboard',
-    getParentRoute: () => authenticatedRouteRoute,
-  } as any)
-const authenticatedARouteRoute = authenticatedARouteRouteImport.update({
-  id: '/a',
-  path: '/a',
-  getParentRoute: () => authenticatedRouteRoute,
+const AppNotificationsIndexRoute = AppNotificationsIndexRouteImport.update({
+  id: '/notifications/',
+  path: '/notifications/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppFeedIndexRoute = AppFeedIndexRouteImport.update({
+  id: '/feed/',
+  path: '/feed/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppExploreIndexRoute = AppExploreIndexRouteImport.update({
+  id: '/explore/',
+  path: '/explore/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
+  id: '/settings/profile',
+  path: '/settings/profile',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSettingsHelpRoute = AppSettingsHelpRouteImport.update({
+  id: '/settings/help',
+  path: '/settings/help',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSettingsBillingRoute = AppSettingsBillingRouteImport.update({
+  id: '/settings/billing',
+  path: '/settings/billing',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authenticatedOnboardUserTypeRoute =
-  authenticatedOnboardUserTypeRouteImport.update({
-    id: '/user-type',
-    path: '/user-type',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
-const authenticatedOnboardNameRoute =
-  authenticatedOnboardNameRouteImport.update({
-    id: '/name',
-    path: '/name',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
-const authenticatedOnboardLocationRoute =
-  authenticatedOnboardLocationRouteImport.update({
-    id: '/location',
-    path: '/location',
-    getParentRoute: () => authenticatedOnboardRouteRoute,
-  } as any)
-const authenticatedASettingsRouteRoute =
-  authenticatedASettingsRouteRouteImport.update({
-    id: '/settings',
-    path: '/settings',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
-const authenticatedANotificationsIndexRoute =
-  authenticatedANotificationsIndexRouteImport.update({
-    id: '/notifications/',
-    path: '/notifications/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
-const authenticatedAFeedIndexRoute = authenticatedAFeedIndexRouteImport.update({
-  id: '/feed/',
-  path: '/feed/',
-  getParentRoute: () => authenticatedARouteRoute,
-} as any)
-const authenticatedAExploreIndexRoute =
-  authenticatedAExploreIndexRouteImport.update({
-    id: '/explore/',
-    path: '/explore/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
-const authenticatedADashboardIndexRoute =
-  authenticatedADashboardIndexRouteImport.update({
-    id: '/dashboard/',
-    path: '/dashboard/',
-    getParentRoute: () => authenticatedARouteRoute,
-  } as any)
-const authenticatedASettingsProfileRoute =
-  authenticatedASettingsProfileRouteImport.update({
-    id: '/profile',
-    path: '/profile',
-    getParentRoute: () => authenticatedASettingsRouteRoute,
-  } as any)
-const authenticatedASettingsBillingRoute =
-  authenticatedASettingsBillingRouteImport.update({
-    id: '/billing',
-    path: '/billing',
-    getParentRoute: () => authenticatedASettingsRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
-  '/maintenance': typeof MaintenanceRoute
-  '/a': typeof authenticatedARouteRouteWithChildren
-  '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/login': typeof authPagesLoginRoute
-  '/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/onboard/name': typeof authenticatedOnboardNameRoute
-  '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/onboard': typeof OnboardRouteRoute
+  '/login': typeof LoginRoute
+  '/wait': typeof WaitRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/a/dashboard': typeof authenticatedADashboardIndexRoute
-  '/a/explore': typeof authenticatedAExploreIndexRoute
-  '/a/feed': typeof authenticatedAFeedIndexRoute
-  '/a/notifications': typeof authenticatedANotificationsIndexRoute
+  '/app/settings/billing': typeof AppSettingsBillingRoute
+  '/app/settings/help': typeof AppSettingsHelpRoute
+  '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/dashboard': typeof AppDashboardIndexRoute
+  '/app/explore': typeof AppExploreIndexRoute
+  '/app/feed': typeof AppFeedIndexRoute
+  '/app/notifications': typeof AppNotificationsIndexRoute
+  '/app/settings': typeof AppSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
-  '/maintenance': typeof MaintenanceRoute
-  '/a': typeof authenticatedARouteRouteWithChildren
-  '/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/login': typeof authPagesLoginRoute
-  '/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/onboard/name': typeof authenticatedOnboardNameRoute
-  '/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/onboard': typeof OnboardRouteRoute
+  '/login': typeof LoginRoute
+  '/wait': typeof WaitRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/a/dashboard': typeof authenticatedADashboardIndexRoute
-  '/a/explore': typeof authenticatedAExploreIndexRoute
-  '/a/feed': typeof authenticatedAFeedIndexRoute
-  '/a/notifications': typeof authenticatedANotificationsIndexRoute
+  '/app/settings/billing': typeof AppSettingsBillingRoute
+  '/app/settings/help': typeof AppSettingsHelpRoute
+  '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/dashboard': typeof AppDashboardIndexRoute
+  '/app/explore': typeof AppExploreIndexRoute
+  '/app/feed': typeof AppFeedIndexRoute
+  '/app/notifications': typeof AppNotificationsIndexRoute
+  '/app/settings': typeof AppSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/(authenticated)': typeof authenticatedRouteRouteWithChildren
-  '/demo': typeof DemoRoute
-  '/maintenance': typeof MaintenanceRoute
-  '/(authenticated)/a': typeof authenticatedARouteRouteWithChildren
-  '/(authenticated)/onboard': typeof authenticatedOnboardRouteRouteWithChildren
-  '/(auth-pages)/login': typeof authPagesLoginRoute
-  '/(authenticated)/a/settings': typeof authenticatedASettingsRouteRouteWithChildren
-  '/(authenticated)/onboard/location': typeof authenticatedOnboardLocationRoute
-  '/(authenticated)/onboard/name': typeof authenticatedOnboardNameRoute
-  '/(authenticated)/onboard/user-type': typeof authenticatedOnboardUserTypeRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/onboard': typeof OnboardRouteRoute
+  '/login': typeof LoginRoute
+  '/wait': typeof WaitRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/(authenticated)/a/settings/billing': typeof authenticatedASettingsBillingRoute
-  '/(authenticated)/a/settings/profile': typeof authenticatedASettingsProfileRoute
-  '/(authenticated)/a/dashboard/': typeof authenticatedADashboardIndexRoute
-  '/(authenticated)/a/explore/': typeof authenticatedAExploreIndexRoute
-  '/(authenticated)/a/feed/': typeof authenticatedAFeedIndexRoute
-  '/(authenticated)/a/notifications/': typeof authenticatedANotificationsIndexRoute
+  '/app/settings/billing': typeof AppSettingsBillingRoute
+  '/app/settings/help': typeof AppSettingsHelpRoute
+  '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/dashboard/': typeof AppDashboardIndexRoute
+  '/app/explore/': typeof AppExploreIndexRoute
+  '/app/feed/': typeof AppFeedIndexRoute
+  '/app/notifications/': typeof AppNotificationsIndexRoute
+  '/app/settings/': typeof AppSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/demo'
-    | '/maintenance'
-    | '/a'
+    | '/app'
     | '/onboard'
     | '/login'
-    | '/a/settings'
-    | '/onboard/location'
-    | '/onboard/name'
-    | '/onboard/user-type'
+    | '/wait'
     | '/api/auth/$'
-    | '/a/settings/billing'
-    | '/a/settings/profile'
-    | '/a/dashboard'
-    | '/a/explore'
-    | '/a/feed'
-    | '/a/notifications'
+    | '/app/settings/billing'
+    | '/app/settings/help'
+    | '/app/settings/profile'
+    | '/app/dashboard'
+    | '/app/explore'
+    | '/app/feed'
+    | '/app/notifications'
+    | '/app/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/demo'
-    | '/maintenance'
-    | '/a'
+    | '/app'
     | '/onboard'
     | '/login'
-    | '/a/settings'
-    | '/onboard/location'
-    | '/onboard/name'
-    | '/onboard/user-type'
+    | '/wait'
     | '/api/auth/$'
-    | '/a/settings/billing'
-    | '/a/settings/profile'
-    | '/a/dashboard'
-    | '/a/explore'
-    | '/a/feed'
-    | '/a/notifications'
+    | '/app/settings/billing'
+    | '/app/settings/help'
+    | '/app/settings/profile'
+    | '/app/dashboard'
+    | '/app/explore'
+    | '/app/feed'
+    | '/app/notifications'
+    | '/app/settings'
   id:
     | '__root__'
     | '/'
-    | '/(authenticated)'
-    | '/demo'
-    | '/maintenance'
-    | '/(authenticated)/a'
-    | '/(authenticated)/onboard'
-    | '/(auth-pages)/login'
-    | '/(authenticated)/a/settings'
-    | '/(authenticated)/onboard/location'
-    | '/(authenticated)/onboard/name'
-    | '/(authenticated)/onboard/user-type'
+    | '/app'
+    | '/onboard'
+    | '/login'
+    | '/wait'
     | '/api/auth/$'
-    | '/(authenticated)/a/settings/billing'
-    | '/(authenticated)/a/settings/profile'
-    | '/(authenticated)/a/dashboard/'
-    | '/(authenticated)/a/explore/'
-    | '/(authenticated)/a/feed/'
-    | '/(authenticated)/a/notifications/'
+    | '/app/settings/billing'
+    | '/app/settings/help'
+    | '/app/settings/profile'
+    | '/app/dashboard/'
+    | '/app/explore/'
+    | '/app/feed/'
+    | '/app/notifications/'
+    | '/app/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
-  DemoRoute: typeof DemoRoute
-  MaintenanceRoute: typeof MaintenanceRoute
-  authPagesLoginRoute: typeof authPagesLoginRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
+  OnboardRouteRoute: typeof OnboardRouteRoute
+  LoginRoute: typeof LoginRoute
+  WaitRoute: typeof WaitRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/maintenance': {
-      id: '/maintenance'
-      path: '/maintenance'
-      fullPath: '/maintenance'
-      preLoaderRoute: typeof MaintenanceRouteImport
+    '/wait': {
+      id: '/wait'
+      path: '/wait'
+      fullPath: '/wait'
+      preLoaderRoute: typeof WaitRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(authenticated)': {
-      id: '/(authenticated)'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof authenticatedRouteRouteImport
+    '/onboard': {
+      id: '/onboard'
+      path: '/onboard'
+      fullPath: '/onboard'
+      preLoaderRoute: typeof OnboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -287,26 +241,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth-pages)/login': {
-      id: '/(auth-pages)/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authPagesLoginRouteImport
-      parentRoute: typeof rootRouteImport
+    '/app/settings/': {
+      id: '/app/settings/'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
     }
-    '/(authenticated)/onboard': {
-      id: '/(authenticated)/onboard'
-      path: '/onboard'
-      fullPath: '/onboard'
-      preLoaderRoute: typeof authenticatedOnboardRouteRouteImport
-      parentRoute: typeof authenticatedRouteRoute
+    '/app/notifications/': {
+      id: '/app/notifications/'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
     }
-    '/(authenticated)/a': {
-      id: '/(authenticated)/a'
-      path: '/a'
-      fullPath: '/a'
-      preLoaderRoute: typeof authenticatedARouteRouteImport
-      parentRoute: typeof authenticatedRouteRoute
+    '/app/feed/': {
+      id: '/app/feed/'
+      path: '/feed'
+      fullPath: '/app/feed'
+      preLoaderRoute: typeof AppFeedIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/explore/': {
+      id: '/app/explore/'
+      path: '/explore'
+      fullPath: '/app/explore'
+      preLoaderRoute: typeof AppExploreIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/dashboard/': {
+      id: '/app/dashboard/'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/settings/profile': {
+      id: '/app/settings/profile'
+      path: '/settings/profile'
+      fullPath: '/app/settings/profile'
+      preLoaderRoute: typeof AppSettingsProfileRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/settings/help': {
+      id: '/app/settings/help'
+      path: '/settings/help'
+      fullPath: '/app/settings/help'
+      preLoaderRoute: typeof AppSettingsHelpRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/settings/billing': {
+      id: '/app/settings/billing'
+      path: '/settings/billing'
+      fullPath: '/app/settings/billing'
+      preLoaderRoute: typeof AppSettingsBillingRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -315,152 +304,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(authenticated)/onboard/user-type': {
-      id: '/(authenticated)/onboard/user-type'
-      path: '/user-type'
-      fullPath: '/onboard/user-type'
-      preLoaderRoute: typeof authenticatedOnboardUserTypeRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/onboard/name': {
-      id: '/(authenticated)/onboard/name'
-      path: '/name'
-      fullPath: '/onboard/name'
-      preLoaderRoute: typeof authenticatedOnboardNameRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/onboard/location': {
-      id: '/(authenticated)/onboard/location'
-      path: '/location'
-      fullPath: '/onboard/location'
-      preLoaderRoute: typeof authenticatedOnboardLocationRouteImport
-      parentRoute: typeof authenticatedOnboardRouteRoute
-    }
-    '/(authenticated)/a/settings': {
-      id: '/(authenticated)/a/settings'
-      path: '/settings'
-      fullPath: '/a/settings'
-      preLoaderRoute: typeof authenticatedASettingsRouteRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/notifications/': {
-      id: '/(authenticated)/a/notifications/'
-      path: '/notifications'
-      fullPath: '/a/notifications'
-      preLoaderRoute: typeof authenticatedANotificationsIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/feed/': {
-      id: '/(authenticated)/a/feed/'
-      path: '/feed'
-      fullPath: '/a/feed'
-      preLoaderRoute: typeof authenticatedAFeedIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/explore/': {
-      id: '/(authenticated)/a/explore/'
-      path: '/explore'
-      fullPath: '/a/explore'
-      preLoaderRoute: typeof authenticatedAExploreIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/dashboard/': {
-      id: '/(authenticated)/a/dashboard/'
-      path: '/dashboard'
-      fullPath: '/a/dashboard'
-      preLoaderRoute: typeof authenticatedADashboardIndexRouteImport
-      parentRoute: typeof authenticatedARouteRoute
-    }
-    '/(authenticated)/a/settings/profile': {
-      id: '/(authenticated)/a/settings/profile'
-      path: '/profile'
-      fullPath: '/a/settings/profile'
-      preLoaderRoute: typeof authenticatedASettingsProfileRouteImport
-      parentRoute: typeof authenticatedASettingsRouteRoute
-    }
-    '/(authenticated)/a/settings/billing': {
-      id: '/(authenticated)/a/settings/billing'
-      path: '/billing'
-      fullPath: '/a/settings/billing'
-      preLoaderRoute: typeof authenticatedASettingsBillingRouteImport
-      parentRoute: typeof authenticatedASettingsRouteRoute
-    }
   }
 }
 
-interface authenticatedASettingsRouteRouteChildren {
-  authenticatedASettingsBillingRoute: typeof authenticatedASettingsBillingRoute
-  authenticatedASettingsProfileRoute: typeof authenticatedASettingsProfileRoute
+interface AppRouteRouteChildren {
+  AppSettingsBillingRoute: typeof AppSettingsBillingRoute
+  AppSettingsHelpRoute: typeof AppSettingsHelpRoute
+  AppSettingsProfileRoute: typeof AppSettingsProfileRoute
+  AppDashboardIndexRoute: typeof AppDashboardIndexRoute
+  AppExploreIndexRoute: typeof AppExploreIndexRoute
+  AppFeedIndexRoute: typeof AppFeedIndexRoute
+  AppNotificationsIndexRoute: typeof AppNotificationsIndexRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
 }
 
-const authenticatedASettingsRouteRouteChildren: authenticatedASettingsRouteRouteChildren =
-  {
-    authenticatedASettingsBillingRoute: authenticatedASettingsBillingRoute,
-    authenticatedASettingsProfileRoute: authenticatedASettingsProfileRoute,
-  }
-
-const authenticatedASettingsRouteRouteWithChildren =
-  authenticatedASettingsRouteRoute._addFileChildren(
-    authenticatedASettingsRouteRouteChildren,
-  )
-
-interface authenticatedARouteRouteChildren {
-  authenticatedASettingsRouteRoute: typeof authenticatedASettingsRouteRouteWithChildren
-  authenticatedADashboardIndexRoute: typeof authenticatedADashboardIndexRoute
-  authenticatedAExploreIndexRoute: typeof authenticatedAExploreIndexRoute
-  authenticatedAFeedIndexRoute: typeof authenticatedAFeedIndexRoute
-  authenticatedANotificationsIndexRoute: typeof authenticatedANotificationsIndexRoute
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppSettingsBillingRoute: AppSettingsBillingRoute,
+  AppSettingsHelpRoute: AppSettingsHelpRoute,
+  AppSettingsProfileRoute: AppSettingsProfileRoute,
+  AppDashboardIndexRoute: AppDashboardIndexRoute,
+  AppExploreIndexRoute: AppExploreIndexRoute,
+  AppFeedIndexRoute: AppFeedIndexRoute,
+  AppNotificationsIndexRoute: AppNotificationsIndexRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
 }
 
-const authenticatedARouteRouteChildren: authenticatedARouteRouteChildren = {
-  authenticatedASettingsRouteRoute:
-    authenticatedASettingsRouteRouteWithChildren,
-  authenticatedADashboardIndexRoute: authenticatedADashboardIndexRoute,
-  authenticatedAExploreIndexRoute: authenticatedAExploreIndexRoute,
-  authenticatedAFeedIndexRoute: authenticatedAFeedIndexRoute,
-  authenticatedANotificationsIndexRoute: authenticatedANotificationsIndexRoute,
-}
-
-const authenticatedARouteRouteWithChildren =
-  authenticatedARouteRoute._addFileChildren(authenticatedARouteRouteChildren)
-
-interface authenticatedOnboardRouteRouteChildren {
-  authenticatedOnboardLocationRoute: typeof authenticatedOnboardLocationRoute
-  authenticatedOnboardNameRoute: typeof authenticatedOnboardNameRoute
-  authenticatedOnboardUserTypeRoute: typeof authenticatedOnboardUserTypeRoute
-}
-
-const authenticatedOnboardRouteRouteChildren: authenticatedOnboardRouteRouteChildren =
-  {
-    authenticatedOnboardLocationRoute: authenticatedOnboardLocationRoute,
-    authenticatedOnboardNameRoute: authenticatedOnboardNameRoute,
-    authenticatedOnboardUserTypeRoute: authenticatedOnboardUserTypeRoute,
-  }
-
-const authenticatedOnboardRouteRouteWithChildren =
-  authenticatedOnboardRouteRoute._addFileChildren(
-    authenticatedOnboardRouteRouteChildren,
-  )
-
-interface authenticatedRouteRouteChildren {
-  authenticatedARouteRoute: typeof authenticatedARouteRouteWithChildren
-  authenticatedOnboardRouteRoute: typeof authenticatedOnboardRouteRouteWithChildren
-}
-
-const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
-  authenticatedARouteRoute: authenticatedARouteRouteWithChildren,
-  authenticatedOnboardRouteRoute: authenticatedOnboardRouteRouteWithChildren,
-}
-
-const authenticatedRouteRouteWithChildren =
-  authenticatedRouteRoute._addFileChildren(authenticatedRouteRouteChildren)
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
-  DemoRoute: DemoRoute,
-  MaintenanceRoute: MaintenanceRoute,
-  authPagesLoginRoute: authPagesLoginRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
+  OnboardRouteRoute: OnboardRouteRoute,
+  LoginRoute: LoginRoute,
+  WaitRoute: WaitRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

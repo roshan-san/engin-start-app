@@ -1,16 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "sonner";
-import authClient from "~/lib/auth/auth-client";
+import { authClient } from "~/lib/auth-client";
 import { Button } from "./ui/button";
 
-export function GoogleButton(props: { redirectUrl: string }) {
-	const mutation = useMutation({
+export function GoogleButton() {
+	const { isPending, mutate } = useMutation({
 		mutationFn: async () =>
 			await authClient.signIn.social(
 				{
 					provider: "google",
-					callbackURL: props.redirectUrl,
+					callbackURL: "/app/dashboard",
 				},
 				{
 					onError: ({ error }) => {
@@ -24,8 +24,8 @@ export function GoogleButton(props: { redirectUrl: string }) {
 			variant="outline"
 			className="w-fit"
 			type="button"
-			disabled={mutation.isSuccess || mutation.isPending}
-			onClick={() => mutation.mutate()}
+			disabled={isPending}
+			onClick={() => mutate()}
 		>
 			<FaGoogle />
 			Login with Google

@@ -1,5 +1,5 @@
 import { Link, useRouteContext, useRouter } from "@tanstack/react-router";
-import { HelpCircle, LogOut, Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
@@ -10,12 +10,12 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import authClient from "~/lib/auth/auth-client";
-import { authQueryOptions } from "~/lib/auth/queries";
+import { authClient } from "~/lib/auth-client";
+import { authQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
-	const { profile, queryClient } = useRouteContext({
-		from: "/(authenticated)/a",
+	const { profile, qc } = useRouteContext({
+		from: "/app",
 	});
 	const router = useRouter();
 	const fullName =
@@ -33,24 +33,21 @@ export function AppAvatar() {
 					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align="end" className="p-2 w-auto border-0">
+			<DropdownMenuContent
+				align="end"
+				className="p-2 rounded-xl w-auto border-0"
+			>
 				<DropdownMenuLabel>
 					<div className="flex flex-col gap-2">
-						<p className="text-sm">{`Hey ${fullName} !`}</p>
-						<p className="text-muted-foreground text-xs">{profile.email}</p>
+						<p className="text-base">{`Hey ${fullName} !`}</p>
+						<p className="text-muted-foreground text-base">{profile.email}</p>
 					</div>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem asChild>
-					<Link className="flex items-center gap-2" to="/a/settings/profile">
+					<Link className="flex items-center gap-2" to="/app/settings">
 						<Settings />
 						<p>Settings</p>
-					</Link>
-				</DropdownMenuItem>
-				<DropdownMenuItem>
-					<Link to="/a/dashboard" className="flex items-center gap-2">
-						<HelpCircle />
-						<p>Help</p>
 					</Link>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
@@ -61,7 +58,10 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									queryClient.setQueryData(authQueryOptions().queryKey, null);
+									qc.setQueryData(authQueryOptions().queryKey, {
+										session: null,
+										user: null,
+									});
 									await router.invalidate();
 								},
 								onSuccess: async () => {
