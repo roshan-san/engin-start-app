@@ -58,10 +58,7 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									qc.setQueryData(authQueryOptions().queryKey, {
-										session: null,
-										user: null,
-									});
+									qc.invalidateQueries(authQueryOptions());
 									await router.invalidate();
 								},
 								onSuccess: async () => {

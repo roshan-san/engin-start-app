@@ -51,7 +51,7 @@ export const getAuth = createServerFn({ method: "GET" }).handler(async () => {
 		returnHeaders: true,
 	});
 	if (!response) {
-		return { user: null, session: null };
+		throw redirect({ to: "/login" });
 	}
 	return {
 		user: response.user,
