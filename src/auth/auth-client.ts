@@ -1,8 +1,8 @@
 import { createAuthClient } from "better-auth/react";
 import { queryOptions } from "@tanstack/react-query";
 import { env } from "~/env/client";
-import { getMyProfile } from "~/server/fn/profiles.fn";
-import { getAuth } from "~/server/auth";
+import { getMyProfile } from "~/server/fn/profiles";
+import { getAuth } from "~/auth/auth";
 
 export const authClient = createAuthClient({
 	baseURL: env.VITE_BASE_URL,

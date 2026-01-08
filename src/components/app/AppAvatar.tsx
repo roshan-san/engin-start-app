@@ -10,8 +10,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { authClient } from "~/lib/auth-client";
-import { authQueryOptions } from "~/lib/auth-client";
+import { authClient } from "~/auth/auth-client";
+import { authQueryOptions } from "~/auth/auth-client";
 
 export function AppAvatar() {
 	const { profile, qc } = useRouteContext({
@@ -59,10 +59,10 @@ export function AppAvatar() {
 							fetchOptions: {
 								onResponse: async () => {
 									qc.invalidateQueries(authQueryOptions());
-									await router.invalidate();
+									await router.navigate({ to: "/login" });
 								},
 								onSuccess: async () => {
-									toast.warning("Signing out...");
+									toast.info("Signing out...");
 								},
 								onError: async () => {
 									toast.error("Failed to Sign Out");

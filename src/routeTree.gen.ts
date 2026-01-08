@@ -14,15 +14,19 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as OnboardRouteRouteImport } from './routes/onboard/route'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppStartupsRouteRouteImport } from './routes/app/startups/route'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
 import { Route as AppNotificationsIndexRouteImport } from './routes/app/notifications/index'
 import { Route as AppFeedIndexRouteImport } from './routes/app/feed/index'
 import { Route as AppExploreIndexRouteImport } from './routes/app/explore/index'
 import { Route as AppDashboardIndexRouteImport } from './routes/app/dashboard/index'
+import { Route as AppStartupsCreateRouteImport } from './routes/app/startups/create'
 import { Route as AppSettingsProfileRouteImport } from './routes/app/settings/profile'
 import { Route as AppSettingsHelpRouteImport } from './routes/app/settings/help'
 import { Route as AppSettingsBillingRouteImport } from './routes/app/settings/billing'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as AppDashboardStartupNewRouteImport } from './routes/app/dashboard/startup/new'
+import { Route as AppDashboardStartupSlugRouteImport } from './routes/app/dashboard/startup/$slug'
 
 const WaitRoute = WaitRouteImport.update({
   id: '/wait',
@@ -49,6 +53,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppStartupsRouteRoute = AppStartupsRouteRouteImport.update({
+  id: '/startups',
+  path: '/startups',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   id: '/settings/',
   path: '/settings/',
@@ -74,6 +83,11 @@ const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
   path: '/dashboard/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppStartupsCreateRoute = AppStartupsCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => AppStartupsRouteRoute,
+} as any)
 const AppSettingsProfileRoute = AppSettingsProfileRouteImport.update({
   id: '/settings/profile',
   path: '/settings/profile',
@@ -94,6 +108,16 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppDashboardStartupNewRoute = AppDashboardStartupNewRouteImport.update({
+  id: '/dashboard/startup/new',
+  path: '/dashboard/startup/new',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppDashboardStartupSlugRoute = AppDashboardStartupSlugRouteImport.update({
+  id: '/dashboard/startup/$slug',
+  path: '/dashboard/startup/$slug',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,15 +125,19 @@ export interface FileRoutesByFullPath {
   '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
   '/wait': typeof WaitRoute
+  '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/startups/create': typeof AppStartupsCreateRoute
   '/app/dashboard': typeof AppDashboardIndexRoute
   '/app/explore': typeof AppExploreIndexRoute
   '/app/feed': typeof AppFeedIndexRoute
   '/app/notifications': typeof AppNotificationsIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
+  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
+  '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -117,15 +145,19 @@ export interface FileRoutesByTo {
   '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
   '/wait': typeof WaitRoute
+  '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/startups/create': typeof AppStartupsCreateRoute
   '/app/dashboard': typeof AppDashboardIndexRoute
   '/app/explore': typeof AppExploreIndexRoute
   '/app/feed': typeof AppFeedIndexRoute
   '/app/notifications': typeof AppNotificationsIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
+  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
+  '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,15 +166,19 @@ export interface FileRoutesById {
   '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
   '/wait': typeof WaitRoute
+  '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/help': typeof AppSettingsHelpRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
+  '/app/startups/create': typeof AppStartupsCreateRoute
   '/app/dashboard/': typeof AppDashboardIndexRoute
   '/app/explore/': typeof AppExploreIndexRoute
   '/app/feed/': typeof AppFeedIndexRoute
   '/app/notifications/': typeof AppNotificationsIndexRoute
   '/app/settings/': typeof AppSettingsIndexRoute
+  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
+  '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,15 +188,19 @@ export interface FileRouteTypes {
     | '/onboard'
     | '/login'
     | '/wait'
+    | '/app/startups'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/help'
     | '/app/settings/profile'
+    | '/app/startups/create'
     | '/app/dashboard'
     | '/app/explore'
     | '/app/feed'
     | '/app/notifications'
     | '/app/settings'
+    | '/app/dashboard/startup/$slug'
+    | '/app/dashboard/startup/new'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -168,15 +208,19 @@ export interface FileRouteTypes {
     | '/onboard'
     | '/login'
     | '/wait'
+    | '/app/startups'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/help'
     | '/app/settings/profile'
+    | '/app/startups/create'
     | '/app/dashboard'
     | '/app/explore'
     | '/app/feed'
     | '/app/notifications'
     | '/app/settings'
+    | '/app/dashboard/startup/$slug'
+    | '/app/dashboard/startup/new'
   id:
     | '__root__'
     | '/'
@@ -184,15 +228,19 @@ export interface FileRouteTypes {
     | '/onboard'
     | '/login'
     | '/wait'
+    | '/app/startups'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/help'
     | '/app/settings/profile'
+    | '/app/startups/create'
     | '/app/dashboard/'
     | '/app/explore/'
     | '/app/feed/'
     | '/app/notifications/'
     | '/app/settings/'
+    | '/app/dashboard/startup/$slug'
+    | '/app/dashboard/startup/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -241,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/startups': {
+      id: '/app/startups'
+      path: '/startups'
+      fullPath: '/app/startups'
+      preLoaderRoute: typeof AppStartupsRouteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/settings/': {
       id: '/app/settings/'
       path: '/settings'
@@ -276,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/startups/create': {
+      id: '/app/startups/create'
+      path: '/create'
+      fullPath: '/app/startups/create'
+      preLoaderRoute: typeof AppStartupsCreateRouteImport
+      parentRoute: typeof AppStartupsRouteRoute
+    }
     '/app/settings/profile': {
       id: '/app/settings/profile'
       path: '/settings/profile'
@@ -304,10 +366,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/dashboard/startup/new': {
+      id: '/app/dashboard/startup/new'
+      path: '/dashboard/startup/new'
+      fullPath: '/app/dashboard/startup/new'
+      preLoaderRoute: typeof AppDashboardStartupNewRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/dashboard/startup/$slug': {
+      id: '/app/dashboard/startup/$slug'
+      path: '/dashboard/startup/$slug'
+      fullPath: '/app/dashboard/startup/$slug'
+      preLoaderRoute: typeof AppDashboardStartupSlugRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
+interface AppStartupsRouteRouteChildren {
+  AppStartupsCreateRoute: typeof AppStartupsCreateRoute
+}
+
+const AppStartupsRouteRouteChildren: AppStartupsRouteRouteChildren = {
+  AppStartupsCreateRoute: AppStartupsCreateRoute,
+}
+
+const AppStartupsRouteRouteWithChildren =
+  AppStartupsRouteRoute._addFileChildren(AppStartupsRouteRouteChildren)
+
 interface AppRouteRouteChildren {
+  AppStartupsRouteRoute: typeof AppStartupsRouteRouteWithChildren
   AppSettingsBillingRoute: typeof AppSettingsBillingRoute
   AppSettingsHelpRoute: typeof AppSettingsHelpRoute
   AppSettingsProfileRoute: typeof AppSettingsProfileRoute
@@ -316,9 +404,12 @@ interface AppRouteRouteChildren {
   AppFeedIndexRoute: typeof AppFeedIndexRoute
   AppNotificationsIndexRoute: typeof AppNotificationsIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
+  AppDashboardStartupSlugRoute: typeof AppDashboardStartupSlugRoute
+  AppDashboardStartupNewRoute: typeof AppDashboardStartupNewRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppStartupsRouteRoute: AppStartupsRouteRouteWithChildren,
   AppSettingsBillingRoute: AppSettingsBillingRoute,
   AppSettingsHelpRoute: AppSettingsHelpRoute,
   AppSettingsProfileRoute: AppSettingsProfileRoute,
@@ -327,6 +418,8 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppFeedIndexRoute: AppFeedIndexRoute,
   AppNotificationsIndexRoute: AppNotificationsIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
+  AppDashboardStartupSlugRoute: AppDashboardStartupSlugRoute,
+  AppDashboardStartupNewRoute: AppDashboardStartupNewRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

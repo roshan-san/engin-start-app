@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/server/fn/profiles.fn";
+import { updateProfileFn } from "~/server/fn/profiles";
 import type z from "zod";
 import { FieldGroup } from "~/components/ui/field";
 import { ArrowLeft } from "lucide-react";
@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { profileQueryOptions } from "~/lib/auth-client";
+import { profileQueryOptions } from "~/auth/auth-client";
 import {
 	Tooltip,
 	TooltipContent,

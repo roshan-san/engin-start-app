@@ -14,9 +14,9 @@ import {
 } from "~/components/ui/card";
 import { FieldGroup, Field } from "~/components/ui/field";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/server/fn/profiles.fn";
-import { authClient } from "~/lib/auth-client";
-import { authQueryOptions, profileQueryOptions } from "~/lib/auth-client";
+import { createProfileFn } from "~/server/fn/profiles";
+import { authClient } from "~/auth/auth-client";
+import { authQueryOptions, profileQueryOptions } from "~/auth/auth-client";
 
 export const Route = createFileRoute("/onboard")({
 	component: RouteComponent,
@@ -60,10 +60,7 @@ function RouteComponent() {
 		await authClient.signOut({
 			fetchOptions: {
 				onResponse: async () => {
-					qc.setQueryData(authQueryOptions().queryKey, {
-						session: null,
-						user: null,
-					});
+					qc.invalidateQueries(authQueryOptions());
 					await router.invalidate();
 				},
 				onSuccess: async () => {

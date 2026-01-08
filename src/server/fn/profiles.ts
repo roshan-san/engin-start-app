@@ -1,9 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
-import { getDatabase } from "~/lib/db";
-import { profileTable } from "~/lib/db/schema";
-import { authMiddleware } from "../auth";
+import { getDatabase } from "~/db";
+import { profileTable } from "~/db/schema";
+import { authMiddleware } from "~/auth/auth";
 
 const ProfileSchema = createInsertSchema(profileTable);
 const db = await getDatabase();
