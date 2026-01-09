@@ -3,8 +3,13 @@ import type { ErrorComponentProps } from "@tanstack/react-router";
 export function GlobalError({ error }: Readonly<ErrorComponentProps>) {
 	console.error("Global Error:", error);
 	return (
-		<div className="flex flex-1 flex-col items-center justify-center gap-2 p-2">
-			<p className="text-xl text-muted-foreground">Error Occured</p>
+		<div className="flex flex-1 flex-col items-center justify-center gap-6 p-6">
+			<img
+				className="w-full max-w-50"
+				src="/illustrations/undraw_warning_tl76.svg"
+				alt=""
+			/>
+			<p className="text-xl font-bold">Some Error Occured</p>
 		</div>
 	);
 }
