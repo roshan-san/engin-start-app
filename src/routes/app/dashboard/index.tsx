@@ -13,20 +13,16 @@ function RouteComponent() {
 	const { data } = useSuspenseQuery(startupQueryOptions);
 	return (
 		<div className="rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
-			<Link
-				className="bg-card w-full h-120 rounded-xl flex items-center max-w-md text-center justify-center"
-				to="/app/dashboard/startup/$slug"
-				params={{ slug: "zomato" }}
-			>
-				<p className="text-xl font-bold">Zomato</p>
-			</Link>
-			<Link
-				className="bg-card w-full h-120 rounded-xl flex items-center max-w-md text-center justify-center"
-				to="/app/dashboard/startup/$slug"
-				params={{ slug: "swiggy" }}
-			>
-				<p className="text-xl font-bold">Swiggy</p>
-			</Link>
+			{data.map((startup) => (
+				<Link
+					key={startup.id}
+					className="bg-card w-full h-120 rounded-xl flex items-center max-w-md text-center justify-center"
+					to="/app/dashboard/startup/$slug"
+					params={{ slug: startup.id }}
+				>
+					<p className="text-xl font-bold">{startup.name}</p>
+				</Link>
+			))}
 			<Button
 				variant={"default"}
 				className="absolute z-50 bottom-20 right-20"

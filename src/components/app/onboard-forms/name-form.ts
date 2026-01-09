@@ -24,13 +24,7 @@ export const NameFormSchema = z.object({
 		),
 });
 
-const defaultValues: z.infer<typeof NameFormSchema> = {
-	full_name: "",
-	username: "",
-};
-
 export const nameFormOpts = formOptions({
-	defaultValues,
 	validators: {
 		onChange: NameFormSchema,
 	},

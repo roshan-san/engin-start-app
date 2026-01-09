@@ -6,7 +6,7 @@ import { profileQueryOptions } from "~/auth/auth-client";
 export const Route = createFileRoute("/app")({
 	component: AppLayout,
 	beforeLoad: async ({ context }) => {
-		const profile = await context.qc.fetchQuery(profileQueryOptions());
+		const profile = await context.qc.ensureQueryData(profileQueryOptions());
 		if (!profile || !profile.onboarding_complete) {
 			throw redirect({ to: "/onboard" });
 		}
@@ -20,8 +20,8 @@ function AppLayout() {
 			<Header />
 			<div className="flex-1 flex flex-col gap-2">
 				<Outlet />
-				<BottomBar />
 			</div>
+			<BottomBar />
 		</div>
 	);
 }

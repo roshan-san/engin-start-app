@@ -10,8 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WaitRouteImport } from './routes/wait'
+import { Route as OnboardRouteImport } from './routes/onboard'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as OnboardRouteRouteImport } from './routes/onboard/route'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppStartupsRouteRouteImport } from './routes/app/startups/route'
@@ -33,14 +33,14 @@ const WaitRoute = WaitRouteImport.update({
   path: '/wait',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardRoute = OnboardRouteImport.update({
+  id: '/onboard',
+  path: '/onboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardRouteRoute = OnboardRouteRouteImport.update({
-  id: '/onboard',
-  path: '/onboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRouteRoute = AppRouteRouteImport.update({
@@ -122,8 +122,8 @@ const AppDashboardStartupSlugRoute = AppDashboardStartupSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
+  '/onboard': typeof OnboardRoute
   '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -142,8 +142,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
+  '/onboard': typeof OnboardRoute
   '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -163,8 +163,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/onboard': typeof OnboardRouteRoute
   '/login': typeof LoginRoute
+  '/onboard': typeof OnboardRoute
   '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -185,8 +185,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
-    | '/onboard'
     | '/login'
+    | '/onboard'
     | '/wait'
     | '/app/startups'
     | '/api/auth/$'
@@ -205,8 +205,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app'
-    | '/onboard'
     | '/login'
+    | '/onboard'
     | '/wait'
     | '/app/startups'
     | '/api/auth/$'
@@ -225,8 +225,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
-    | '/onboard'
     | '/login'
+    | '/onboard'
     | '/wait'
     | '/app/startups'
     | '/api/auth/$'
@@ -246,8 +246,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRouteRoute: typeof AppRouteRouteWithChildren
-  OnboardRouteRoute: typeof OnboardRouteRoute
   LoginRoute: typeof LoginRoute
+  OnboardRoute: typeof OnboardRoute
   WaitRoute: typeof WaitRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -261,18 +261,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WaitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboard': {
+      id: '/onboard'
+      path: '/onboard'
+      fullPath: '/onboard'
+      preLoaderRoute: typeof OnboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboard': {
-      id: '/onboard'
-      path: '/onboard'
-      fullPath: '/onboard'
-      preLoaderRoute: typeof OnboardRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app': {
@@ -429,8 +429,8 @@ const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRouteRoute: AppRouteRouteWithChildren,
-  OnboardRouteRoute: OnboardRouteRoute,
   LoginRoute: LoginRoute,
+  OnboardRoute: OnboardRoute,
   WaitRoute: WaitRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

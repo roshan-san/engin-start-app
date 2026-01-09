@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
 import { bypassMainFn } from "~/server/fn/bypass-main";
 
@@ -7,10 +7,14 @@ export const Route = createFileRoute("/")({
 	beforeLoad: async () => await bypassMainFn(),
 });
 function HomePage() {
+	const router = useRouter();
 	return (
 		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
-			<Button variant={"outline"}>
-				<Link to="/app/dashboard">Go to App</Link>
+			<Button
+				variant={"outline"}
+				onClick={() => router.navigate({ to: "/app/dashboard" })}
+			>
+				Go to App
 			</Button>
 		</div>
 	);

@@ -1,10 +1,4 @@
 import {
-	Field,
-	FieldDescription,
-	FieldError,
-	FieldLabel,
-} from "~/components/ui/field";
-import {
 	Select,
 	SelectContent,
 	SelectItem,
@@ -12,6 +6,12 @@ import {
 	SelectValue,
 } from "~/components/ui/select";
 import { useFieldContext } from "../form-context";
+import {
+	Field,
+	FieldDescription,
+	FieldError,
+	FieldLabel,
+} from "~/components/ui/field";
 
 type Option = {
 	value: string;

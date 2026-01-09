@@ -1,5 +1,5 @@
-import type { EditProfileSchema } from "~/components/form/settings-forms/edit-profile";
-import { EditProfileOps } from "~/components/form/settings-forms/edit-profile";
+import type { EditProfileSchema } from "~/components/app/settings-forms/edit-profile";
+import { EditProfileOps } from "~/components/app/settings-forms/edit-profile";
 import { Button } from "~/components/ui/button";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useAppForm } from "~/components/form/AppForm";
