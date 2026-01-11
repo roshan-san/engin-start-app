@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { Header } from "~/components/app/Header";
 import { BottomBar } from "~/components/app/Navigation";
-import { profileQueryOptions } from "~/lib/auth-client";
+import { profileQueryOptions } from "~/auth/auth-client";
 
 export const Route = createFileRoute("/app")({
 	component: AppLayout,
@@ -20,8 +20,8 @@ function AppLayout() {
 			<Header />
 			<div className="flex-1 flex flex-col gap-2">
 				<Outlet />
-				<BottomBar />
 			</div>
+			<BottomBar />
 		</div>
 	);
 }

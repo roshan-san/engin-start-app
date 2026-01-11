@@ -10,11 +10,11 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { authClient } from "~/lib/auth-client";
-import { authQueryOptions } from "~/lib/auth-client";
+import { authClient } from "~/auth/auth-client";
+import { authQueryOptions } from "~/auth/auth-client";
 
 export function AppAvatar() {
-	const { profile, qc } = useRouteContext({
+	const { qc, profile } = useRouteContext({
 		from: "/app",
 	});
 	const router = useRouter();
@@ -58,14 +58,11 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									qc.setQueryData(authQueryOptions().queryKey, {
-										session: null,
-										user: null,
-									});
-									await router.invalidate();
+									qc.invalidateQueries(authQueryOptions());
+									await router.navigate({ to: "/login" });
 								},
 								onSuccess: async () => {
-									toast.warning("Signing out...");
+									toast.info("Signing out...");
 								},
 								onError: async () => {
 									toast.error("Failed to Sign Out");

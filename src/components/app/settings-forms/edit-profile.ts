@@ -1,4 +1,3 @@
-import { formOptions } from "@tanstack/react-form";
 import z from "zod";
 
 export const EditProfileSchema = z.object({
@@ -11,10 +10,4 @@ export const EditProfileSchema = z.object({
 			/^[a-zA-Z]+(?: [a-zA-Z]+)*$/,
 			"Full name can only contain letters and single spaces",
 		),
-});
-
-export const EditProfileOps = formOptions({
-	validators: {
-		onChange: EditProfileSchema,
-	},
 });
