@@ -15,10 +15,16 @@ function RouteComponent() {
 	}
 	return (
 		<div className="grid min-h-screen grid-cols-2 gap-2 p-4">
-			<div className=" flex items-center p-4 justify-center">
-				<img src="/illustrations/undraw_all-the-data_ijgn.svg" alt="" />
+			<div className="flex items-center p-4 justify-center">
+				<img
+					className="w-100"
+					src="/illustrations/undraw_all-the-data_ijgn.svg"
+					alt=""
+				/>
 			</div>
-			<OnboardForm />
+			<div className="flex items-center justify-center">
+				<OnboardForm />
+			</div>
 		</div>
 	);
 }

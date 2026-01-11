@@ -5,7 +5,6 @@ import { authMiddleware } from "~/auth/auth";
 import { getDatabase } from "~/db";
 import { profileTable } from "~/db/schema";
 import { isNeonDrizzleQueryError } from "../types";
-import { redirect } from "@tanstack/react-router";
 
 const ProfileSchema = createInsertSchema(profileTable);
 const db = getDatabase();
@@ -49,9 +48,9 @@ export const createProfileFn = createServerFn({ method: "POST" })
 				full_name: data.full_name,
 				username: data.username,
 				avatar_url: user.image,
-				onboarding_complete: data.onboarding_complete,
+				onboarding_complete: true,
 			});
-			throw redirect({ to: "/app/dashboard" });
+			return;
 		} catch (error) {
 			if (isNeonDrizzleQueryError(error)) {
 				if (error.cause.code === "23505") {

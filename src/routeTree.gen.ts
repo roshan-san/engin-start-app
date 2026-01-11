@@ -25,6 +25,8 @@ import { Route as AppSettingsProfileRouteImport } from './routes/app/settings/pr
 import { Route as AppSettingsHelpRouteImport } from './routes/app/settings/help'
 import { Route as AppSettingsBillingRouteImport } from './routes/app/settings/billing'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as AppExploreStartupsIndexRouteImport } from './routes/app/explore/startups/index'
+import { Route as AppExploreSprintsIndexRouteImport } from './routes/app/explore/sprints/index'
 import { Route as AppDashboardStartupNewRouteImport } from './routes/app/dashboard/startup/new'
 import { Route as AppDashboardStartupSlugRouteImport } from './routes/app/dashboard/startup/$slug'
 
@@ -108,6 +110,16 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppExploreStartupsIndexRoute = AppExploreStartupsIndexRouteImport.update({
+  id: '/explore/startups/',
+  path: '/explore/startups/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppExploreSprintsIndexRoute = AppExploreSprintsIndexRouteImport.update({
+  id: '/explore/sprints/',
+  path: '/explore/sprints/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppDashboardStartupNewRoute = AppDashboardStartupNewRouteImport.update({
   id: '/dashboard/startup/new',
   path: '/dashboard/startup/new',
@@ -138,6 +150,8 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
+  '/app/explore/sprints': typeof AppExploreSprintsIndexRoute
+  '/app/explore/startups': typeof AppExploreStartupsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -158,6 +172,8 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
+  '/app/explore/sprints': typeof AppExploreSprintsIndexRoute
+  '/app/explore/startups': typeof AppExploreStartupsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +195,8 @@ export interface FileRoutesById {
   '/app/settings/': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
+  '/app/explore/sprints/': typeof AppExploreSprintsIndexRoute
+  '/app/explore/startups/': typeof AppExploreStartupsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +219,8 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
+    | '/app/explore/sprints'
+    | '/app/explore/startups'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +241,8 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
+    | '/app/explore/sprints'
+    | '/app/explore/startups'
   id:
     | '__root__'
     | '/'
@@ -241,6 +263,8 @@ export interface FileRouteTypes {
     | '/app/settings/'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
+    | '/app/explore/sprints/'
+    | '/app/explore/startups/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -366,6 +390,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/explore/startups/': {
+      id: '/app/explore/startups/'
+      path: '/explore/startups'
+      fullPath: '/app/explore/startups'
+      preLoaderRoute: typeof AppExploreStartupsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/explore/sprints/': {
+      id: '/app/explore/sprints/'
+      path: '/explore/sprints'
+      fullPath: '/app/explore/sprints'
+      preLoaderRoute: typeof AppExploreSprintsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/dashboard/startup/new': {
       id: '/app/dashboard/startup/new'
       path: '/dashboard/startup/new'
@@ -406,6 +444,8 @@ interface AppRouteRouteChildren {
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppDashboardStartupSlugRoute: typeof AppDashboardStartupSlugRoute
   AppDashboardStartupNewRoute: typeof AppDashboardStartupNewRoute
+  AppExploreSprintsIndexRoute: typeof AppExploreSprintsIndexRoute
+  AppExploreStartupsIndexRoute: typeof AppExploreStartupsIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
@@ -420,6 +460,8 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppDashboardStartupSlugRoute: AppDashboardStartupSlugRoute,
   AppDashboardStartupNewRoute: AppDashboardStartupNewRoute,
+  AppExploreSprintsIndexRoute: AppExploreSprintsIndexRoute,
+  AppExploreStartupsIndexRoute: AppExploreStartupsIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

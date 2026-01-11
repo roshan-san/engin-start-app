@@ -5,8 +5,8 @@ export function GlobalError({ error }: Readonly<ErrorComponentProps>) {
 	return (
 		<div className="flex flex-1 flex-col items-center justify-center gap-6 p-6">
 			<img
-				className="w-full max-w-50"
-				src="/illustrations/undraw_warning_tl76.svg"
+				className="w-50"
+				src="/illustrations/undraw_notify_rnwe.svg"
 				alt=""
 			/>
 			<p className="text-xl font-bold">Some Error Occured</p>

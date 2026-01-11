@@ -1,12 +1,8 @@
-import type { EditProfileSchema } from "~/components/app/settings-forms/edit-profile";
-import { EditProfileOps } from "~/components/app/settings-forms/edit-profile";
+import { EditProfileSchema } from "~/components/app/settings-forms/edit-profile";
 import { Button } from "~/components/ui/button";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { useAppForm } from "~/components/form/AppForm";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfileFn } from "~/server/fn/profiles";
-import type z from "zod";
-import { FieldGroup } from "~/components/ui/field";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
@@ -18,6 +14,9 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "~/components/ui/tooltip";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
+import { Field, FieldError, FieldLabel } from "~/components/ui/field";
 
 export const Route = createFileRoute("/app/settings/profile")({
 	component: RouteComponent,
@@ -25,22 +24,17 @@ export const Route = createFileRoute("/app/settings/profile")({
 
 function RouteComponent() {
 	const { profile, qc } = Route.useRouteContext();
-	const defaultValues: z.infer<typeof EditProfileSchema> = {
-		full_name: profile.full_name,
-	};
 	const router = useRouter();
-	const form = useAppForm({
-		defaultValues,
-		...EditProfileOps,
-		onSubmit: () => mutate(),
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: zodResolver(EditProfileSchema),
 	});
 	const { mutate, isPending } = useMutation({
-		mutationFn: () =>
-			updateProfileFn({
-				data: {
-					full_name: form.getFieldValue("full_name"),
-				},
-			}),
+		mutationFn: updateProfileFn,
 		onSuccess: async () => {
 			qc.invalidateQueries(profileQueryOptions());
 			await router.invalidate();
@@ -69,15 +63,18 @@ function RouteComponent() {
 				<form
 					className="flex md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
 					id="edit-profile-form"
-					onSubmit={(e) => {
-						e.preventDefault();
-						form.handleSubmit();
-					}}
+					onSubmit={handleSubmit((data) =>
+						mutate({
+							data: data,
+						}),
+					)}
 				>
-					<FieldGroup>
-						<form.AppField name="full_name">
-							{(field) => <field.TextInput id="Name" label="Name" />}
-						</form.AppField>
+					<div>
+						<Field data-invalid={!!errors}>
+							<FieldLabel htmlFor="username">Full Name</FieldLabel>
+							<Input id="username" {...register("full_name")} />
+							<FieldError>{errors.full_name?.message}</FieldError>
+						</Field>
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
@@ -96,7 +93,7 @@ function RouteComponent() {
 								<p className="text-base">Username Cannot be Changed</p>
 							</TooltipContent>
 						</Tooltip>
-					</FieldGroup>
+					</div>
 
 					<div className="flex justify-end">
 						<Button

@@ -1,40 +1,33 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Icon, SearchIcon } from "lucide-react";
-import { useAppForm } from "~/components/form/AppForm";
-
+import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/app/explore/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const form = useAppForm({});
 	return (
-		<div className="flex-col flex-1 flex items-center justify-center gap-2">
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					form.handleSubmit();
-				}}
+		<div className="grid grid-cols-2 gap-6 p-6 flex-1">
+			<Link
+				to="/app/explore/startups"
+				className="bg-card flex flex-col hover:scale-90 hover:text-primary items-center justify-center rounded-2xl "
 			>
-				<form.AppField name="search">
-					{(field) => {
-						return (
-							<>
-								<field.TextInput
-									id="search"
-									label=""
-									placeholder="Explore Startups ...."
-								/>
-								<SearchIcon />
-							</>
-						);
-					}}
-				</form.AppField>
-				<div className="bg-card flex justify-end w-full rounded-xl p-2"></div>
-				<div className="w-100 h-100 bg-card rounded-xl justify-center flex items-center">
-					<p>Explore</p>
-				</div>
-			</form>
+				<img
+					className="w-100 "
+					src="/illustrations/undraw_pitching_y6kw.svg"
+					alt=""
+				/>
+				<p className="text-xl font-bold "> Explore Startups</p>
+			</Link>
+			<Link
+				to="/app/explore/startups"
+				className="bg-card flex flex-col  hover:scale-90 hover:text-primary items-center justify-center rounded-2xl "
+			>
+				<img
+					className="w-100"
+					src="/illustrations/undraw_scrum-board_7bgh.svg"
+					alt=""
+				/>
+				<p className="text-xl font-bold"> Explore Sprints</p>
+			</Link>
 		</div>
 	);
 }

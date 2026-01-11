@@ -14,7 +14,7 @@ import { authClient } from "~/auth/auth-client";
 import { authQueryOptions } from "~/auth/auth-client";
 
 export function AppAvatar() {
-	const { profile, qc } = useRouteContext({
+	const { qc, profile } = useRouteContext({
 		from: "/app",
 	});
 	const router = useRouter();
