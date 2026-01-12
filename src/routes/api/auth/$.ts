@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getAuthServer } from "~/auth/auth";
+import { getAuthServer } from "~/lib/auth/auth";
 
 const auth = getAuthServer();
 

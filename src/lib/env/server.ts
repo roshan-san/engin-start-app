@@ -6,6 +6,7 @@ export const env = createEnv({
 		BASE_URL: z.url(),
 		DATABASE_URL: z.url(),
 		VITE_BASE_URL: z.url(),
+		DODO_PAYMENTS_API_KEY: z.string(),
 		BETTER_AUTH_SECRET: z.string().min(1),
 
 		GOOGLE_CLIENT_ID: z.string(),

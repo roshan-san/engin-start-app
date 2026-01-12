@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "sonner";
-import { authClient } from "~/auth/auth-client";
+import { authClient } from "~/lib/auth/auth-client";
 import { Button } from "./ui/button";
 
 export function GoogleButton() {

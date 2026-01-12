@@ -1,9 +1,9 @@
 import type { Config } from "drizzle-kit";
-import { env } from "~/env/server";
+import { env } from "~/lib/env/server";
 
 export default {
 	out: "./drizzle",
-	schema: "./src/db/schema/index.ts",
+	schema: "./src/lib/db/schema/index.ts",
 	breakpoints: true,
 	verbose: true,
 	strict: true,

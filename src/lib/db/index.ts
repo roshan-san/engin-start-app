@@ -1,9 +1,9 @@
 import { neon } from "@neondatabase/serverless";
 import { createServerOnlyFn } from "@tanstack/react-start";
 import { drizzle } from "drizzle-orm/neon-http";
-import { env } from "~/env/server";
+import { env } from "~/lib/env/server";
 
-import * as schema from "~/db/schema";
+import * as schema from "~/lib/db/schema";
 
 let driver: ReturnType<typeof neon> | null = null;
 

@@ -1,10 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
-import { authMiddleware } from "~/auth/auth";
-import { getDatabase } from "~/db";
-import { profileTable } from "~/db/schema";
+import { authMiddleware } from "~/lib/auth/auth";
 import { isNeonDrizzleQueryError } from "../types";
+import { getDatabase } from "~/lib/db";
+import { profileTable } from "~/lib/db/schema";
 
 const ProfileSchema = createInsertSchema(profileTable);
 const db = getDatabase();
