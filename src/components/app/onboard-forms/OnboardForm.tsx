@@ -5,7 +5,7 @@ import {
 	authClient,
 	authQueryOptions,
 	profileQueryOptions,
-} from "~/lib/auth/auth-client";
+} from "~/lib/auth-client";
 import { Spinner } from "~/components/ui/spinner";
 import { createProfileFn } from "~/server/fn/profiles";
 import { useForm } from "react-hook-form";

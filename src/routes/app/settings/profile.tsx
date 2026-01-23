@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { profileQueryOptions } from "~/lib/auth/auth-client";
+import { profileQueryOptions } from "~/lib/auth-client";
 import {
 	Tooltip,
 	TooltipContent,

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ExploreCard } from "~/components/app/explore/ExploreCard";
 
 export const Route = createFileRoute("/app/dashboard/")({
 	component: RouteComponent,
@@ -6,10 +7,9 @@ export const Route = createFileRoute("/app/dashboard/")({
 
 function RouteComponent() {
 	return (
-		<div className="p-8">
-			<div className="mb-4 flex items-center justify-between">
-				<h1 className="text-2xl font-bold">Dashboard</h1>
-			</div>
+		<div className="flex-1 flex md:flex-row items-center justify-center flex-col gap-6 p-4">
+			<ExploreCard title={""} image={""} />
+			<ExploreCard title={""} image={""} />
 		</div>
 	);
 }

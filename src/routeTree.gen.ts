@@ -16,6 +16,7 @@ import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppStartupsRouteRouteImport } from './routes/app/startups/route'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
+import { Route as AppProIndexRouteImport } from './routes/app/pro/index'
 import { Route as AppNotificationsIndexRouteImport } from './routes/app/notifications/index'
 import { Route as AppFeedIndexRouteImport } from './routes/app/feed/index'
 import { Route as AppExploreIndexRouteImport } from './routes/app/explore/index'
@@ -63,6 +64,11 @@ const AppStartupsRouteRoute = AppStartupsRouteRouteImport.update({
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   id: '/settings/',
   path: '/settings/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppProIndexRoute = AppProIndexRouteImport.update({
+  id: '/pro/',
+  path: '/pro/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppNotificationsIndexRoute = AppNotificationsIndexRouteImport.update({
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/app/explore': typeof AppExploreIndexRoute
   '/app/feed': typeof AppFeedIndexRoute
   '/app/notifications': typeof AppNotificationsIndexRoute
+  '/app/pro': typeof AppProIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/app/explore': typeof AppExploreIndexRoute
   '/app/feed': typeof AppFeedIndexRoute
   '/app/notifications': typeof AppNotificationsIndexRoute
+  '/app/pro': typeof AppProIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/app/explore/': typeof AppExploreIndexRoute
   '/app/feed/': typeof AppFeedIndexRoute
   '/app/notifications/': typeof AppNotificationsIndexRoute
+  '/app/pro/': typeof AppProIndexRoute
   '/app/settings/': typeof AppSettingsIndexRoute
   '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
@@ -216,6 +225,7 @@ export interface FileRouteTypes {
     | '/app/explore'
     | '/app/feed'
     | '/app/notifications'
+    | '/app/pro'
     | '/app/settings'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/app/explore'
     | '/app/feed'
     | '/app/notifications'
+    | '/app/pro'
     | '/app/settings'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/app/explore/'
     | '/app/feed/'
     | '/app/notifications/'
+    | '/app/pro/'
     | '/app/settings/'
     | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
@@ -325,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/app/settings'
       preLoaderRoute: typeof AppSettingsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/pro/': {
+      id: '/app/pro/'
+      path: '/pro'
+      fullPath: '/app/pro'
+      preLoaderRoute: typeof AppProIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/app/notifications/': {
@@ -441,6 +460,7 @@ interface AppRouteRouteChildren {
   AppExploreIndexRoute: typeof AppExploreIndexRoute
   AppFeedIndexRoute: typeof AppFeedIndexRoute
   AppNotificationsIndexRoute: typeof AppNotificationsIndexRoute
+  AppProIndexRoute: typeof AppProIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppDashboardStartupSlugRoute: typeof AppDashboardStartupSlugRoute
   AppDashboardStartupNewRoute: typeof AppDashboardStartupNewRoute
@@ -457,6 +477,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppExploreIndexRoute: AppExploreIndexRoute,
   AppFeedIndexRoute: AppFeedIndexRoute,
   AppNotificationsIndexRoute: AppNotificationsIndexRoute,
+  AppProIndexRoute: AppProIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppDashboardStartupSlugRoute: AppDashboardStartupSlugRoute,
   AppDashboardStartupNewRoute: AppDashboardStartupNewRoute,

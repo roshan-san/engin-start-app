@@ -4,12 +4,11 @@ import {
 	createServerFn,
 	createServerOnlyFn,
 } from "@tanstack/react-start";
-
 import { betterAuth } from "better-auth/minimal";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { env } from "~/lib/env/server";
-import { getDatabase } from "~/lib/db";
+import { env } from "~/env/server";
+import { getDatabase } from "~/server/lib/db";
 import { redirect } from "@tanstack/react-router";
 
 const db = getDatabase();

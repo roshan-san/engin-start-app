@@ -9,6 +9,7 @@ export const profileTable = pgTable("profiles", {
 	username: text("username").notNull(),
 	full_name: text("full_name").notNull(),
 	email: text("email").notNull(),
+	plan: text("plan").default("free").notNull(),
 
 	avatar_url: text("avatar_url"),
 

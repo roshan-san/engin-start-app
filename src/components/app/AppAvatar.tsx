@@ -10,8 +10,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { authClient } from "~/lib/auth/auth-client";
-import { authQueryOptions } from "~/lib/auth/auth-client";
+import { authClient } from "~/lib/auth-client";
+import { authQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
 	const { qc, profile } = useRouteContext({

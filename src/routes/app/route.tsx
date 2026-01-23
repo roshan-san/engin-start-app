@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { Header } from "~/components/app/Header";
 import { BottomBar } from "~/components/app/Navigation";
-import { profileQueryOptions } from "~/lib/auth/auth-client";
+import { profileQueryOptions } from "~/lib/auth-client";
 
 export const Route = createFileRoute("/app")({
 	component: AppLayout,
