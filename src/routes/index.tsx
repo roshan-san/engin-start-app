@@ -1,6 +1,6 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
-import { bypassMainFn } from "~/server/fn/bypass-main";
+import { bypassMainFn } from "~/server/functions/bypass-main";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,

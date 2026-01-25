@@ -7,7 +7,7 @@ import {
 	profileQueryOptions,
 } from "~/lib/auth-client";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/server/fn/profiles";
+import { createProfileFn } from "~/server/functions/profiles";
 import { useForm } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
 import { Input } from "~/components/ui/input";

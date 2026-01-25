@@ -2,7 +2,7 @@ import { EditProfileSchema } from "~/components/app/settings-forms/edit-profile"
 import { Button } from "~/components/ui/button";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/server/fn/profiles";
+import { updateProfileFn } from "~/server/functions/profiles";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";

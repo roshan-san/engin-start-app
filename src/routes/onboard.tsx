@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { profileQueryOptions } from "~/lib/auth-client";
-import OnboardForm from "~/components/app/onboard-forms/OnboardForm";
+import OnboardForm from "~/components/login/onboard-forms/OnboardForm";
 
 export const Route = createFileRoute("/onboard")({
 	component: RouteComponent,

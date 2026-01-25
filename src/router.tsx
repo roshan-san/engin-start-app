@@ -3,8 +3,8 @@ import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 
 import { routeTree } from "./routeTree.gen";
-import { GlobalError } from "./components/GlobalError";
-import { GlobalNotFound } from "./components/GlobalNotFound";
+import { GlobalError } from "./components/globals/GlobalError";
+import { GlobalNotFound } from "./components/globals/GlobalNotFound";
 
 export function getRouter() {
 	const qc = new QueryClient({

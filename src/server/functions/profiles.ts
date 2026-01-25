@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { authMiddleware } from "~/server/lib/auth";
-import { isNeonDrizzleQueryError } from "../types";
+import { isNeonDrizzleQueryError } from "../lib/types";
 import { getDatabase } from "~/server/lib/db";
 import { profileTable } from "~/server/lib/db/schema";
 

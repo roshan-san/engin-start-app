@@ -1,7 +1,7 @@
 import { createAuthClient } from "better-auth/react";
 import { queryOptions } from "@tanstack/react-query";
 import { env } from "~/env/client";
-import { getMyProfile } from "~/server/fn/profiles";
+import { getMyProfile } from "~/server/functions/profiles";
 import { getAuth } from "~/server/lib/auth";
 
 export const authClient = createAuthClient({

@@ -29,7 +29,6 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as AppExploreStartupsIndexRouteImport } from './routes/app/explore/startups/index'
 import { Route as AppExploreSprintsIndexRouteImport } from './routes/app/explore/sprints/index'
 import { Route as AppDashboardStartupNewRouteImport } from './routes/app/dashboard/startup/new'
-import { Route as AppDashboardStartupSlugRouteImport } from './routes/app/dashboard/startup/$slug'
 
 const WaitRoute = WaitRouteImport.update({
   id: '/wait',
@@ -131,11 +130,6 @@ const AppDashboardStartupNewRoute = AppDashboardStartupNewRouteImport.update({
   path: '/dashboard/startup/new',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppDashboardStartupSlugRoute = AppDashboardStartupSlugRouteImport.update({
-  id: '/dashboard/startup/$slug',
-  path: '/dashboard/startup/$slug',
-  getParentRoute: () => AppRouteRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -155,7 +149,6 @@ export interface FileRoutesByFullPath {
   '/app/notifications': typeof AppNotificationsIndexRoute
   '/app/pro': typeof AppProIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
-  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
   '/app/explore/sprints': typeof AppExploreSprintsIndexRoute
   '/app/explore/startups': typeof AppExploreStartupsIndexRoute
@@ -178,7 +171,6 @@ export interface FileRoutesByTo {
   '/app/notifications': typeof AppNotificationsIndexRoute
   '/app/pro': typeof AppProIndexRoute
   '/app/settings': typeof AppSettingsIndexRoute
-  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
   '/app/explore/sprints': typeof AppExploreSprintsIndexRoute
   '/app/explore/startups': typeof AppExploreStartupsIndexRoute
@@ -202,7 +194,6 @@ export interface FileRoutesById {
   '/app/notifications/': typeof AppNotificationsIndexRoute
   '/app/pro/': typeof AppProIndexRoute
   '/app/settings/': typeof AppSettingsIndexRoute
-  '/app/dashboard/startup/$slug': typeof AppDashboardStartupSlugRoute
   '/app/dashboard/startup/new': typeof AppDashboardStartupNewRoute
   '/app/explore/sprints/': typeof AppExploreSprintsIndexRoute
   '/app/explore/startups/': typeof AppExploreStartupsIndexRoute
@@ -227,7 +218,6 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/pro'
     | '/app/settings'
-    | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
     | '/app/explore/sprints'
     | '/app/explore/startups'
@@ -250,7 +240,6 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/pro'
     | '/app/settings'
-    | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
     | '/app/explore/sprints'
     | '/app/explore/startups'
@@ -273,7 +262,6 @@ export interface FileRouteTypes {
     | '/app/notifications/'
     | '/app/pro/'
     | '/app/settings/'
-    | '/app/dashboard/startup/$slug'
     | '/app/dashboard/startup/new'
     | '/app/explore/sprints/'
     | '/app/explore/startups/'
@@ -430,13 +418,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardStartupNewRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/app/dashboard/startup/$slug': {
-      id: '/app/dashboard/startup/$slug'
-      path: '/dashboard/startup/$slug'
-      fullPath: '/app/dashboard/startup/$slug'
-      preLoaderRoute: typeof AppDashboardStartupSlugRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
   }
 }
 
@@ -462,7 +443,6 @@ interface AppRouteRouteChildren {
   AppNotificationsIndexRoute: typeof AppNotificationsIndexRoute
   AppProIndexRoute: typeof AppProIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
-  AppDashboardStartupSlugRoute: typeof AppDashboardStartupSlugRoute
   AppDashboardStartupNewRoute: typeof AppDashboardStartupNewRoute
   AppExploreSprintsIndexRoute: typeof AppExploreSprintsIndexRoute
   AppExploreStartupsIndexRoute: typeof AppExploreStartupsIndexRoute
@@ -479,7 +459,6 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppNotificationsIndexRoute: AppNotificationsIndexRoute,
   AppProIndexRoute: AppProIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
-  AppDashboardStartupSlugRoute: AppDashboardStartupSlugRoute,
   AppDashboardStartupNewRoute: AppDashboardStartupNewRoute,
   AppExploreSprintsIndexRoute: AppExploreSprintsIndexRoute,
   AppExploreStartupsIndexRoute: AppExploreStartupsIndexRoute,

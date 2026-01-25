@@ -6,7 +6,6 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { LoadingPage } from "~/components/LoadingPage";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/styles.css?url";
 
@@ -76,5 +75,4 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 export const Route = createRootRouteWithContext<{ qc: QueryClient }>()({
 	head: headTags,
 	component: RootComponent,
-	pendingComponent: LoadingPage,
 });
