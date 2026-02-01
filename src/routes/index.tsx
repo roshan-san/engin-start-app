@@ -9,13 +9,18 @@ export const Route = createFileRoute("/")({
 function HomePage() {
 	const router = useRouter();
 	return (
-		<div className="flex min-h-screen items-center justify-center gap-2 p-2">
-			<Button
-				variant={"outline"}
-				onClick={() => router.navigate({ to: "/app/dashboard" })}
-			>
-				Go to App
-			</Button>
+		<div className="flex flex-col items-center justify-center min-h-screen px-4 py-8 ">
+			<div className="max-w-2xl w-full text-center">
+				<h1 className="text-4xl font-bold mb-8">The Fast Lane For Founders</h1>
+				<div className="flex flex-col sm:flex-row justify-center gap-4">
+					<Button
+						variant={"ghost"}
+						onClick={() => router.navigate({ to: "/app/dashboard" })}
+					>
+						Go to App
+					</Button>
+				</div>
+			</div>
 		</div>
 	);
 }

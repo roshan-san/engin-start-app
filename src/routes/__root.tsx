@@ -7,7 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "~/components/ui/sonner";
-import appCss from "~/styles.css?url";
+import appCss from "~/lib/styles.css?url";
 
 function headTags() {
 	return {
