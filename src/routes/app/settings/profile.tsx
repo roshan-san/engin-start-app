@@ -9,11 +9,6 @@ import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { profileQueryOptions } from "~/lib/auth-client";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "~/components/ui/tooltip";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
@@ -35,6 +30,9 @@ function RouteComponent() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
+		defaultValues: {
+			full_name: profile.full_name ?? undefined,
+		},
 		resolver: zodResolver(EditProfileSchema),
 	});
 	const { mutate, isPending } = useMutation({
@@ -64,7 +62,7 @@ function RouteComponent() {
 					some illustration
 				</div>
 				<form
-					className="flex md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
+					className="flex bg-card/30 md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
 					id="edit-profile-form"
 					onSubmit={handleSubmit((data) =>
 						mutate({
@@ -72,30 +70,27 @@ function RouteComponent() {
 						}),
 					)}
 				>
-					<div>
-						<Field data-invalid={!!errors}>
+					<div className="flex gap-6 items-center justify-center p-2">
+						<Field className="cursor-not-allowed">
+							<Label className="text-base" htmlFor="username">
+								Username
+							</Label>
+							<Input
+								className="w-full max-w-md"
+								id="username"
+								value={profile.username}
+								disabled={true}
+							/>
+						</Field>
+						<Field data-invalid={!errors}>
 							<FieldLabel htmlFor="username">Full Name</FieldLabel>
-							<Input id="username" {...register("full_name")} />
+							<Input
+								className="w-full max-w-md"
+								id="username"
+								{...register("full_name")}
+							/>
 							<FieldError>{errors.full_name?.message}</FieldError>
 						</Field>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
-									<Label className="text-base" htmlFor="username">
-										Username
-									</Label>
-									<Input
-										className="w-full max-w-md"
-										id="username"
-										value={profile.username}
-										disabled={true}
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p className="text-base">Username Cannot be Changed</p>
-							</TooltipContent>
-						</Tooltip>
 					</div>
 
 					<div className="flex justify-end">
