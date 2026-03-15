@@ -6,6 +6,7 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
+import { GlobalSpinner } from "~/components/globals/GlobalSpinner";
 import { Toaster } from "~/components/ui/sonner";
 import appCss from "~/lib/styles.css?url";
 
@@ -75,4 +76,5 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 export const Route = createRootRouteWithContext<{ qc: QueryClient }>()({
 	head: headTags,
 	component: RootComponent,
+	pendingComponent: GlobalSpinner,
 });

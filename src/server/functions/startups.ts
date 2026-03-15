@@ -1,31 +1,32 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getDatabase } from "../lib/db";
+import { db } from "../lib/db";
 import { eq } from "drizzle-orm";
 import { authMiddleware } from "../lib/auth";
 import { startupTable } from "../lib/db/schema";
 import { createInsertSchema } from "drizzle-zod";
+import { env } from "~/env/server";
+import z from "zod";
 
-const db = getDatabase();
 const StartUpSchema = createInsertSchema(startupTable);
 
-export const createStartupFn = createServerFn({ method: "POST" })
+export const AddStartupFn = createServerFn({ method: "POST" })
 	.inputValidator(StartUpSchema.omit({ id: true, owner_id: true }))
 	.middleware([authMiddleware])
 	.handler(async ({ data, context }) => {
 		const { user } = context;
-		const { name, description } = data;
+		const { name, description, cin, industry } = data;
 		await db
 			.insert(startupTable)
-			.values({ name, description, owner_id: user.id })
+			.values({ name, description, owner_id: user.id, cin, industry })
 			.returning();
 		console.log("Creating startup with data:", data);
 	});
 
 export const getMyStartupsFn = createServerFn({ method: "GET" })
 	.middleware([authMiddleware])
-	.handler(({ context }) => {
+	.handler(async ({ context }) => {
 		const { user } = context;
-		const startups = db.query.startupTable.findMany({
+		const startups = await db.query.startupTable.findMany({
 			where: eq(startupTable.owner_id, user.id),
 		});
 		console.log("Listing all startups");

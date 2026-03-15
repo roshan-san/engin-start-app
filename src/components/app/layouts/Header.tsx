@@ -9,10 +9,10 @@ export function Header() {
 	const isNotifs = pathname === "/app/notifications";
 	return (
 		<div className="flex items-center justify-between px-4">
-			<div className="flex items-center gap-2">
-				<GitPullRequestArrowIcon className="h-5 w-5" />
+			<Link to="/" className="flex items-center  gap-2">
+				<GitPullRequestArrowIcon className="h-5 text-primary w-5" />
 				<span className="font-bold text-xl">ENGIN</span>
-			</div>
+			</Link>
 			<NavigationMenu />
 			<div className="flex items-center gap-2">
 				<Link

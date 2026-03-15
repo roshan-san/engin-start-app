@@ -18,7 +18,7 @@ export function ExploreCard({ title, image, to }: ExploreCardProps) {
 			<img
 				src={image}
 				alt=""
-				className="w-48 md:w-64 transition-transform duration-300 group-hover:scale-105"
+				className="w-xs transition-transform duration-300 group-hover:scale-105"
 			/>
 			<p className="text-xl font-medium">{title}</p>
 		</Link>

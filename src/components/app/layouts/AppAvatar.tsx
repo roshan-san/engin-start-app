@@ -1,3 +1,4 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link, useRouteContext, useRouter } from "@tanstack/react-router";
 import { LogOut, Settings } from "lucide-react";
 import { toast } from "sonner";
@@ -10,14 +11,18 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { authClient } from "~/lib/auth-client";
-import { authQueryOptions } from "~/lib/auth-client";
+import { authClient, profileQueryOptions } from "~/lib/auth-client";
 
 export function AppAvatar() {
-	const { qc, profile } = useRouteContext({
+	const { qc } = useRouteContext({
 		from: "/app",
 	});
 	const router = useRouter();
+
+	const { data: profile } = useSuspenseQuery(profileQueryOptions());
+	if (!profile) {
+		return null;
+	}
 	const fullName =
 		profile.full_name.charAt(0).toUpperCase() + profile.full_name.slice(1);
 	return (
@@ -58,7 +63,7 @@ export function AppAvatar() {
 						await authClient.signOut({
 							fetchOptions: {
 								onResponse: async () => {
-									qc.invalidateQueries(authQueryOptions());
+									qc.invalidateQueries(profileQueryOptions());
 									await router.navigate({ to: "/login" });
 								},
 								onSuccess: async () => {

@@ -1,73 +1,59 @@
-import { getRequest } from "@tanstack/react-start/server";
+import { betterAuth } from "better-auth/minimal";
 import {
 	createMiddleware,
 	createServerFn,
 	createServerOnlyFn,
 } from "@tanstack/react-start";
-import { betterAuth } from "better-auth/minimal";
+import { db } from "~/server/lib/db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { env } from "~/env/server";
-import { getDatabase } from "~/server/lib/db";
 import { redirect } from "@tanstack/react-router";
+import { tanstackStartCookies } from "better-auth/tanstack-start";
 
-const db = getDatabase();
-
-let authServer: ReturnType<typeof betterAuth> | null = null;
-
-export const getAuthServer = createServerOnlyFn(() => {
-	if (!authServer) {
-		authServer = betterAuth({
-			baseURL: env.BASE_URL,
-			telemetry: { enabled: false },
-
-			database: drizzleAdapter(db, {
-				provider: "pg",
-			}),
-
-			plugins: [tanstackStartCookies()],
-
-			session: {
-				cookieCache: { enabled: false },
+export const getBetterAuth = createServerOnlyFn(() => {
+	return betterAuth({
+		baseURL: env.BASE_URL,
+		telemetry: { enabled: false },
+		database: drizzleAdapter(db, { provider: "pg" }),
+		plugins: [tanstackStartCookies()],
+		session: {
+			cookieCache: { enabled: true },
+		},
+		socialProviders: {
+			google: {
+				clientId: env.GOOGLE_CLIENT_ID,
+				clientSecret: env.GOOGLE_CLIENT_SECRET,
 			},
-
-			socialProviders: {
-				google: {
-					clientId: env.GOOGLE_CLIENT_ID,
-					clientSecret: env.GOOGLE_CLIENT_SECRET,
-				},
-			},
-		});
-	}
-	return authServer;
-});
-const auth = getAuthServer();
-
-export const getAuth = createServerFn({ method: "GET" }).handler(async () => {
-	const { response } = await auth.api.getSession({
-		headers: getRequest().headers,
-		returnHeaders: true,
+		},
 	});
-	if (!response) {
-		throw redirect({ to: "/login" });
-	}
-	return {
-		user: response.user,
-		session: response.session,
-	};
 });
 
 export const authMiddleware = createMiddleware().server(
 	async ({ next, request }) => {
-		const { response } = await auth.api.getSession({
+		//cookie better authta kuduthu , user and session check panna use panrom
+		const auth = getBetterAuth();
+		const obj = await auth.api.getSession({
 			headers: request.headers,
-			returnHeaders: true,
 		});
-		if (!response) {
+
+		if (!obj) {
 			throw redirect({ to: "/login" });
 		}
 		return next({
-			context: { user: response.user, session: response.session },
+			context: {
+				user: obj.user,
+				session: obj.session,
+			},
 		});
 	},
 );
+
+export const getSessionFn = createServerFn()
+	.middleware([authMiddleware])
+	.handler(({ context }) => {
+		const { session, user } = context;
+		return {
+			session,
+			user,
+		};
+	});
