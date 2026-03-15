@@ -6,9 +6,9 @@ import {
 	Outlet,
 	Scripts,
 } from "@tanstack/react-router";
-import { LoadingPage } from "~/components/LoadingPage";
+import { GlobalSpinner } from "~/components/globals/GlobalSpinner";
 import { Toaster } from "~/components/ui/sonner";
-import appCss from "~/styles.css?url";
+import appCss from "~/lib/styles.css?url";
 
 function headTags() {
 	return {
@@ -76,5 +76,5 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 export const Route = createRootRouteWithContext<{ qc: QueryClient }>()({
 	head: headTags,
 	component: RootComponent,
-	pendingComponent: LoadingPage,
+	pendingComponent: GlobalSpinner,
 });

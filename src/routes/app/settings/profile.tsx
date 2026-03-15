@@ -1,14 +1,14 @@
-import { EditProfileSchema } from "~/components/app/settings-forms/edit-profile";
+import { EditProfileSchema } from "~/components/app/settings/edit-profile";
 import { Button } from "~/components/ui/button";
-import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
-import { updateProfileFn } from "~/server/fn/profiles";
+import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
+import { updateProfileFn } from "~/server/functions/profiles";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { profileQueryOptions } from "~/auth/auth-client";
+import { profileQueryOptions } from "~/lib/auth-client";
 import {
 	Tooltip,
 	TooltipContent,
@@ -23,8 +23,12 @@ export const Route = createFileRoute("/app/settings/profile")({
 });
 
 function RouteComponent() {
-	const { profile, qc } = Route.useRouteContext();
+	const { qc } = Route.useRouteContext();
 	const router = useRouter();
+	const { data: profile } = useSuspenseQuery(profileQueryOptions());
+	if (profile === null) {
+		throw redirect({ to: "/join" });
+	}
 
 	const {
 		register,
@@ -37,7 +41,6 @@ function RouteComponent() {
 		mutationFn: updateProfileFn,
 		onSuccess: async () => {
 			qc.invalidateQueries(profileQueryOptions());
-			await router.invalidate();
 			toast.success("Profile updated successfully");
 		},
 		onError: () => {
