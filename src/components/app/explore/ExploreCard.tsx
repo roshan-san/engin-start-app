@@ -9,7 +9,7 @@ export function ExploreCard({ title, image, to }: ExploreCardProps) {
 	return (
 		<Link
 			to={to}
-			className="group w-full max-w-md h-80 rounded-2xl bg-card border
+			className="group w-full max-w-md h-80 rounded-2xl bg-card hover:border 
                         flex flex-col items-center justify-center gap-6
                         transition-all duration-300 ease-out
                         hover:-translate-y-2 hover:shadow-xl hover:border-primary

@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createInsertSchema } from "drizzle-zod";
 import { authMiddleware } from "~/server/lib/auth";
-import { isNeonDrizzleQueryError } from "../lib/types";
 import { db } from "~/server/lib/db";
 import { profileTable } from "~/server/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -21,6 +20,21 @@ export const getMyProfile = createServerFn({ method: "GET" })
 			return null;
 		}
 		return profile;
+	});
+
+export const getPlanFn = createServerFn({ method: "GET" })
+	.middleware([authMiddleware])
+	.handler(async ({ context }) => {
+		const { user } = context;
+		const profile = await db.query.profileTable.findFirst({
+			where({ id }, { eq }) {
+				return eq(id, user.id);
+			},
+		});
+		if (profile === undefined) {
+			return "free";
+		}
+		return profile.plan;
 	});
 
 export const createProfileFn = createServerFn({ method: "POST" })

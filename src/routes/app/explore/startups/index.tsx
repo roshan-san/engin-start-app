@@ -24,7 +24,7 @@ function RouteComponent() {
 	});
 
 	return (
-		<div className="flex-1 flex flex-col">
+		<div className="flex-1 flex flex-col p-2">
 			<div className="flex justify-start gap-2 py-2">
 				<p className="text-xl ">Explore Startups</p>
 			</div>

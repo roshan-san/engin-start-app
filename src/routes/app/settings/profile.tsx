@@ -3,17 +3,12 @@ import { Button } from "~/components/ui/button";
 import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { updateProfileFn } from "~/server/functions/profiles";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, LockIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { profileQueryOptions } from "~/lib/auth-client";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "~/components/ui/tooltip";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
@@ -35,6 +30,9 @@ function RouteComponent() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
+		defaultValues: {
+			full_name: profile.full_name ?? undefined,
+		},
 		resolver: zodResolver(EditProfileSchema),
 	});
 	const { mutate, isPending } = useMutation({
@@ -61,10 +59,14 @@ function RouteComponent() {
 			</div>
 			<div className="flex-1 flex gap-2 ">
 				<div className="md:flex items-center hidden justify-center w-1/2">
-					some illustration
+					<img
+						className="w-full max-w-md"
+						src="/illustrations/undraw_personal-information_h7kf.svg"
+						alt="Profile Illustration"
+					/>
 				</div>
 				<form
-					className="flex md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
+					className="flex bg-card/30 md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-2"
 					id="edit-profile-form"
 					onSubmit={handleSubmit((data) =>
 						mutate({
@@ -72,35 +74,33 @@ function RouteComponent() {
 						}),
 					)}
 				>
-					<div>
-						<Field data-invalid={!!errors}>
-							<FieldLabel htmlFor="username">Full Name</FieldLabel>
-							<Input id="username" {...register("full_name")} />
+					<div className="flex md:flex-row flex-col gap-6 items-center justify-center p-2">
+						<Field className="cursor-not-allowed">
+							<Label className="text-base" htmlFor="username">
+								Username
+								<LockIcon className="w-4 h-4" />
+							</Label>
+							<Input
+								className="w-full max-w-md"
+								id="username"
+								value={profile.username}
+								disabled={true}
+							/>
+						</Field>
+						<Field data-invalid={!errors}>
+							<FieldLabel htmlFor="full_name">Full Name</FieldLabel>
+							<Input
+								className="w-full max-w-md"
+								id="full_name"
+								{...register("full_name")}
+							/>
 							<FieldError>{errors.full_name?.message}</FieldError>
 						</Field>
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<div className="flex flex-col cursor-not-allowed justify-between gap-2 hover:">
-									<Label className="text-base" htmlFor="username">
-										Username
-									</Label>
-									<Input
-										className="w-full max-w-md"
-										id="username"
-										value={profile.username}
-										disabled={true}
-									/>
-								</div>
-							</TooltipTrigger>
-							<TooltipContent>
-								<p className="text-base">Username Cannot be Changed</p>
-							</TooltipContent>
-						</Tooltip>
 					</div>
 
 					<div className="flex justify-end">
 						<Button
-							className="text-base font-bold p-4"
+							className="text-base  p-4"
 							type="submit"
 							form="edit-profile-form"
 						>

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/app/explore/")({
 
 function RouteComponent() {
 	return (
-		<div className="flex flex-col md:flex-row items-center justify-center gap-6 p-6 flex-1">
+		<div className="flex flex-col md:flex-row items-center justify-around p-6 flex-1">
 			<ExploreCard
 				to="/app/explore/startups"
 				title="Explore Startups"
