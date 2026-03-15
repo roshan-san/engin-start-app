@@ -12,6 +12,7 @@ This repo has 2 branches
 - review the package.json file and run pnpm install
 - after adding code raise pr to the dev branch 
 - try to keep all the prs detailed and meaningfull
+- always pnpm check and build and verify before commiting
 - all the team members must take full code ownership
 - all queries and suggestions are welcomed  
 
