@@ -1,27 +1,43 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { Header } from "~/components/app/Header";
-import { BottomBar } from "~/components/app/Navigation";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import {
+	createFileRoute,
+	Outlet,
+	redirect,
+	useRouter,
+} from "@tanstack/react-router";
+import { Header } from "~/components/app/layouts/Header";
+import { BottomBar } from "~/components/app/layouts/Navigation";
+import { GlobalSpinner } from "~/components/globals/GlobalSpinner";
 import { profileQueryOptions } from "~/lib/auth-client";
+import { bypassMainFn } from "~/server/functions/bypass-main";
 
 export const Route = createFileRoute("/app")({
 	component: AppLayout,
+	pendingComponent: GlobalSpinner,
 	beforeLoad: async ({ context }) => {
-		const profile = await context.qc.fetchQuery(profileQueryOptions());
-		if (!profile || !profile.onboarding_complete) {
-			throw redirect({ to: "/onboard" });
+		const allowed = await bypassMainFn();
+		if (!allowed) {
+			throw redirect({ to: "/wait" });
 		}
-		return { profile };
+		const profile = await context.qc.ensureQueryData(profileQueryOptions());
+		if (profile === null) {
+			throw redirect({ to: "/join" });
+		}
 	},
 });
 
 function AppLayout() {
+	const router = useRouter();
+	const { data: profile } = useSuspenseQuery(profileQueryOptions());
+
+	if (!profile || !profile.onboarding_complete) {
+		router.navigate({ to: "/join" });
+	}
 	return (
-		<div className="min-h-screen flex flex-col p-2 gap-2">
+		<div className="min-h-screen w-screen ring flex flex-col p-2 gap-2">
 			<Header />
-			<div className="flex-1 flex flex-col gap-2">
-				<Outlet />
-				<BottomBar />
-			</div>
+			<Outlet />
+			<BottomBar />
 		</div>
 	);
 }

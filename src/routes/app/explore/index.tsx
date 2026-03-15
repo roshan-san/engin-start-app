@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ExploreCard } from "~/components/app/explore/ExploreCard";
 
 export const Route = createFileRoute("/app/explore/")({
 	component: RouteComponent,
@@ -6,8 +7,17 @@ export const Route = createFileRoute("/app/explore/")({
 
 function RouteComponent() {
 	return (
-		<div className="bg-card rounded-xl flex-1 flex items-center justify-center p-2 gap-2">
-			<div className="text-center">Explore</div>
+		<div className="flex flex-col md:flex-row items-center justify-center gap-6 p-6 flex-1">
+			<ExploreCard
+				to="/app/explore/startups"
+				title="Explore Startups"
+				image="/illustrations/undraw_pitching_y6kw.svg"
+			/>
+			<ExploreCard
+				to="/app/explore/sprints"
+				title="Explore Sprints"
+				image="/illustrations/undraw_scrum-board_7bgh.svg"
+			/>
 		</div>
 	);
 }
