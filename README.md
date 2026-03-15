@@ -15,7 +15,7 @@ This repo has 2 branches
 - all the team members must take full code ownership
 - all queries and suggestions are welcomed  
 
-#### Tech Stack STC
+### Tech Stack STC
 -  react and tanstack start/router for file based routing and loaders etc
 - tailwind and shadcn for consistent styling
 - tanstack query for state management , data fetching , mutations etc
