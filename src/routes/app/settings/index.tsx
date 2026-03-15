@@ -1,10 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-	ArrowRightIcon,
-	BadgeQuestionMark,
-	CreditCard,
-	User,
-} from "lucide-react";
+import { ArrowRightIcon, CreditCard, User } from "lucide-react";
 import { cn } from "~/lib/utils";
 
 export const Route = createFileRoute("/app/settings/")({
@@ -15,7 +10,6 @@ function RouteComponent() {
 	const nav = [
 		{ name: "Profile", path: "/app/settings/profile", icon: User },
 		{ name: "Billing", path: "/app/settings/billing", icon: CreditCard },
-		{ name: "Help", path: "/app/settings/help", icon: BadgeQuestionMark },
 	];
 
 	return (
@@ -30,7 +24,7 @@ function RouteComponent() {
 							to={item.path}
 							className={cn(
 								"flex items-center justify-between p-4 rounded-xl",
-								"w-full max-w-md tracking-wider bg-card",
+								"w-full md:max-w-1/2 max-w-md tracking-wider bg-card",
 								"hover:bg-accent hover:text-accent-foreground",
 							)}
 						>

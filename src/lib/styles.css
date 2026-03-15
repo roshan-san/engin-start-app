@@ -53,8 +53,8 @@
   --accent: hsl(200, 100%, 40%);
 
   --background: hsl(0 0% 0%);
-  --secondary: hsl(0 0% 5%);
-  --card: hsl(0 0% 5%);
+  --secondary: hsl(0 0% 3%);
+  --card: hsl(0 0% 3%);
   --input: hsl(0 0% 10%);
   --popover: hsl(0 0% 10%);
   --muted: hsl(0 0% 15%);

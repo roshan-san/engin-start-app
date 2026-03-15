@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button";
 import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
 import { updateProfileFn } from "~/server/functions/profiles";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, LockIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
@@ -59,10 +59,14 @@ function RouteComponent() {
 			</div>
 			<div className="flex-1 flex gap-2 ">
 				<div className="md:flex items-center hidden justify-center w-1/2">
-					some illustration
+					<img
+						className="w-full max-w-md"
+						src="/illustrations/undraw_personal-information_h7kf.svg"
+						alt="Profile Illustration"
+					/>
 				</div>
 				<form
-					className="flex bg-card/30 md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-4"
+					className="flex bg-card/30 md:w-1/2 w-full flex-col justify-between rounded-xl gap-4 p-2"
 					id="edit-profile-form"
 					onSubmit={handleSubmit((data) =>
 						mutate({
@@ -70,10 +74,11 @@ function RouteComponent() {
 						}),
 					)}
 				>
-					<div className="flex gap-6 items-center justify-center p-2">
+					<div className="flex md:flex-row flex-col gap-6 items-center justify-center p-2">
 						<Field className="cursor-not-allowed">
 							<Label className="text-base" htmlFor="username">
 								Username
+								<LockIcon className="w-4 h-4" />
 							</Label>
 							<Input
 								className="w-full max-w-md"
@@ -83,10 +88,10 @@ function RouteComponent() {
 							/>
 						</Field>
 						<Field data-invalid={!errors}>
-							<FieldLabel htmlFor="username">Full Name</FieldLabel>
+							<FieldLabel htmlFor="full_name">Full Name</FieldLabel>
 							<Input
 								className="w-full max-w-md"
-								id="username"
+								id="full_name"
 								{...register("full_name")}
 							/>
 							<FieldError>{errors.full_name?.message}</FieldError>
@@ -95,7 +100,7 @@ function RouteComponent() {
 
 					<div className="flex justify-end">
 						<Button
-							className="text-base font-bold p-4"
+							className="text-base  p-4"
 							type="submit"
 							form="edit-profile-form"
 						>

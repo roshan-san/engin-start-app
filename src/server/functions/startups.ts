@@ -4,8 +4,6 @@ import { eq } from "drizzle-orm";
 import { authMiddleware } from "../lib/auth";
 import { startupTable } from "../lib/db/schema";
 import { createInsertSchema } from "drizzle-zod";
-import { env } from "~/env/server";
-import z from "zod";
 
 const StartUpSchema = createInsertSchema(startupTable);
 
