@@ -1,17 +1,17 @@
-import { EditProfileSchema } from "~/components/app/settings/edit-profile";
 import { Button } from "~/components/ui/button";
 import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
-import { updateProfileFn } from "~/server/functions/profiles";
 import { ArrowLeft, LockIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Spinner } from "~/components/ui/spinner";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { profileQueryOptions } from "~/lib/auth-client";
+import { profileQueryOptions } from "~/features/auth/auth-client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
+import { updateProfileFn } from "~/features/profile/profile.fn";
+import z from "zod";
 
 export const Route = createFileRoute("/app/settings/profile")({
 	component: RouteComponent,
@@ -24,6 +24,17 @@ function RouteComponent() {
 	if (profile === null) {
 		throw redirect({ to: "/join" });
 	}
+	const ProfileSchema = z.object({
+		full_name: z
+			.string()
+			.trim()
+			.min(4, "Full name must be at least 4 characters")
+			.max(100, "Full name is too long")
+			.regex(
+				/^[A-Za-z]+(?: [A-Za-z]+)*$/,
+				"Full name can only contain letters and single spaces, and must start with a letter",
+			),
+	});
 
 	const {
 		register,
@@ -33,7 +44,7 @@ function RouteComponent() {
 		defaultValues: {
 			full_name: profile.full_name ?? undefined,
 		},
-		resolver: zodResolver(EditProfileSchema),
+		resolver: zodResolver(ProfileSchema),
 	});
 	const { mutate, isPending } = useMutation({
 		mutationFn: updateProfileFn,

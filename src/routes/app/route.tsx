@@ -5,11 +5,11 @@ import {
 	redirect,
 	useRouter,
 } from "@tanstack/react-router";
-import { Header } from "~/components/app/layouts/Header";
-import { BottomBar } from "~/components/app/layouts/Navigation";
+import { Header } from "~/components/layouts/Header";
+import { BottomBar } from "~/components/layouts/Navigation";
 import { GlobalSpinner } from "~/components/globals/GlobalSpinner";
-import { profileQueryOptions } from "~/lib/auth-client";
-import { bypassMainFn } from "~/server/functions/bypass-main";
+import { profileQueryOptions } from "~/features/auth/auth-client";
+import { bypassMainFn } from "~/features/auth/bypass-main";
 
 export const Route = createFileRoute("/app")({
 	component: AppLayout,

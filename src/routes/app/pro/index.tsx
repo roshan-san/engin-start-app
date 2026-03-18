@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
-import { buyProPlanFn } from "~/server/functions/payments";
+import { buyProPlanFn } from "~/features/payments/payments.fn";
 
 export const Route = createFileRoute("/app/pro/")({
 	component: RouteComponent,

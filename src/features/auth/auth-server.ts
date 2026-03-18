@@ -4,7 +4,7 @@ import {
 	createServerFn,
 	createServerOnlyFn,
 } from "@tanstack/react-start";
-import { db } from "~/server/lib/db";
+import { db } from "~/db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { env } from "~/env/server";
 import { redirect } from "@tanstack/react-router";

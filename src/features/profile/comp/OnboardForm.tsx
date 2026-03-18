@@ -1,9 +1,9 @@
 import { ArrowDownUp } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
-import { authClient, profileQueryOptions } from "~/lib/auth-client";
+import { authClient, profileQueryOptions } from "~/features/auth/auth-client";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/server/functions/profiles";
+import { createProfileFn } from "~/features/profile/profile.fn";
 import { useForm } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
 import { Input } from "~/components/ui/input";
@@ -15,7 +15,7 @@ import {
 import { useRouter } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
-import { getSessionFn } from "~/server/lib/auth";
+import { getSessionFn } from "~/features/auth/auth-server";
 
 const NameFormSchema = z.object({
 	full_name: z

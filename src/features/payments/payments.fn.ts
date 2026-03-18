@@ -1,7 +1,7 @@
 import { createServerFn, createServerOnlyFn } from "@tanstack/react-start";
 import DodoPayments from "dodopayments";
 import { env } from "~/env/server";
-import { authMiddleware } from "~/server/lib/auth";
+import { authMiddleware } from "~/features/auth/auth-server";
 
 const getDodo = createServerOnlyFn(() => {
 	return new DodoPayments({

@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "~/components/ui/button";
-import { getMyStartupsFn } from "~/server/functions/startups";
-import { getPlanFn } from "~/server/functions/profiles";
+import { getPlanFn } from "~/features/profile/profile.fn";
+import { getMyStartupsFn } from "~/features/startup/startup.fn";
 
 export const Route = createFileRoute("/app/dashboard/")({
 	component: RouteComponent,

@@ -5,7 +5,7 @@ import { PlusIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { AddStartupFn } from "~/server/functions/startups";
+import { AddStartupFn } from "~/features/startup/startup.fn";
 import z from "zod";
 import { Field, FieldLabel, FieldError } from "~/components/ui/field";
 
