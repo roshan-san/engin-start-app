@@ -9,7 +9,11 @@ export const profileTable = pgTable("profile", {
 	username: text("username").notNull().unique(),
 	full_name: text("full_name").notNull(),
 	email: text("email").notNull(),
-	plan: text("plan").default("free").notNull(),
+
+	user_type: text("user_type").default("basic").notNull(),
+	subscription_status: text("subscription_status")
+		.default("inactive")
+		.notNull(),
 
 	avatar_url: text("avatar_url"),
 
@@ -19,7 +23,6 @@ export const profileTable = pgTable("profile", {
 	country: text("country"),
 
 	// Work preferences & availability
-	user_type: text("user_type"),
 	preferred_work_type: text("preferred_work_type"),
 	preferred_domain: text("preferred_domain"),
 	experience_level: text("experience_level"),

@@ -10,6 +10,9 @@ export default defineConfig({
 	build: {
 		emptyOutDir: true,
 	},
+	server: {
+		allowedHosts: true,
+	},
 	plugins: [
 		devtools(),
 		tsConfigPaths({

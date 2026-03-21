@@ -30,8 +30,11 @@ export function Header() {
 				>
 					<Bell className="h-5 w-5" />
 				</Link>
-				<div className="flex gap-2 items-center">
-					{profile?.plan === "pro" ? (
+				<Link
+					to="/app/settings/billing/pro"
+					className="flex gap-2 items-center"
+				>
+					{profile?.user_type === "basic" ? (
 						<div className="px-3 py-1 text-sm rounded-xl border bg-muted/50 text-muted-foreground">
 							Basic
 						</div>
@@ -41,7 +44,7 @@ export function Header() {
 						</div>
 					)}
 					<AppAvatar />
-				</div>
+				</Link>
 			</div>
 		</div>
 	);

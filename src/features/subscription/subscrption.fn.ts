@@ -25,6 +25,7 @@ export const buyProPlanFn = createServerFn({ method: "POST" })
 				trial_period_days: 7,
 			},
 			customer: { customer_id: customer_id },
+			return_url: `${env.BASE_URL}/app/billing/pro`,
 		});
 		if (!checkout_url) {
 			throw new Response("Payment Failed Try Again Later", { status: 500 });

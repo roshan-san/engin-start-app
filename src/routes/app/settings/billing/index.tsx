@@ -5,7 +5,7 @@ import { Button } from "~/components/ui/button";
 import { profileQueryOptions } from "~/features/auth/auth-client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-export const Route = createFileRoute("/app/settings/billing")({
+export const Route = createFileRoute("/app/settings/billing/")({
 	component: RouteComponent,
 });
 
@@ -24,13 +24,13 @@ function RouteComponent() {
 				</Button>
 			</div>
 			<div className="flex-1 flex  items-center justify-center gap-6 p-4">
-				{profile?.plan === "pro" ? (
+				{profile?.user_type === "pro" ? (
 					<p className="text-lg font-medium">You are in pro plan.</p>
 				) : (
 					<div>You are in free plan</div>
 				)}
 				<Button asChild variant={"outline"}>
-					<Link to="/app/pro">Buy Pro</Link>
+					<Link to="/app/settings/billing/pro">Buy Pro</Link>
 				</Button>
 			</div>
 		</div>
