@@ -3,10 +3,14 @@ import { Bell, GitPullRequestArrowIcon } from "lucide-react";
 import { AppAvatar } from "./AppAvatar";
 import NavigationMenu from "./Navigation";
 import { cn } from "~/lib/utils";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { profileQueryOptions } from "~/features/auth/auth-client";
 
 export function Header() {
 	const { pathname } = useLocation();
 	const isNotifs = pathname === "/app/notifications";
+	const { data: profile } = useSuspenseQuery(profileQueryOptions());
+
 	return (
 		<div className="flex items-center justify-between px-4">
 			<Link to="/" className="flex items-center  gap-2">
@@ -26,7 +30,18 @@ export function Header() {
 				>
 					<Bell className="h-5 w-5" />
 				</Link>
-				<AppAvatar />
+				<div className="flex gap-2 items-center">
+					{profile?.plan === "pro" ? (
+						<div className="px-3 py-1 text-sm rounded-xl border bg-muted/50 text-muted-foreground">
+							Basic
+						</div>
+					) : (
+						<div className="px-3 py-1 text-sm rounded-xl bg-linear-to-r from-blue-400 via-blue-500 to-blue-600 shadow-md shadow-blue-500/20">
+							Pro
+						</div>
+					)}
+					<AppAvatar />
+				</div>
 			</div>
 		</div>
 	);

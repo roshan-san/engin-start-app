@@ -5,74 +5,82 @@ import { eq } from "drizzle-orm";
 import { profileTable } from "~/db/schema";
 import { db } from "~/db";
 
+// Base schema
 const ProfileSchema = createInsertSchema(profileTable);
 
-export const getMyProfile = createServerFn({ method: "GET" })
+// GET MY PROFILE
+export const getMyProfileFn = createServerFn({ method: "GET" })
 	.middleware([authMiddleware])
 	.handler(async ({ context }) => {
 		const { user } = context;
+
 		const profile = await db.query.profileTable.findFirst({
-			where({ id }, { eq }) {
-				return eq(id, user.id);
-			},
+			where: eq(profileTable.id, user.id),
 		});
-		if (profile === undefined) {
-			return null;
-		}
-		return profile;
+
+		return profile ?? null;
 	});
 
-export const getPlanFn = createServerFn({ method: "GET" })
-	.middleware([authMiddleware])
-	.handler(async ({ context }) => {
-		const { user } = context;
-		const profile = await db.query.profileTable.findFirst({
-			where({ id }, { eq }) {
-				return eq(id, user.id);
-			},
-		});
-		if (profile === undefined) {
-			return "free";
-		}
-		return profile.plan;
-	});
-
-export const createProfileFn = createServerFn({ method: "POST" })
+// CREATE PROFILE
+export const createMyProfileFn = createServerFn({ method: "POST" })
 	.middleware([authMiddleware])
 	.inputValidator(
-		ProfileSchema.omit({ id: true, email: true, avatar_url: true }),
+		ProfileSchema.omit({
+			id: true,
+			email: true,
+			avatar_url: true,
+		}),
 	)
 	.handler(async ({ data, context }) => {
 		const { user } = context;
-		const username = await db.query.profileTable.findFirst({
-			where({ username }, { eq }) {
-				return eq(username, data.username);
-			},
-		});
-		if (username) {
-			throw new Response("Sorry the Username is already taken", {
-				status: 400,
+
+		try {
+			await db.insert(profileTable).values({
+				id: user.id,
+				email: user.email,
+				full_name: data.full_name,
+				username: data.username,
+				avatar_url: user.image,
+				onboarding_complete: true,
 			});
+		} catch (err) {
+			console.error("Profile creation failed:", err);
+			throw new Response("Username already taken", { status: 400 });
 		}
-		await db.insert(profileTable).values({
-			id: user.id,
-			email: user.email,
-			full_name: data.full_name,
-			username: data.username,
-			avatar_url: user.image,
-			onboarding_complete: true,
+
+		const profile = await db.query.profileTable.findFirst({
+			where: eq(profileTable.id, user.id),
 		});
-		return;
+
+		return profile;
 	});
 
-export const updateProfileFn = createServerFn({ method: "POST" })
+// UPDATE PROFILE
+export const updateMyProfileFn = createServerFn({ method: "POST" })
 	.middleware([authMiddleware])
-	.inputValidator(ProfileSchema.partial())
+	.inputValidator(
+		ProfileSchema.pick({
+			full_name: true,
+			username: true,
+		}).partial(),
+	)
 	.handler(async ({ data, context }) => {
 		const { user } = context;
-		await db
-			.update(profileTable)
-			.set({ ...data })
-			.where(eq(profileTable.id, user.id));
-		return;
+
+		try {
+			await db
+				.update(profileTable)
+				.set({ ...data })
+				.where(eq(profileTable.id, user.id));
+		} catch (err) {
+			console.error("Profile update failed:", err);
+			throw new Response("Update failed", { status: 400 });
+		}
+
+		// return updated profile for react-query sync
+		const updatedProfile = await db.query.profileTable.findFirst({
+			where: eq(profileTable.id, user.id),
+		});
+
+		return updatedProfile;
 	});

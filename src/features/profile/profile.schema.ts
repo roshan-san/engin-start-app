@@ -1,12 +1,12 @@
 import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { user } from "./auth.schema";
+import { user } from "~/features/auth/auth.schema";
 
-export const profileTable = pgTable("profiles", {
+export const profileTable = pgTable("profile", {
 	id: text("id")
 		.notNull()
 		.primaryKey()
 		.references(() => user.id, { onDelete: "cascade" }),
-	username: text("username").notNull(),
+	username: text("username").notNull().unique(),
 	full_name: text("full_name").notNull(),
 	email: text("email").notNull(),
 	plan: text("plan").default("free").notNull(),

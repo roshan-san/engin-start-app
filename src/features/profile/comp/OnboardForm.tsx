@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
 import { authClient, profileQueryOptions } from "~/features/auth/auth-client";
 import { Spinner } from "~/components/ui/spinner";
-import { createProfileFn } from "~/features/profile/profile.fn";
+import { createMyProfileFn } from "~/features/profile/profile.fn";
 import { useForm } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
 import { Input } from "~/components/ui/input";
@@ -50,7 +50,7 @@ export default function OnboardForm() {
 	});
 
 	const { mutate, isPending } = useMutation({
-		mutationFn: createProfileFn,
+		mutationFn: createMyProfileFn,
 		onSuccess: async () => {
 			toast.success("Profile created");
 			router.navigate({ to: "/app/dashboard" });
@@ -87,22 +87,22 @@ export default function OnboardForm() {
 	};
 
 	return (
-		<div className="flex bg-card rounded-2xl flex-col gap-4 p-6 items-center w-full max-w-md">
+		<div className="flex bg-card rounded-xl flex-col gap-4 p-6 items-center justify-center w-full max-w-md">
 			<header className="flex flex-col items-start w-full">
-				<p className="text-xl font-bold">
-					Welcome ,<span className="text-foreground">{user.name} !</span>
+				<p className="text-xl ">
+					Heyy , <span className="text-primary">{user.name} !</span>
 				</p>
 				<Button
 					variant="link"
 					onClick={handleSwitchAccount}
-					className="flex items-center p-0 text-muted-foreground"
+					className="flex items-center justify-start text-muted-foreground"
 				>
 					<ArrowDownUp className="h-4 w-4" />
 					Switch ({user.email})
 				</Button>
 			</header>
 			<form
-				className="flex flex-col gap-4 w-full"
+				className="flex flex-1 flex-col w-full gap-4"
 				onSubmit={handleSubmit((data) =>
 					mutate({
 						data: data,
@@ -119,7 +119,12 @@ export default function OnboardForm() {
 					<Input id="username" {...register("username")} />
 					<FieldError>{errors.username?.message}</FieldError>
 				</Field>
-				<Button type="submit" disabled={isPending} className="w-full">
+				<Button
+					type="submit"
+					variant="default"
+					disabled={isPending}
+					className="w-full"
+				>
 					{isPending && <Spinner />}
 					Continue
 				</Button>

@@ -9,11 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WaitRouteImport } from './routes/wait'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as JoinRouteImport } from './routes/join'
 import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WaitIndexRouteImport } from './routes/wait/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as JoinIndexRouteImport } from './routes/join/index'
 import { Route as AppStartupsRouteRouteImport } from './routes/app/startups/route'
 import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
 import { Route as AppProIndexRouteImport } from './routes/app/pro/index'
@@ -27,21 +27,6 @@ import { Route as AppExploreStartupsIndexRouteImport } from './routes/app/explor
 import { Route as AppExploreSprintsIndexRouteImport } from './routes/app/explore/sprints/index'
 import { Route as AppDashboardStartupNewVerifypanRouteImport } from './routes/app/dashboard/startup/new/verifypan'
 
-const WaitRoute = WaitRouteImport.update({
-  id: '/wait',
-  path: '/wait',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JoinRoute = JoinRouteImport.update({
-  id: '/join',
-  path: '/join',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/app',
   path: '/app',
@@ -50,6 +35,21 @@ const AppRouteRoute = AppRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaitIndexRoute = WaitIndexRouteImport.update({
+  id: '/wait/',
+  path: '/wait/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinIndexRoute = JoinIndexRouteImport.update({
+  id: '/join/',
+  path: '/join/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppStartupsRouteRoute = AppStartupsRouteRouteImport.update({
@@ -117,10 +117,10 @@ const AppDashboardStartupNewVerifypanRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/join': typeof JoinRoute
-  '/login': typeof LoginRoute
-  '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRoute
+  '/join': typeof JoinIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/wait': typeof WaitIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -136,10 +136,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/join': typeof JoinRoute
-  '/login': typeof LoginRoute
-  '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRoute
+  '/join': typeof JoinIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/wait': typeof WaitIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -156,10 +156,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
-  '/join': typeof JoinRoute
-  '/login': typeof LoginRoute
-  '/wait': typeof WaitRoute
   '/app/startups': typeof AppStartupsRouteRoute
+  '/join/': typeof JoinIndexRoute
+  '/login/': typeof LoginIndexRoute
+  '/wait/': typeof WaitIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/app/settings/billing': typeof AppSettingsBillingRoute
   '/app/settings/profile': typeof AppSettingsProfileRoute
@@ -177,10 +177,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/startups'
     | '/join'
     | '/login'
     | '/wait'
-    | '/app/startups'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/profile'
@@ -196,10 +196,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app'
+    | '/app/startups'
     | '/join'
     | '/login'
     | '/wait'
-    | '/app/startups'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/profile'
@@ -215,10 +215,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
-    | '/join'
-    | '/login'
-    | '/wait'
     | '/app/startups'
+    | '/join/'
+    | '/login/'
+    | '/wait/'
     | '/api/auth/$'
     | '/app/settings/billing'
     | '/app/settings/profile'
@@ -235,35 +235,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRouteRoute: typeof AppRouteRouteWithChildren
-  JoinRoute: typeof JoinRoute
-  LoginRoute: typeof LoginRoute
-  WaitRoute: typeof WaitRoute
+  JoinIndexRoute: typeof JoinIndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+  WaitIndexRoute: typeof WaitIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/wait': {
-      id: '/wait'
-      path: '/wait'
-      fullPath: '/wait'
-      preLoaderRoute: typeof WaitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/join': {
-      id: '/join'
-      path: '/join'
-      fullPath: '/join'
-      preLoaderRoute: typeof JoinRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/app': {
       id: '/app'
       path: '/app'
@@ -276,6 +255,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wait/': {
+      id: '/wait/'
+      path: '/wait'
+      fullPath: '/wait'
+      preLoaderRoute: typeof WaitIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join/': {
+      id: '/join/'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/startups': {
@@ -400,9 +400,9 @@ const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRouteRoute: AppRouteRouteWithChildren,
-  JoinRoute: JoinRoute,
-  LoginRoute: LoginRoute,
-  WaitRoute: WaitRoute,
+  JoinIndexRoute: JoinIndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
+  WaitIndexRoute: WaitIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

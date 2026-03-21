@@ -10,7 +10,7 @@ import { profileQueryOptions } from "~/features/auth/auth-client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod/dist/zod.js";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
-import { updateProfileFn } from "~/features/profile/profile.fn";
+import { updateMyProfileFn } from "~/features/profile/profile.fn";
 import z from "zod";
 
 export const Route = createFileRoute("/app/settings/profile")({
@@ -47,7 +47,7 @@ function RouteComponent() {
 		resolver: zodResolver(ProfileSchema),
 	});
 	const { mutate, isPending } = useMutation({
-		mutationFn: updateProfileFn,
+		mutationFn: updateMyProfileFn,
 		onSuccess: async () => {
 			qc.invalidateQueries(profileQueryOptions());
 			toast.success("Profile updated successfully");

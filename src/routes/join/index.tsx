@@ -3,7 +3,7 @@ import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { profileQueryOptions } from "~/features/auth/auth-client";
 import OnboardForm from "~/features/profile/comp/OnboardForm";
 
-export const Route = createFileRoute("/join")({
+export const Route = createFileRoute("/join/")({
 	component: RouteComponent,
 });
 
@@ -15,9 +15,9 @@ function RouteComponent() {
 		router.navigate({ to: "/app/dashboard" });
 	}
 	return (
-		<div className="flex min-h-screen gap-2 p-6">
+		<div className="flex items-center justify-center ring min-h-screen gap-12 p-6">
 			<img
-				className="w-full md:w-1/3"
+				className="w-full md:w-1/3 object-contain"
 				src="/illustrations/undraw_all-the-data_ijgn.svg"
 				alt=""
 			/>
